@@ -87,6 +87,7 @@ body {
     height: calc(100vw * 0.367);
     max-width: 100vw;
     max-height: none;
+    margin-bottom: 3rem; /* 추가: 캐러셀과 다음 섹션 사이에 3rem 여백 */
   }
   .carousel-bg {
     /* 모바일에서는 이미지 전체가 보이도록 contain 사용 */
@@ -133,14 +134,14 @@ body {
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
- *                    커뮤니티
+ *                여행 포토 후기
  *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* 기본 단위: 1rem = 16px 기준 */
 
 /* 전체 컨테이너: 최대 너비와 좌우 여백 조정 */
 .community-hot-list {
   max-width: 73rem; /* 약 1168px */
-  margin: 0 auto;
+  margin-top: 4rem; /* 캐러셀 바로 아래에 4rem 여백 추가 */
 }
 
 .title-more {
