@@ -76,6 +76,20 @@ h5,
   color: #f7f7f7 !important;
 }
 
+.offcanvas-header {
+  display: flex;
+  justify-content: space-between; /* 요소들을 좌우로 정렬 */
+  align-items: center;
+  padding: 1rem;
+}
+
+/* 로그인 버튼 & 닫기 버튼을 나란히 정렬 */
+.offcanvas-header .d-flex {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 버튼 사이 여백 */
+}
+
 .offcanvas .btn-close {
   filter: invert(1); /* 닫기 버튼 색상 반전 (흰색으로) */
 }
@@ -102,6 +116,13 @@ h5,
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* 로그인 버튼이 네비게이션 바 끝으로 이동 */
+.navbar-collapse {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .navbar .btn-outline-success:hover {
