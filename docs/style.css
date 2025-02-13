@@ -28,6 +28,7 @@ h5,
 .navbar .navbar-nav .nav-link,
 .btn {
   font-family: "Pretendard-SemiBold", sans-serif;
+  font-size: 1rem;
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
@@ -132,4 +133,24 @@ h5,
 .navbar-toggler-icon {
   background-color: transparent !important;
   filter: invert(100%) brightness(100%) contrast(100%) !important; /* f7f7f7 색상 */
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                   푸터
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 푸터 스타일 */
+footer {
+  font-family: "Pretendard-Regular", sans-serif;
+  font-weight: 500 !important; /* Medium으로 강제 적용 */
+  background: #1a1a1a;
+  color: #f7f7f7;
+  min-height: 30vh; /* ✅ 높이 조정 */
+  max-height: 40vh;
+  padding: 40px 40px; /* ✅ 패딩 증가 */
+}
+
+/* 푸터 내부 텍스트 스타일 */
+footer span {
+  font-size: 0.9rem;
+  font-weight: 500 !important; /* Semibold로 보이는 문제 해결 */
 }
