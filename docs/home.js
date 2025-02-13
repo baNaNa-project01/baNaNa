@@ -1,3 +1,9 @@
+/***************************************************************
+ *                   CAROUSEL PROGRESS BAR CODE
+ * ----------------------------------------------------------------
+ * 이 코드는 캐러셀 슬라이드 전환 시,
+ * 프로그레스 인디케이터의 위치를 업데이트합니다.
+ ***************************************************************/
 document.addEventListener("DOMContentLoaded", function () {
   const carouselElement = document.getElementById("carouselImages");
   const progressIndicator = document.querySelector(".progress-indicator");
