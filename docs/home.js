@@ -16,3 +16,30 @@ document.addEventListener("DOMContentLoaded", function () {
     progressIndicator.style.left = positions[index];
   });
 });
+
+document.querySelectorAll(".card-image").forEach((img) => {
+  // 이미지의 부모 요소에 바로 래퍼를 생성하여 감싸기
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("card-image-wrapper");
+
+  // 이미지 요소를 감싸도록 DOM에서 위치 변경
+  img.parentNode.insertBefore(wrapper, img);
+  wrapper.appendChild(img);
+
+  // 마우스 엔터 시 오버레이 생성
+  wrapper.addEventListener("mouseenter", () => {
+    if (!wrapper.querySelector(".dark-overlay")) {
+      const overlay = document.createElement("div");
+      overlay.classList.add("dark-overlay");
+      wrapper.appendChild(overlay);
+    }
+  });
+
+  // 마우스 리브 시 오버레이 제거
+  wrapper.addEventListener("mouseleave", () => {
+    const overlay = wrapper.querySelector(".dark-overlay");
+    if (overlay) {
+      overlay.remove();
+    }
+  });
+});
