@@ -1,7 +1,13 @@
+/* 또는 전체 수평 오버플로우 숨김 */
+html,
+body {
+  overflow-x: hidden;
+}
+
 /* 기본 디자인 (데스크탑 기준) */
 .carousel-wrapper {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: calc(100vw * 0.367);
   max-width: 1440px;
   max-height: 529px;
