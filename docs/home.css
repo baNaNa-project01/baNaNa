@@ -360,27 +360,31 @@ body {
 
 /* 월드컵 바로가기 버튼 */
 .btn-worldcup {
-  height: 64px;
-  padding: 1.2% 3.6%; /* 상하 19px/397, 좌우 45px/1440 */
-  border-radius: 50px;
-  font-size: 24px;
-  font-size: calc((24 / 1440) * 100vw);
-  font-family: Pretendard, sans-serif;
-  font-weight: 600;
-  color: #333333;
-  background: #ffd700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none; /* 기본 버튼 배경 제거 */
   border: none;
-  transition: background-color 0.3s;
+  padding: 0;
+  cursor: pointer;
 }
 
-.btn-worldcup:hover {
-  background: #ddb900;
+/* 버튼 이미지 */
+.btn-worldcup-img {
+  width: 28.3vw;
+  max-width: 408px; /* 최대 크기 제한 */
+  height: auto;
+  transition: transform 0.2s ease-in-out;
 }
 
-.btn-worldcup:active {
-  background: #ddb900;
+/* 버튼 호버 & 클릭 시 어두워지는 효과 */
+.btn-worldcup:hover .btn-worldcup-img {
+  filter: brightness(0.85); /* 호버 시 어두워짐 */
 }
 
+.btn-worldcup:active .btn-worldcup-img {
+  filter: brightness(0.75); /* 클릭 시 더 어두워짐 */
+}
 /* 이미지 컨테이너 */
 .overlap-images {
   position: relative;
@@ -461,28 +465,35 @@ body {
   margin: 0 auto;
 }
 
-/* 버튼: 위치와 크기를 퍼센트 단위로 지정해 컨테이너에 비례하여 축소됨 */
+/* AI 맞춤 여행 버튼 */
 .ai-recommend-btn {
   position: absolute;
   bottom: 13.1%; /* 52px/397px */
   right: 8.7%; /* 125px/1440px */
-  padding: 1.2% 3.6%; /* 상하 19px/397, 좌우 45px/1440 */
-  background: #ffd700;
-  border-radius: 50px;
+  background: none; /* 버튼 배경 제거 */
+  border: none;
+  padding: 0;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
 }
 
-/* 버튼 호버 시 색상 변경 */
-.ai-recommend-btn:hover {
-  background-color: #ddb900; /* 약간 어두운 노란색 */
+/* 버튼 이미지 */
+.ai-recommend-btn-img {
+  width: 28.3vw;
+  max-width: 408px; /* 최대 크기 제한 */
+  height: auto;
+  transition: filter 0.2s ease-in-out;
 }
 
-/* 버튼 눌림(클릭) 상태 시 색상 변경 */
-.ai-recommend-btn:active {
-  background-color: #ddb900; /* 더 어두운 노란색 */
+/* 버튼 호버 & 클릭 시 어두워지는 효과 */
+.ai-recommend-btn:hover .ai-recommend-btn-img {
+  filter: brightness(0.85); /* 호버 시 어두워짐 */
+}
+
+.ai-recommend-btn:active .ai-recommend-btn-img {
+  filter: brightness(0.75); /* 클릭 시 더 어두워짐 */
 }
 
 /* 버튼 텍스트: 폰트 크기도 컨테이너 축소에 맞춰 조정 (필요시 미세 조정) */
