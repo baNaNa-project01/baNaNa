@@ -1,0 +1,156 @@
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                  폰트 적용
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* Pretendard 폰트 적용 */
+@font-face {
+  font-family: "Pretendard-Medium";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff")
+    format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard-SemiBold";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff")
+    format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* 전체 페이지에 폰트 적용 */
+body {
+  font-family: "Pretendard-Medium", sans-serif;
+}
+
+h5,
+.navbar .navbar-brand,
+.navbar .navbar-nav .nav-link,
+.btn {
+  font-family: "Pretendard-SemiBold", sans-serif;
+  font-size: 1rem;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *               내비게이션 바 
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 내비게이션 바 스타일 */
+.navbar {
+  background-color: #1a1a1a !important;
+  padding-left: 1.5rem !important; /* 왼쪽 여백 */
+  padding-right: 1.5rem !important; /* 오른쪽 여백 */
+}
+
+.container-fluid {
+  padding-left: 2rem; /* 왼쪽 여백 */
+  padding-right: 2rem; /* 오른쪽 여백 */
+}
+
+.navbar .navbar-nav .nav-link {
+  color: #f7f7f7 !important;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link.active {
+  color: #ffd700 !important;
+}
+
+/* 로고 크기 반응형 */
+.navbar-brand-logo img {
+  width: 3rem; /* 기본 크기 */
+  max-width: 10vw; /* 화면 너비의 10% */
+  height: auto;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *              🛠 오프 캔버스 🛠
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 오프캔버스 스타일 */
+.offcanvas {
+  background-color: #1a1a1a !important;
+  color: #f7f7f7 !important;
+}
+
+.offcanvas .offcanvas-header h5 {
+  color: #f7f7f7 !important;
+}
+
+.offcanvas .btn-close {
+  filter: invert(1); /* 닫기 버튼 색상 반전 (흰색으로) */
+}
+
+.offcanvas .navbar-nav .nav-link {
+  color: #f7f7f7 !important;
+}
+
+.offcanvas .navbar-nav .nav-link:hover {
+  color: #ffd700 !important;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *           내비게이션 바 - 로그인 버튼 
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 로그인 버튼 스타일 */
+.navbar .btn-outline-success {
+  font-family: "Pretendard-SemiBold", sans-serif !important;
+  color: #f7f7f7 !important;
+  background-color: #262626;
+  border-color: #ffd700 !important;
+  width: 90px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar .btn-outline-success:hover {
+  font-family: "Pretendard-SemiBold", sans-serif !important;
+  background-color: #ffd700 !important;
+  color: #1a1a1a !important;
+}
+
+/* 내비게이션 메뉴 간격 조정 */
+.navbar-nav .nav-item {
+  margin-right: 1rem; /* 메뉴 항목 사이 간격 */
+}
+
+/* 마지막 항목(로그인 버튼 포함) 여백 제거 */
+.navbar-nav .nav-item:last-child {
+  margin-right: 0;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *           내비게이션 바 - 토글 버튼 
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+
+/* 토글 버튼 스타일 변경 */
+.navbar-toggler {
+  border: none !important; /* 테두리 색상 변경 */
+}
+
+/* 햄버거 아이콘 스타일 */
+.navbar-toggler-icon {
+  background-color: transparent !important;
+  filter: invert(100%) brightness(100%) contrast(100%) !important; /* f7f7f7 색상 */
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                   푸터
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 푸터 스타일 */
+footer {
+  font-family: "Pretendard-Regular", sans-serif;
+  font-weight: 500 !important; /* Medium으로 강제 적용 */
+  background: #1a1a1a;
+  color: #f7f7f7;
+  min-height: 30vh; /* ✅ 높이 조정 */
+  max-height: 40vh;
+  padding: 40px 40px; /* ✅ 패딩 증가 */
+}
+
+/* 푸터 내부 텍스트 스타일 */
+footer span {
+  font-size: 0.9rem;
+  font-weight: 500 !important; /* Semibold로 보이는 문제 해결 */
+}
