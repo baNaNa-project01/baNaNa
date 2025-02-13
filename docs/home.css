@@ -345,7 +345,7 @@ body {
   padding: 5px 0;
   border: 1.5px solid #ddb900;
   border-radius: 30px;
-  font-size: 20px;
+  font-size: 1.2rem;
   font-family: "Pretendard", sans-serif;
   font-weight: 600;
   color: #333333;
@@ -373,6 +373,7 @@ body {
 .btn-worldcup-img {
   width: 28.3vw;
   max-width: 408px; /* 최대 크기 제한 */
+  min-width: 320px;
   height: auto;
   transition: transform 0.2s ease-in-out;
 }
