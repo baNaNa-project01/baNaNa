@@ -1,8 +1,11 @@
-/* 또는 전체 수평 오버플로우 숨김 */
 html,
 body {
   overflow-x: hidden;
 }
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                     캐러셀
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 
 /* 기본 디자인 (데스크탑 기준) */
 .carousel-wrapper {
@@ -141,5 +144,155 @@ body {
   /* 모바일에서는 프로그레스 바 숨김 */
   .carousel-progress {
     display: none;
+  }
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                    커뮤니티
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 기본 단위: 1rem = 16px 기준 */
+
+/* 전체 컨테이너: 최대 너비와 좌우 여백 조정 */
+.community-hot-list {
+  max-width: 73rem; /* 약 1168px */
+  margin: 0 auto;
+}
+
+.title-more {
+  padding: 0 1rem;
+}
+
+/* Title 영역 */
+.hot-title {
+  color: #333333;
+  font-size: 2.25rem; /* 36px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  margin-right: 1.5rem; /* 오른쪽 여백을 추가 */
+}
+
+.hot-subtitle {
+  color: #5c5c5c;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.more-link {
+  color: #5c5c5c;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Card Set: 중앙 정렬 및 카드 사이 간격 */
+.card-set {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5rem; /* 카드 간 간격 rem */
+}
+
+/* Hot Card */
+.hot-card {
+  width: 16rem; /* 256px = 16rem */
+  display: flex;
+  flex-direction: column;
+  gap: 1.1875rem; /* 19px ≒ 1.1875rem */
+  margin-bottom: 2rem;
+}
+
+/* Card Image */
+.card-image {
+  width: 100%;
+  height: 20rem; /* 320px = 20rem */
+  border-radius: 0.9375rem; /* 15px ≒ 0.9375rem */
+  object-fit: cover;
+}
+
+/* Card Description */
+.card-desc {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* 12px = 0.75rem */
+}
+
+/* Card Title */
+.card-title {
+  width: 100%;
+  text-align: center;
+  color: #333333;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Profile Description */
+.profile-desc {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.625rem; /* 10px = 0.625rem */
+}
+
+/* Profile Image */
+.profile-img {
+  width: 1.25rem; /* 20px = 1.25rem */
+  height: 1.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Nickname & Date */
+.nickname,
+.date {
+  color: #5c5c5c;
+  font-size: 1.125rem; /* 18px = 1.125rem */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* 반응형: 모바일 화면에서 전체 축소 */
+@media (max-width: 768px) {
+  .community-hot-list {
+    padding: 0 1rem;
+  }
+  .card-set {
+    justify-content: center;
+    gap: 1rem;
+  }
+  .hot-card {
+    width: 14rem; /* 모바일에서 카드 너비 축소 */
+    margin-bottom: 1.5rem;
+  }
+  .hot-title {
+    font-size: 2rem; /* 축소된 폰트 크기 */
+  }
+  .hot-subtitle,
+  .more-link {
+    font-size: 1.25rem;
+  }
+  .card-title {
+    font-size: 1.375rem;
+  }
+  .nickname,
+  .date {
+    font-size: 1rem;
+  }
+  .card-image {
+    height: 18rem;
   }
 }
