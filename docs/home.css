@@ -301,3 +301,51 @@ body {
     height: 18rem;
   }
 }
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                AI 맞춤형 추천
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 반응형 AI 맞춤형 추천 섹션 */
+.ai-recommend-section {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  aspect-ratio: 1440 / 397; /* 원본 비율 유지 */
+  background: url("./assets/home/AI 맞춤형 추천.svg") no-repeat center center;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+/* 버튼: 위치와 크기를 퍼센트 단위로 지정해 컨테이너에 비례하여 축소됨 */
+.ai-recommend-btn {
+  position: absolute;
+  bottom: 13.1%; /* 52px/397px */
+  right: 8.7%; /* 125px/1440px */
+  padding: 1.2% 3.6%; /* 상하 19px/397, 좌우 45px/1440 */
+  background: #ffd700;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 버튼 호버 시 색상 변경 */
+.ai-recommend-btn:hover {
+  background-color: #ddb900; /* 약간 어두운 노란색 */
+}
+
+/* 버튼 눌림(클릭) 상태 시 색상 변경 */
+.ai-recommend-btn:active {
+  background-color: #ddb900; /* 더 어두운 노란색 */
+}
+
+/* 버튼 텍스트: 폰트 크기도 컨테이너 축소에 맞춰 조정 (필요시 미세 조정) */
+.ai-recommend-btn-text {
+  color: #333333;
+  /* 원본 24px을 기준으로, 최대 1440px일 때 24px, 축소 시 비례 조정 
+       여기서는 calc()와 vw를 조합하여 설정(1440px 기준) */
+  font-size: calc((24 / 1440) * 100vw);
+  font-family: Pretendard, sans-serif;
+  font-weight: 600;
+}
