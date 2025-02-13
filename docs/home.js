@@ -17,29 +17,30 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-document.querySelectorAll(".card-image").forEach((img) => {
-  // 이미지의 부모 요소에 바로 래퍼를 생성하여 감싸기
-  const wrapper = document.createElement("div");
-  wrapper.classList.add("card-image-wrapper");
+document.addEventListener("DOMContentLoaded", function () {
+  const images = document.querySelectorAll(".overlap-img");
 
-  // 이미지 요소를 감싸도록 DOM에서 위치 변경
-  img.parentNode.insertBefore(wrapper, img);
-  wrapper.appendChild(img);
+  images.forEach((img) => {
+    img.addEventListener("click", function () {
+      // 모든 이미지에 기본 상태 적용 (Dark Overlay & 크기 원상 복귀)
+      images.forEach((el) => el.classList.remove("active"));
 
-  // 마우스 엔터 시 오버레이 생성
-  wrapper.addEventListener("mouseenter", () => {
-    if (!wrapper.querySelector(".dark-overlay")) {
-      const overlay = document.createElement("div");
-      overlay.classList.add("dark-overlay");
-      wrapper.appendChild(overlay);
-    }
+      // 클릭한 이미지만 효과 적용
+      this.classList.add("active");
+    });
   });
+});
 
-  // 마우스 리브 시 오버레이 제거
-  wrapper.addEventListener("mouseleave", () => {
-    const overlay = wrapper.querySelector(".dark-overlay");
-    if (overlay) {
-      overlay.remove();
-    }
+document.addEventListener("DOMContentLoaded", function () {
+  const regionButtons = document.querySelectorAll(".btn-region");
+
+  regionButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      // 모든 버튼에서 active 클래스 제거
+      regionButtons.forEach((btn) => btn.classList.remove("active"));
+
+      // 클릭한 버튼에 active 클래스 추가
+      this.classList.add("active");
+    });
   });
 });
