@@ -35,17 +35,17 @@
     />
     <meta property="og:locale" content="ko_KR" />
 
-    <!-- 커스텀 공통 CSS -->
-    <link rel="stylesheet" href="style.css" />
-
-    <!-- 커스텀 메인 홈홈 CSS -->
-    <link rel="stylesheet" href="home.css" />
-
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+
+    <!-- 커스텀 공통 CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- 커스텀 메인 홈홈 CSS -->
+    <link rel="stylesheet" href="home.css" />
   </head>
   <body>
     <!-- **************************************************** -->
@@ -171,9 +171,13 @@
           class="title-more d-flex justify-content-between align-items-center mb-4"
         >
           <div class="title d-flex align-items-center gap-1rem">
-            <h2 class="hot-title mb-0">지금 핫한 여행 포토 후기</h2>
-            <p class="hot-subtitle mb-0">
-              실제 여행자들의 진솔한 이야기를 듣다
+            <h2 class="hot-title mb-0">
+              <span class="title-line">지금 핫한</span>
+              <span class="title-line">여행 포토 후기</span>
+            </h2>
+            <p class="hot-subtitle">
+              <span class="subtitle-line">실제 여행자들의</span>
+              <span class="subtitle-line">진솔한 이야기를 듣다</span>
             </p>
           </div>
           <div class="more">
@@ -281,6 +285,136 @@
                   <div class="nickname">닉네임은8자리끝</div>
                 </div>
                 <div class="date">2025.02.10</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 여백 요소 추가 -->
+      <div class="section-spacer"></div>
+
+      <!-- **************************************************** -->
+      <!-- ★★★★★  여기부터 이상형 월드컵 섹션 ★★★★★ -->
+      <!-- **************************************************** -->
+      <div class="container my-5">
+        <!-- Worldcup Section -->
+        <div class="worldcup-section">
+          <!-- Title -->
+          <div class="worldcup-title-container">
+            <div class="row mb-4">
+              <div class="col">
+                <div
+                  class="worldcup-section-title d-flex align-items-center gap-3 flex-wrap"
+                >
+                  <h2 class="mb-0">근처 맛집 이상형 월드컵</h2>
+                  <span class="worldcup-section-title text-muted fs-4"
+                    >근처에서 뭐 먹지? 고민이 많은 당신을 위해</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Content -->
+          <div class="row">
+            <!-- Left: 지역 태그 & 버튼 -->
+            <div class="col-md-4 mb-4">
+              <!-- 지역 태그 -->
+              <div class="region-tags mb-4 ms-4">
+                <div class="row g-2">
+                  <!-- 각 태그는 col-3 (4개씩 한 줄) -->
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region active">
+                      전체
+                    </button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">인천</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">세종</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">충남</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">전남</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">서울</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">광주</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">경기</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">경북</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">제주</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">부산</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">대전</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">강원</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">경남</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">대구</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">울산</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">충북</button>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-region">전북</button>
+                  </div>
+                </div>
+              </div>
+              <!-- 월드컵 바로가기 버튼 -->
+              <div class="d-grid ms-4">
+                <button type="button" class="btn btn-worldcup">
+                  → 이상형 월드컵 바로 가기
+                </button>
+              </div>
+            </div>
+            <!-- Right: 결과 이미지 & 업데이트 텍스트 -->
+            <div class="col-md-8 pe-5">
+              <div class="result-img position-relative">
+                <div
+                  class="overlap-images mx-auto"
+                  style="width: 680px; height: 210px"
+                >
+                  <!-- 세 이미지가 겹치도록 (원하는 위치에 맞춰 left 속성 조정) -->
+                  <img
+                    src="assets/home/이상형 월드컵-3등 사진.png"
+                    alt="3등"
+                    class="img-fluid overlap-img third"
+                  />
+                  <img
+                    src="assets/home/이상형 월드컵-2등 사진.png"
+                    alt="2등"
+                    class="img-fluid overlap-img second"
+                  />
+                  <img
+                    src="assets/home/이상형 월드컵-1등 사진.png"
+                    alt="1등"
+                    class="img-fluid overlap-img first"
+                  />
+                </div>
+              </div>
+              <div class="text-end text-muted mt-2 fs-5 me-5">
+                2025.02.10 02:33 기준 업데이트
               </div>
             </div>
           </div>

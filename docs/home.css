@@ -159,12 +159,15 @@ body {
 
 /* 전체 컨테이너: 최대 너비와 좌우 여백 조정 */
 .community-hot-list {
-  max-width: 73rem; /* 약 1168px */
   margin-top: 4rem; /* 캐러셀 바로 아래에 4rem 여백 추가 */
 }
 
 .title-more {
-  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-left: 2.5rem !important;
+  margin-right: 2.5rem !important;
 }
 
 /* Title 영역 */
@@ -183,6 +186,7 @@ body {
   font-family: "Pretendard", sans-serif;
   font-weight: 600;
   word-wrap: break-word;
+  margin: 0;
 }
 
 .more-link {
@@ -198,7 +202,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5rem; /* 카드 간 간격 rem */
+  gap: 4rem; /* 카드 간 간격 rem */
 }
 
 /* Hot Card */
@@ -271,18 +275,28 @@ body {
 }
 
 /* 반응형: 모바일 화면에서 전체 축소 */
-@media (max-width: 768px) {
+@media (max-width: 821px) {
   .community-hot-list {
     padding: 0 1rem;
   }
+  /* 카드 셋은 flex에서 그리드로 변경 */
   .card-set {
-    justify-content: center;
+    display: grid;
+    /* 최소 카드 너비 14rem, 여유 공간에 따라 자동 조정되도록 */
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
     gap: 1rem;
+    justify-items: center;
   }
+  /* hot-card는 grid 항목으로 100% 너비 사용 */
   .hot-card {
-    width: 14rem; /* 모바일에서 카드 너비 축소 */
+    width: 100%;
     margin-bottom: 1.5rem;
   }
+  .title-line,
+  .subtitle-line {
+    display: block;
+  }
+
   .hot-title {
     font-size: 2rem; /* 축소된 폰트 크기 */
   }
@@ -300,6 +314,137 @@ body {
   .card-image {
     height: 18rem;
   }
+}
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *               맛집 이상형 월드컵
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+
+.worldcup-title-container {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.worldcup-section-title h2 {
+  color: #333333;
+  font-size: 2.25rem;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  margin-right: 1.5rem; /* 간격 조정 */
+}
+
+.worldcup-section-subtitle {
+  color: #5c5c5c;
+  font-size: 1.5rem;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+}
+
+/* 지역 태그 버튼 스타일 */
+.btn-region {
+  width: 100%;
+  padding: 5px 0;
+  border: 1.5px solid #ddb900;
+  border-radius: 30px;
+  font-size: 20px;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  color: #333333;
+  background: transparent;
+}
+
+.btn-region.active,
+.btn-region:hover {
+  background: #ddb900;
+  color: #f7f7f7;
+}
+
+/* 월드컵 바로가기 버튼 */
+.btn-worldcup {
+  height: 64px;
+  padding: 1.2% 3.6%; /* 상하 19px/397, 좌우 45px/1440 */
+  border-radius: 50px;
+  font-size: 24px;
+  font-size: calc((24 / 1440) * 100vw);
+  font-family: Pretendard, sans-serif;
+  font-weight: 600;
+  color: #333333;
+  background: #ffd700;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn-worldcup:hover {
+  background: #ddb900;
+}
+
+.btn-worldcup:active {
+  background: #ddb900;
+}
+
+/* 이미지 컨테이너 */
+.overlap-images {
+  position: relative;
+  width: 680px;
+  height: 210px;
+}
+
+/* 개별 이미지 스타일 */
+.overlap-img {
+  position: absolute;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+  cursor: pointer;
+}
+
+/* 기존 배치 유지 */
+.overlap-img.first {
+  left: 400px;
+}
+
+.overlap-img.second {
+  left: 250px;
+}
+
+.overlap-img.third {
+  left: 0;
+}
+
+/* 기본적으로 모든 이미지에 Dark Overlay 추가 */
+.overlap-img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 어두운 효과 */
+  border-radius: 8px;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1; /* 기본적으로 어둡게 */
+  z-index: 5; /* Dark Overlay가 이미지 위에 있도록 설정 */
+}
+
+/* 호버한 이미지의 오버레이만 제거 */
+.overlap-img:hover::after {
+  opacity: 0;
+}
+
+/* 호버한 이미지는 살짝 확대 */
+.overlap-img:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+/* 클릭한 이미지는 더 확대 + overlay 제거 */
+.overlap-img.active {
+  transform: scale(1.1);
+  z-index: 15;
+}
+
+/* 클릭된 이미지의 Dark Overlay 제거 */
+.overlap-img.active::after {
+  opacity: 0;
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*

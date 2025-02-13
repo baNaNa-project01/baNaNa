@@ -23,6 +23,12 @@ body {
   font-family: "Pretendard-Medium", sans-serif;
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 h5,
 .navbar .navbar-brand,
 .navbar .navbar-nav .nav-link,
