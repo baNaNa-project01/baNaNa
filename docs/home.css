@@ -1,8 +1,11 @@
-/* 또는 전체 수평 오버플로우 숨김 */
 html,
 body {
   overflow-x: hidden;
 }
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                     캐러셀
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 
 /* 기본 디자인 (데스크탑 기준) */
 .carousel-wrapper {
@@ -15,63 +18,25 @@ body {
   overflow: hidden;
 }
 
-/* 좌측 고정 배경 & 텍스트 */
 .carousel-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 85%;
-  background: #ffd700;
-  padding: 7.2vw 10vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* 수직 중앙 정렬 */
-  gap: 0.625rem;
-}
-
-.carousel-text {
-  align-items: center;
-}
-
-.carousel-text .badge {
-  background: #ddb900;
-  color: #f7f7f7;
-  font-size: 1.25rem;
-  font-family: Pretendard, sans-serif;
-  font-weight: 600;
-  padding: 0.3125rem 1.4375rem;
-  border-radius: 30px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.5rem; /* 뱃지와 h2 사이 간격 */
-}
-
-.carousel-text h2 {
-  margin-bottom: 1.5rem; /* h2와 p 사이 간격 */
-  color: #333333;
-  font-size: 2.25rem;
-  font-family: Pretendard, sans-serif;
-  font-weight: 600;
-  line-height: 1.2;
-}
-
-.carousel-text p {
-  color: #5c5c5c;
-  font-size: 1.5rem;
-  font-family: Pretendard, sans-serif;
-  font-weight: 500;
+  /* 백그라운드 이미지 적용 (데스크탑: 꽉 채움) */
+  background: url("./assets/home/캐러셀 백그라운드.svg") no-repeat center center;
+  background-size: cover;
+  padding: 0;
 }
 
 /* 우측 슬라이드 영역 (이미지 캐러셀) */
 .carousel-images {
   position: absolute;
-  top: 6%; /* 원래 32px ≒ 6% */
-  left: 50%; /* 컨테이너 중앙 기준 → 이미지의 왼쪽이 중앙에 위치 */
+  top: 6%; /* 약 32px */
+  left: 50%; /* 컨테이너 중앙 기준 */
   width: 43.4%; /* 625px/1440px */
   height: 90%; /* 477px/529px */
-  /* transform: translateX(-50%); 제거 */
 }
 
 .carousel-images .carousel-item {
@@ -105,7 +70,7 @@ body {
 
 .carousel-progress .progress-indicator {
   position: absolute;
-  left: 22.2%; /* 초기값: 첫번째 슬라이드 */
+  left: 22.2%; /* 초기 슬라이드 위치 */
   top: 30.6%;
   width: 8.5%;
   height: 16.3%;
@@ -115,31 +80,205 @@ body {
 }
 
 /* 모바일 반응형 (화면 폭 768px 이하) */
+/* → 데스크탑과 같은 절대 위치/비율을 유지하여 레이아웃 자체는 똑같이 축소됨 */
 @media (max-width: 768px) {
   .carousel-wrapper {
     width: 100vw;
-    height: auto;
+    height: calc(100vw * 0.367);
+    max-width: 100vw;
     max-height: none;
-    padding-bottom: 2rem;
+    margin-bottom: 3rem; /* 추가: 캐러셀과 다음 섹션 사이에 3rem 여백 */
   }
   .carousel-bg {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding: 5vw;
-    justify-content: flex-start;
+    /* 모바일에서는 이미지 전체가 보이도록 contain 사용 */
+    background-size: contain;
   }
   .carousel-images {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
-    transform: none;
-    margin-top: 1rem;
+    /* 데스크탑과 동일한 비율/절대 위치 */
+    top: 6%;
+    left: 50%;
+    width: 43.4%;
+    height: 90%;
   }
-  /* 모바일에서는 프로그레스 바 숨김 */
+  .carousel-images .carousel-item img {
+    /* 이미지가 잘리지 않고 모두 보이도록 */
+    object-fit: contain;
+  }
   .carousel-progress {
-    display: none;
+    /* 데스크탑과 동일한 위치/크기 */
+    top: calc(85% + 0.4rem);
+    left: 0;
+    width: 50%;
+    height: 18.5%;
+  }
+  .carousel-progress .progress-track {
+    position: absolute;
+    left: 22.2%;
+    top: 30.6%;
+    width: 55.6%;
+    height: 16.3%;
+    background: #ededed;
+    border-radius: 30px;
+  }
+
+  .carousel-progress .progress-indicator {
+    position: absolute;
+    left: 22.2%; /* 초기 슬라이드 위치 */
+    top: 30.6%;
+    width: 8.5%;
+    height: 16.3%;
+    background: #ddb900;
+    border-radius: 30px;
+    transition: left 0.5s ease;
+  }
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                여행 포토 후기
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 기본 단위: 1rem = 16px 기준 */
+
+/* 전체 컨테이너: 최대 너비와 좌우 여백 조정 */
+.community-hot-list {
+  max-width: 73rem; /* 약 1168px */
+  margin-top: 4rem; /* 캐러셀 바로 아래에 4rem 여백 추가 */
+}
+
+.title-more {
+  padding: 0 1rem;
+}
+
+/* Title 영역 */
+.hot-title {
+  color: #333333;
+  font-size: 2.25rem; /* 36px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  margin-right: 1.5rem; /* 오른쪽 여백을 추가 */
+}
+
+.hot-subtitle {
+  color: #5c5c5c;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.more-link {
+  color: #5c5c5c;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Card Set: 중앙 정렬 및 카드 사이 간격 */
+.card-set {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5rem; /* 카드 간 간격 rem */
+}
+
+/* Hot Card */
+.hot-card {
+  width: 16rem; /* 256px = 16rem */
+  display: flex;
+  flex-direction: column;
+  gap: 1.1875rem; /* 19px ≒ 1.1875rem */
+  margin-bottom: 2rem;
+}
+
+/* Card Image */
+.card-image {
+  width: 100%;
+  height: 20rem; /* 320px = 20rem */
+  border-radius: 0.9375rem; /* 15px ≒ 0.9375rem */
+  object-fit: cover;
+}
+
+/* Card Description */
+.card-desc {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* 12px = 0.75rem */
+}
+
+/* Card Title */
+.card-title {
+  width: 100%;
+  text-align: center;
+  color: #333333;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Profile Description */
+.profile-desc {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.625rem; /* 10px = 0.625rem */
+}
+
+/* Profile Image */
+.profile-img {
+  width: 1.25rem; /* 20px = 1.25rem */
+  height: 1.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Nickname & Date */
+.nickname,
+.date {
+  color: #5c5c5c;
+  font-size: 1.125rem; /* 18px = 1.125rem */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* 반응형: 모바일 화면에서 전체 축소 */
+@media (max-width: 768px) {
+  .community-hot-list {
+    padding: 0 1rem;
+  }
+  .card-set {
+    justify-content: center;
+    gap: 1rem;
+  }
+  .hot-card {
+    width: 14rem; /* 모바일에서 카드 너비 축소 */
+    margin-bottom: 1.5rem;
+  }
+  .hot-title {
+    font-size: 2rem; /* 축소된 폰트 크기 */
+  }
+  .hot-subtitle,
+  .more-link {
+    font-size: 1.25rem;
+  }
+  .card-title {
+    font-size: 1.375rem;
+  }
+  .nickname,
+  .date {
+    font-size: 1rem;
+  }
+  .card-image {
+    height: 18rem;
   }
 }
