@@ -29,12 +29,50 @@ body {
   padding: 0;
 }
 
+/* 모달이 열릴 때 body의 여백을 방지 */
+body.modal-open {
+  padding-right: 0 !important;
+  overflow-y: scroll; /* 스크롤 유지 */
+}
+
 h5,
 .navbar .navbar-brand,
 .navbar .navbar-nav .nav-link,
 .btn {
   font-family: "Pretendard-SemiBold", sans-serif;
   font-size: 1rem;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *            스크롤 바 스타일 커스텀
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 전체 페이지 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 10px; /* 스크롤바 너비 */
+}
+
+/* 스크롤바 트랙 (배경) */
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* 연한 배경 */
+  border-radius: 30px; /* 둥근 모서리 */
+}
+
+/* 스크롤바 핸들 (움직이는 부분) */
+::-webkit-scrollbar-thumb {
+  background: #ffd700; /* 테마 색상 */
+  border-radius: 30px; /* 둥근 모서리 */
+  transition: background 0.3s ease-in-out;
+}
+
+/* 마우스 호버 시 스크롤바 */
+::-webkit-scrollbar-thumb:hover {
+  background: #ddb900; /* 더 진한 색상 */
+}
+
+/* 스크롤바가 작아지는 효과 (선택 사항) */
+body {
+  scrollbar-width: thin; /* Firefox용 */
+  scrollbar-color: #ffd700 #f0f0f0; /* 핸들 색상 / 트랙 색상 */
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
@@ -70,7 +108,7 @@ h5,
 }
 
 /*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
- *              🛠 오프 캔버스 🛠
+ *                   오프 캔버스 
  *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
 /* 오프캔버스 스타일 */
 .offcanvas {
@@ -196,4 +234,139 @@ footer {
 footer span {
   font-size: 0.9rem;
   font-weight: 500 !important; /* Semibold로 보이는 문제 해결 */
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                   로그인 모달
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+
+/* 로그인 모달 스타일 */
+#loginModal .modal-dialog {
+  max-width: 480px; /* 모달 창 너비 조정 */
+}
+
+#loginModal .modal-content {
+  background: #f7f7f7;
+  border-radius: 10px;
+  padding: 30px; /* 내부 여백 증가 */
+}
+
+/* 배나낭 로고 컨테이너 */
+#loginModal .modal-body .logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3vh; /* 간격 증가 */
+}
+
+/* 로고 크기 - 뷰포트 크기에 비례하여 조정 */
+#loginModal .modal-body .logo-container img {
+  width: 8vw;
+  height: 8vw;
+  max-width: 80px;
+  max-height: 80px;
+}
+
+/* 텍스트 크기 - 화면 너비 비례 */
+#loginModal .modal-body .logo-container h1 {
+  font-size: 4vw;
+  font-family: Pretendard;
+  font-weight: bold;
+  margin-left: 1vw;
+}
+
+/* 로그인 안내 문구 */
+#loginModal .modal-body .login-info {
+  margin-bottom: 4vh; /* 간격 증가 */
+}
+
+#loginModal h2 {
+  font-size: 2.5vw;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+#loginModal p {
+  font-size: 1rem;
+  color: #5c5c5c;
+}
+
+/* 로그인 버튼 컨테이너 */
+#loginModal .modal-body .login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* 버튼 간격 증가 */
+}
+
+/* 로그인 버튼 스타일 */
+#loginModal .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+  background: none;
+  width: 100%;
+  height: 70px;
+  transition: filter 0.2s ease-in-out;
+}
+
+/* 버튼 내 이미지 */
+#loginModal .btn img {
+  max-width: 100%;
+  height: auto;
+  transition: filter 0.2s ease-in-out;
+}
+
+/* 버튼 호버 효과 (마우스 올릴 때) */
+#loginModal .btn:hover img {
+  filter: brightness(80%); /* 80% 밝기로 조정 → 어두워짐 */
+}
+
+/* 버튼 액티브 효과 (클릭할 때) */
+#loginModal .btn:active img {
+  filter: brightness(60%); /* 60% 밝기로 조정 → 더 어두워짐 */
+}
+
+/* 모달 배경 어둡게 */
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* 닫기 버튼 */
+#loginModal .modal-header {
+  border-bottom: none;
+  padding: 10px;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  #loginModal .modal-dialog {
+    max-width: 90%;
+  }
+
+  #loginModal .modal-body .logo-container img {
+    width: 10vw;
+    height: 10vw;
+    max-width: 60px;
+    max-height: 60px;
+  }
+
+  #loginModal .modal-body .logo-container h1 {
+    font-size: 6vw;
+  }
+}
+
+@media (max-width: 480px) {
+  #loginModal .modal-body .logo-container img {
+    width: 12vw;
+    height: 12vw;
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  #loginModal .modal-body .logo-container h1 {
+    font-size: 7vw;
+  }
 }

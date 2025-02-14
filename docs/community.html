@@ -80,10 +80,8 @@
             <div class="d-flex align-items-center">
               <!-- 로그인 버튼 -->
               <button
-                class="btn btn-outline-success me-2"
+                class="btn btn-outline-success me-2 d-lg-none"
                 type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#loginModal"
               >
                 로그인
               </button>
@@ -119,12 +117,7 @@
         </div>
         <!-- PC용 로그인 버튼 (큰 화면에서만 보임) -->
         <div class="d-none d-lg-flex ms-auto">
-          <button
-            class="btn btn-outline-success me-2"
-            type="button"
-            data-bs-toggle="modal"
-            data-bs-target="#loginModal"
-          >
+          <button class="btn btn-outline-success me-2" type="button">
             로그인
           </button>
         </div>
@@ -132,39 +125,6 @@
     </nav>
 
     <main class="main-content">
-      <!-- **************************************************** -->
-      <!-- ★★★★★  여기부터 홈 히어로 캐러셀 섹션 ★★★★★ -->
-      <!-- **************************************************** -->
-      <div class="carousel-wrapper">
-        <!-- Static Background (좌측 고정 영역: 텍스트 제거, 대신 CSS 배경 이미지 적용) -->
-        <div class="carousel-bg"></div>
-
-        <!-- Carousel Images (우측 슬라이드 영역) -->
-        <div
-          id="carouselImages"
-          class="carousel slide carousel-images"
-          data-bs-ride="carousel"
-          data-bs-interval="3000"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="./assets/home/캐러셀 이미지-1.png" alt="Slide 1" />
-            </div>
-            <div class="carousel-item">
-              <img src="./assets/home/캐러셀 이미지-1.png" alt="Slide 2" />
-            </div>
-            <div class="carousel-item">
-              <img src="./assets/home/캐러셀 이미지-1.png" alt="Slide 3" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Carousel Progress Bar -->
-        <div class="carousel-progress">
-          <div class="progress-track"></div>
-          <div class="progress-indicator"></div>
-        </div>
-      </div>
 
       <!-- 여백 요소 추가 -->
       <div class="section-spacer"></div>
@@ -301,156 +261,6 @@
       <!-- 여백 요소 추가 -->
       <div class="section-spacer"></div>
 
-      <!-- **************************************************** -->
-      <!-- ★★★★★  여기부터 이상형 월드컵 섹션 ★★★★★ -->
-      <!-- **************************************************** -->
-      <div class="container my-5">
-        <!-- Worldcup Section -->
-        <div class="worldcup-section">
-          <!-- Title -->
-          <div class="worldcup-title-container">
-            <div class="row mb-4">
-              <div class="col">
-                <div
-                  class="worldcup-section-title d-flex align-items-center gap-3 flex-wrap"
-                >
-                  <h2 class="mb-0">근처 맛집 이상형 월드컵</h2>
-                  <span class="worldcup-section-title text-muted fs-4"
-                    >근처에서 뭐 먹지? 고민이 많은 당신을 위해</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Content -->
-          <div class="row">
-            <!-- Left: 지역 태그 & 버튼 -->
-            <div class="col-md-4 mb-4">
-              <!-- 지역 태그 -->
-              <div class="region-tags mb-4 ms-4">
-                <div class="row g-2">
-                  <!-- 각 태그는 col-3 (4개씩 한 줄) -->
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region active">
-                      전체
-                    </button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">인천</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">세종</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">충남</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">전남</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">서울</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">광주</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">경기</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">경북</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">제주</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">부산</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">대전</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">강원</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">경남</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">대구</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">울산</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">충북</button>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-region">전북</button>
-                  </div>
-                </div>
-              </div>
-              <!-- 월드컵 바로가기 버튼 -->
-              <div class="d-grid ms-4">
-                <button type="button" class="btn btn-worldcup">
-                  <img
-                    src="./assets/home/이상형 월드컵 바로 가기 버튼.svg"
-                    alt="이상형 월드컵 바로 가기"
-                    class="btn-worldcup-img"
-                  />
-                </button>
-              </div>
-            </div>
-            <!-- Right: 결과 이미지 & 업데이트 텍스트 -->
-            <div class="col-md-8 pe-5">
-              <div class="result-img position-relative">
-                <div
-                  class="overlap-images mx-auto"
-                  style="width: 680px; height: 210px"
-                >
-                  <!-- 세 이미지가 겹치도록 (원하는 위치에 맞춰 left 속성 조정) -->
-                  <img
-                    src="assets/home/이상형 월드컵-3등 사진.png"
-                    alt="3등"
-                    class="img-fluid overlap-img third"
-                  />
-                  <img
-                    src="assets/home/이상형 월드컵-2등 사진.png"
-                    alt="2등"
-                    class="img-fluid overlap-img second"
-                  />
-                  <img
-                    src="assets/home/이상형 월드컵-1등 사진.png"
-                    alt="1등"
-                    class="img-fluid overlap-img first"
-                  />
-                </div>
-              </div>
-              <div class="text-end text-muted mt-2 fs-5 me-5">
-                2025.02.10 02:33 기준 업데이트
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 여백 요소 추가 -->
-      <div class="section-spacer"></div>
-
-      <!-- **************************************************** -->
-      <!-- ★★★★★  여기부터 AI 맞춤형 추천 ★★★★★ -->
-      <!-- **************************************************** -->
-      <div class="ai-recommend-section" data-layer="ai-recommend">
-        <!-- AI 맞춤 여행 버튼 -->
-        <button class="ai-recommend-btn">
-          <img
-            src="./assets/home/AI에게 맞춤 여행 정보 얻기 버튼.svg"
-            alt="AI에게 맞춤 여행 정보 얻기"
-            class="ai-recommend-btn-img"
-          />
-        </button>
-      </div>
-
-      <!-- 여백 요소 추가 -->
-      <div class="section-spacer"></div>
     </main>
 
     <!-- **************************************************** -->
@@ -482,55 +292,6 @@
         </div>
       </footer>
     </div>
-
-    <!-- **************************************************** -->
-    <!-- ★★★★★  여기부터 로그인 모달 ★★★★★ -->
-    <!-- **************************************************** -->
-<!-- 로그인 모달 -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4 shadow" style="background: #F7F7F7; border-radius: 10px;">
-        <!-- 닫기 버튼 -->
-        <div class="modal-header border-bottom-0 d-flex justify-content-end">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-  
-        <!-- 모달 본문 -->
-        <div class="modal-body text-center">
-          <!-- 배나낭 로고 -->
-          <div class="d-flex justify-content-center align-items-center mb-3">
-            <div class="logo-container">
-                <img src="./assets/배나낭 3d 로고.svg" alt="배나낭 로고" width="60vw" height="60vh">
-                <h1 class="fw-bold ms-3">배나낭</h1>
-            </div>
-          </div>
-  
-          <!-- 로그인 안내 문구 -->
-          <h2 class="fw-semibold" style="font-size: 36px; color: #333;">소셜 로그인</h2>
-          <p style="font-size: 24px; color: #5C5C5C;">소셜 계정으로 3초 만에 로그인하기</p>
-  
-          <!-- 로그인 버튼 -->
-          <div class="d-flex flex-column gap-3 mt-4">
-            <!-- 카카오 로그인 -->
-            <button type="button" class="btn w-100 p-3">
-              <img src="./assets/home/카카오 아이디 로그인 버튼.svg" alt="카카오 로그인" class="me-2">
-            </button>
-  
-            <!-- 네이버 로그인 -->
-            <button type="button" class="btn w-100 p-3"">
-              <img src="./assets/home/네이버 로그인 버튼.svg" alt="네이버 로그인" class="me-2">
-            </button>
-  
-            <!-- 구글 로그인 -->
-            <button type="button" class="btn w-100 p-3">
-              <img src="./assets/home/구글 로그인 버튼.svg" alt="구글 로그인" class="me-2">
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
   </body>
 
   <!-- Bootstrap JavaScript -->
