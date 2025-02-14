@@ -1,0 +1,147 @@
+/* 🟡 배나낭에서 소통해요 섹션 */
+.community-section {
+  width: 100%;
+  padding: 64px 136px;
+  background: #fefefe;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* 타이틀 스타일 */
+.community-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.community-title {
+  font-size: 36px;
+  font-weight: 600;
+  color: #333;
+}
+
+.community-subtitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #5c5c5c;
+}
+
+/* 컨텐츠 랩퍼 */
+.community-content {
+  display: flex;
+  gap: 27px;
+  justify-content: flex-start;
+}
+
+/* 📝 게시글 리스트 */
+.post-list {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.post-card {
+  display: flex;
+  align-items: center;
+  padding: 20px 32px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #c4c4c4;
+  gap: 20px;
+}
+
+.post-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.post-title {
+  font-size: 24px;
+  font-weight: 500;
+  color: #333;
+}
+
+.post-description {
+  font-size: 18px;
+  font-weight: 500;
+  color: #5c5c5c;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.author-img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.author-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #5c5c5c;
+}
+
+.post-date {
+  font-size: 18px;
+  font-weight: 500;
+  color: #5c5c5c;
+}
+
+.post-image {
+  width: 160px;
+  height: 160px;
+  border-radius: 10px;
+}
+
+/* 🟡 유저 정보 및 글쓰기 버튼 */
+.community-sidebar {
+  flex: 1;
+  padding: 42px 106px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #c4c4c4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.user-avatar {
+  width: 150px;
+  height: 150px;
+}
+
+.user-name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+.write-button {
+  padding: 10px 38px;
+  background: #ffd700;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  border: none;
+  cursor: pointer;
+}
+
+.write-button:hover {
+  background: #e6c200;
+}

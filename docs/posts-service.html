@@ -44,8 +44,10 @@
     <!-- 커스텀 공통 CSS -->
     <link rel="stylesheet" href="style.css" />
 
+    <!-- 커스텀 공통 CSS -->
+    <link rel="stylesheet" href="home.css" />
     <!-- 커스텀 메인 홈홈 CSS -->
-    <link rel="stylesheet" href="map.css" />
+    <link rel="stylesheet" href="posts.css" />
   </head>
 
   <body>
@@ -277,6 +279,61 @@
 
     <!-- 여백 요소 추가 -->
     <div class="section-spacer"></div>
+
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 게시물 리스트 섹션 ★★★★★ -->
+    <!-- **************************************************** -->
+    <!-- 🟡 배나낭에서 소통해요 섹션 -->
+    <section class="community-section">
+      <!-- 타이틀 -->
+      <div class="community-header">
+        <h2 class="community-title">배나낭에서 소통해요</h2>
+        <p class="community-subtitle">
+          여러분들의 다양한 여행 스토리를 나눠보세요
+        </p>
+      </div>
+
+      <!-- 컨텐츠 랩퍼 -->
+      <div class="community-content">
+        <!-- 📝 게시글 리스트 -->
+        <div class="post-list">
+          <!-- 게시글 1 -->
+          <div class="post-card">
+            <div class="post-text">
+              <h3 class="post-title">제목이 들어가는 자리입니다.</h3>
+              <p class="post-description">내용이 들어가는 자리입니다.</p>
+              <div class="post-footer">
+                <div class="post-author">
+                  <img
+                    src="https://placehold.co/20x20"
+                    alt="프로필 이미지"
+                    class="author-img"
+                  />
+                  <span class="author-name">닉네임은8자리끝</span>
+                </div>
+                <span class="post-date">2025.02.10</span>
+              </div>
+            </div>
+            <img
+              src="https://placehold.co/160x160"
+              alt="게시글 이미지"
+              class="post-image"
+            />
+          </div>
+        </div>
+
+        <!-- 🟡 우측 유저 정보 및 글쓰기 버튼 -->
+        <aside class="community-sidebar">
+          <img
+            src="https://placehold.co/150x150"
+            alt="프로필 이미지"
+            class="user-avatar"
+          />
+          <h3 class="user-name">닉네임은8자리끝</h3>
+          <button class="write-button">글쓰기</button>
+        </aside>
+      </div>
+    </section>
 
     <!-- **************************************************** -->
     <!-- ★★★★★  여기부터 푸터 섹션 ★★★★★ -->
