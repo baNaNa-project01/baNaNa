@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- 커스텀 메인 홈홈 CSS -->
-    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="map.css" />
   </head>
   <body>
     <!-- **************************************************** -->
@@ -80,8 +80,10 @@
             <div class="d-flex align-items-center">
               <!-- 로그인 버튼 -->
               <button
-                class="btn btn-outline-success me-2 d-lg-none"
+                class="btn btn-outline-success me-2"
                 type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
               >
                 로그인
               </button>
@@ -117,151 +119,19 @@
         </div>
         <!-- PC용 로그인 버튼 (큰 화면에서만 보임) -->
         <div class="d-none d-lg-flex ms-auto">
-          <button class="btn btn-outline-success me-2" type="button">
+          <button
+            class="btn btn-outline-success me-2"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal"
+          >
             로그인
           </button>
         </div>
       </div>
     </nav>
 
-    <main class="main-content">
-
-      <!-- 여백 요소 추가 -->
-      <div class="section-spacer"></div>
-
-      <!-- **************************************************** -->
-      <!-- ★★★★★  여기부터 여행 포토 후기 섹션 ★★★★★ -->
-      <!-- **************************************************** -->
-      <div class="community-hot-list container my-5">
-        <!-- Title & More -->
-        <div
-          class="title-more d-flex justify-content-between align-items-center mb-4"
-        >
-          <div class="title d-flex align-items-center gap-1rem">
-            <h2 class="hot-title mb-0">
-              <span class="title-line">지금 핫한</span>
-              <span class="title-line">여행 포토 후기</span>
-            </h2>
-            <p class="hot-subtitle">
-              <span class="subtitle-line">실제 여행자들의</span>
-              <span class="subtitle-line">진솔한 이야기를 듣다</span>
-            </p>
-          </div>
-          <div class="more">
-            <a href="#" class="more-link text-decoration-none">더보기</a>
-          </div>
-        </div>
-
-        <!-- Card Set (중앙 정렬) -->
-        <div
-          class="card-set d-flex flex-wrap justify-content-center gap-1_5rem"
-        >
-          <!-- Card 1 -->
-          <div class="hot-card">
-            <img
-              src="./assets/home/포토 후기 이미지-1.png"
-              alt="포토 후기 이미지-1"
-              class="card-image"
-            />
-            <div class="card-desc d-flex flex-column gap-0_75rem">
-              <div class="card-title">제목이 들어가는 자리</div>
-              <div
-                class="profile-desc d-flex justify-content-between align-items-center"
-              >
-                <div class="profile d-flex align-items-end gap-0_625rem">
-                  <img
-                    src="./assets/home/mini-profile.svg"
-                    alt="프로필"
-                    class="profile-img"
-                  />
-                  <div class="nickname">닉네임은8자리끝</div>
-                </div>
-                <div class="date">2025.02.10</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="hot-card">
-            <img
-              src="./assets/home/포토 후기 이미지-2.png"
-              alt="포토 후기 이미지-2"
-              class="card-image"
-            />
-            <div class="card-desc d-flex flex-column gap-0_75rem">
-              <div class="card-title">제목이 들어가는 자리</div>
-              <div
-                class="profile-desc d-flex justify-content-between align-items-center"
-              >
-                <div class="profile d-flex align-items-end gap-0_625rem">
-                  <img
-                    src="./assets/home/mini-profile.svg"
-                    alt="프로필"
-                    class="profile-img"
-                  />
-                  <div class="nickname">닉네임은8자리끝</div>
-                </div>
-                <div class="date">2025.02.10</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="hot-card">
-            <img
-              src="./assets/home/포토 후기 이미지-3.png"
-              alt="포토 후기 이미지-3"
-              class="card-image"
-            />
-            <div class="card-desc d-flex flex-column gap-0_75rem">
-              <div class="card-title">제목이 들어가는 자리</div>
-              <div
-                class="profile-desc d-flex justify-content-between align-items-center"
-              >
-                <div class="profile d-flex align-items-end gap-0_625rem">
-                  <img
-                    src="./assets/home/mini-profile.svg"
-                    alt="프로필"
-                    class="profile-img"
-                  />
-                  <div class="nickname">닉네임은8자리끝</div>
-                </div>
-                <div class="date">2025.02.10</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="hot-card">
-            <img
-              src="./assets/home/포토 후기 이미지-4.png"
-              alt="포토 후기 이미지-4"
-              class="card-image"
-            />
-            <div class="card-desc d-flex flex-column gap-0_75rem">
-              <div class="card-title">제목이 들어가는 자리</div>
-              <div
-                class="profile-desc d-flex justify-content-between align-items-center"
-              >
-                <div class="profile d-flex align-items-end gap-0_625rem">
-                  <img
-                    src="./assets/home/mini-profile.svg"
-                    alt="프로필"
-                    class="profile-img"
-                  />
-                  <div class="nickname">닉네임은8자리끝</div>
-                </div>
-                <div class="date">2025.02.10</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 여백 요소 추가 -->
-      <div class="section-spacer"></div>
-
-    </main>
+    <main class="main-content"></main>
 
     <!-- **************************************************** -->
     <!-- ★★★★★  여기부터 푸터 섹션 ★★★★★ -->
@@ -291,6 +161,88 @@
           <span class="mb-2">© baNaNang. ALL RIGHTS RESERVED</span>
         </div>
       </footer>
+    </div>
+
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 로그인 모달 ★★★★★ -->
+    <!-- **************************************************** -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div
+          class="modal-content rounded-4 shadow"
+          style="background: #f7f7f7; border-radius: 10px"
+        >
+          <!-- 닫기 버튼 -->
+          <div class="modal-header border-bottom-0 d-flex justify-content-end">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- 모달 본문 -->
+          <div class="modal-body text-center">
+            <!-- 배나낭 로고 -->
+            <div class="d-flex justify-content-center align-items-center mb-3">
+              <div class="logo-container">
+                <img
+                  src="./assets/배나낭 3d 로고.svg"
+                  alt="배나낭 로고"
+                  width="60vw"
+                  height="60vh"
+                />
+                <h1 class="fw-bold ms-3">배나낭</h1>
+              </div>
+            </div>
+
+            <!-- 로그인 안내 문구 -->
+            <h2 class="fw-semibold" style="font-size: 36px; color: #333">
+              소셜 로그인
+            </h2>
+            <p style="font-size: 24px; color: #5c5c5c">
+              소셜 계정으로 3초 만에 로그인하기
+            </p>
+
+            <!-- 로그인 버튼 -->
+            <div class="d-flex flex-column gap-3 mt-4">
+              <!-- 카카오 로그인 -->
+              <button type="button" class="btn w-100 p-3">
+                <img
+                  src="./assets/home/카카오 아이디 로그인 버튼.svg"
+                  alt="카카오 로그인"
+                  class="me-2"
+                />
+              </button>
+
+              <!-- 네이버 로그인 -->
+              <button type="button" class="btn w-100 p-3">
+                <img
+                  src="./assets/home/네이버 로그인 버튼.svg"
+                  alt="네이버 로그인"
+                  class="me-2"
+                />
+              </button>
+
+              <!-- 구글 로그인 -->
+              <button type="button" class="btn w-100 p-3">
+                <img
+                  src="./assets/home/구글 로그인 버튼.svg"
+                  alt="구글 로그인"
+                  class="me-2"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 
