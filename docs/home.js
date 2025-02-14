@@ -1,5 +1,5 @@
 /***************************************************************
- *                   CAROUSEL PROGRESS BAR CODE
+ *                   캐러셀 프로그레스 바 업데이트
  * ----------------------------------------------------------------
  * 이 코드는 캐러셀 슬라이드 전환 시,
  * 프로그레스 인디케이터의 위치를 업데이트합니다.
@@ -8,7 +8,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const carouselElement = document.getElementById("carouselImages");
   const progressIndicator = document.querySelector(".progress-indicator");
-  // 각 슬라이드에 해당하는 프로그레스 인디케이터의 left 값 (계산된 percentage)
+
+  // 각 슬라이드에 해당하는 프로그레스 인디케이터의 left 값 (계산된 퍼센트)
   const positions = ["22.2%", "45.8%", "69.3%"];
 
   carouselElement.addEventListener("slide.bs.carousel", function (event) {
@@ -17,19 +18,32 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+/***************************************************************
+ *                  인기 월드컵 이미지 선택 기능
+ * ----------------------------------------------------------------
+ * 이미지 클릭 시 활성화(선택) 효과를 적용합니다.
+ ***************************************************************/
+
 document.addEventListener("DOMContentLoaded", function () {
   const images = document.querySelectorAll(".overlap-img");
 
   images.forEach((img) => {
     img.addEventListener("click", function () {
-      // 모든 이미지에 기본 상태 적용 (Dark Overlay & 크기 원상 복귀)
+      // 모든 이미지에서 active 클래스 제거
       images.forEach((el) => el.classList.remove("active"));
 
-      // 클릭한 이미지만 효과 적용
+      // 클릭한 이미지에 active 클래스 추가
       this.classList.add("active");
     });
   });
 });
+
+/***************************************************************
+ *                    지역 선택 버튼 기능
+ * ----------------------------------------------------------------
+ * 사용자가 지역 태그 버튼을 클릭하면
+ * 해당 버튼이 활성화(active)되도록 설정합니다.
+ ***************************************************************/
 
 document.addEventListener("DOMContentLoaded", function () {
   const regionButtons = document.querySelectorAll(".btn-region");
@@ -44,3 +58,32 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+/***************************************************************
+ *                    소셜 로그인 API 연동
+ * ----------------------------------------------------------------
+ * 로그인 버튼을 클릭하면 백엔드 OAuth 로그인 API로 이동합니다.
+ * API GATEWAY 배포 URL을 BACKEND_URL에 설정하세요.
+ ***************************************************************/
+
+/*
+document.addEventListener("DOMContentLoaded", function () {
+  //  백엔드에서 설정한 OAuth 로그인 URL (API GATEWAY 배포 URL 입력)
+  const BACKEND_URL = "API GATEWAY 배포 URL";
+
+  //  카카오 로그인 버튼 클릭 시
+  document.getElementById("kakao-login").addEventListener("click", function () {
+    window.location.href = `${BACKEND_URL}/kakao`;
+  });
+
+  //  네이버 로그인 버튼 클릭 시
+  document.getElementById("naver-login").addEventListener("click", function () {
+    window.location.href = `${BACKEND_URL}/naver`;
+  });
+
+  //  구글 로그인 버튼 클릭 시
+  document.getElementById("google-login").addEventListener("click", function () {
+    window.location.href = `${BACKEND_URL}/google`;
+  });
+});
+*/
