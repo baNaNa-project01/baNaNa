@@ -370,3 +370,10 @@ footer span {
     font-size: 7vw;
   }
 }
+
+.post-card-image {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
