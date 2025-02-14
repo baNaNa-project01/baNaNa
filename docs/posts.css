@@ -110,7 +110,7 @@
 }
 
 /* 🟡 유저 정보 및 글쓰기 버튼 */
-.community-sidebar {
+/* .community-sidebar {
   flex: 1;
   padding: 42px 106px;
   background: #fff;
@@ -120,7 +120,21 @@
   flex-direction: column;
   align-items: center;
   gap: 32px;
-  height: fit-content; /* 내용만큼 높이 조정 */
+  height: fit-content;
+} */
+.community-sidebar {
+  width: 300px; /* 고정된 너비 */
+  min-width: 300px; /* 최소 너비 */
+  max-width: 300px; /* 최대 너비 */
+  height: auto; /* 높이는 자동 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #c4c4c4;
+  gap: 30px;
 }
 
 .user-avatar {
@@ -147,4 +161,31 @@
 
 .write-button:hover {
   background: #e6c200;
+}
+
+/* 🌀 로딩 스피너 스타일 */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 215, 0, 0.3); /* 연한 금색 */
+  border-top-color: #ffd700; /* 진한 금색 */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* 스피너 애니메이션 */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
