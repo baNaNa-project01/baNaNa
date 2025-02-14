@@ -1,0 +1,60 @@
+body {
+    font-family: 'Pretendard-Medium', sans-serif;
+    background-color: #F7F7F7;
+  }
+  
+  /* 제목 스타일 */
+  .title {
+    color: #333333;
+    font-size: 36px;
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+  
+  .subtitle {
+    color: #333333;
+    font-size: 32px;
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+  
+  .divider {
+    border: 1px solid #626262;
+    margin-bottom: 16px;
+  }
+  
+  /* 배지 스타일 */
+  .badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .badge {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 1.5px solid #DDB900;
+    color: #333333;
+    background: #F7F7F7;
+  }
+  
+  /* 선택된 배지 */
+  .badge.active {
+    background: #DDB900;
+    color: #F7F7F7;
+  }
+  
+  /* 호버 효과 */
+  .badge:hover {
+    background: #DDB900;
+    color: #F7F7F7;
+  }
+
+  
+  
