@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Pretendard-Regular', sans-serif;
+}
+
+/* 스텝 컨테이너: 버튼 + 설명 텍스트 */
+.step-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 스텝 버튼 */
+.step-item {
+  width: 100px;
+  height: 40px;
+  background-color: #F7F7F7;
+  border: 1.5px solid #FFD700;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 15px;
+}
+
+.step-item.active {
+  background-color: #FFD700;
+  color: #333;
+}
+
+/* 스텝 설명 텍스트 */
+.step-text {
+  font-size: 14px;
+  color: #5C5C5C;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* 스텝 연결 라인 */
+.step-line {
+  width: 60px;
+  height: 1px;
+  border-top: 1px dotted #917800;
+  align-self: center;
+}
+
+
+/* 지역 선택 버튼 */
+.region-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  justify-content: center;
+  max-width: 720px;
+  margin: auto;
+}
+
+.region-btn {
+  width: 100%;
+  height: 38px;
+  border-radius: 30px;
+  border: 1.5px solid #DDB900;
+  background-color: white;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  padding: 5px 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.region-btn.active {
+  background-color: #DDB900;
+  color: #fff;
+}
+
+/* 반응형: 화면이 작아지면 3개씩 표시 */
+@media (max-width: 768px) {
+  .region-container {
+      grid-template-columns: repeat(3, 1fr);
+  }
+  .region-btn {
+      font-size: 16px;
+  }
+}
