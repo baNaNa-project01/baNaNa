@@ -1,44 +1,44 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  const postListContainer = document.querySelector(".post-list");
-
-  if (!postListContainer) {
-    console.error("게시글 리스트를 찾을 수 없습니다.");
-    return;
-  }
+  const postList = document.querySelector(".post-list");
 
   try {
-    // API 요청
     const response = await fetch("https://banana-flask-app.onrender.com/posts");
-    if (!response.ok) {
-      throw new Error("네트워크 응답에 문제가 있습니다.");
-    }
-
-    // JSON 데이터 변환
     const posts = await response.json();
 
-    // 게시글을 동적으로 추가
     posts.forEach((post) => {
-      const postCard = document.createElement("div");
-      postCard.classList.add("post-card");
+      const postElement = document.createElement("div");
+      postElement.classList.add("post-card");
 
-      postCard.innerHTML = `
-          <div class="post-text">
-            <h3 class="post-title">${post.title}</h3>
-            <p class="post-description">${post.content}</p>
-            <div class="post-footer">
-              <div class="post-author">
-                <img src="https://placehold.co/20x20" alt="프로필 이미지" class="author-img" />
-                <span class="author-name">${post.author}</span>
-              </div>
-              <span class="post-date">${post.created_at}</span>
-            </div>
-          </div>
-          <img src="${post.image_url}" alt="게시글 이미지" class="post-image" />
-        `;
+      // 이미지가 있는 경우만 <img> 태그 추가
+      const imageTag =
+        post.image_url && post.image_url.trim() !== ""
+          ? `<img src="${post.image_url}" alt="게시글 이미지" class="post-image" />`
+          : "";
 
-      postListContainer.appendChild(postCard);
+      // 날짜 변환 (GMT 포맷 → YYYY.MM.DD)
+      const formattedDate = new Date(post.created_at)
+        .toISOString()
+        .split("T")[0]
+        .replace(/-/g, ".");
+
+      postElement.innerHTML = `
+                <div class="post-text">
+                    <h3 class="post-title">${post.title}</h3>
+                    <p class="post-description">${post.content}</p>
+                    <div class="post-footer">
+                        <div class="post-author">
+                            <img src="./assets/posts/기본 프로필 2x 1.svg" alt="프로필 이미지" class="author-img" />
+                            <span class="author-name">${post.author}</span>
+                        </div>
+                        <span class="post-date">${formattedDate}</span>
+                    </div>
+                </div>
+                ${imageTag} <!-- 이미지가 없는 경우, 이 부분이 아예 렌더링되지 않음 -->
+            `;
+
+      postList.appendChild(postElement);
     });
   } catch (error) {
-    console.error("게시글을 불러오는 중 오류 발생:", error);
+    console.error("게시물을 불러오는 중 오류 발생:", error);
   }
 });
