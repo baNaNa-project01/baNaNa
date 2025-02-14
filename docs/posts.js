@@ -65,6 +65,12 @@ function renderPosts(posts) {
       }
     `;
 
+    // ✅ 게시물 클릭 시 상세 페이지 이동
+    postCard.addEventListener("click", function () {
+      console.log(`게시물 클릭됨: ${post.id}`);
+      window.location.href = `posts-detail.html?id=${post.id}`;
+    });
+
     postList.appendChild(postCard);
   });
 }
