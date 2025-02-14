@@ -156,61 +156,143 @@
       <div class="container text-center my-5">
         <!-- 헤더 -->
         <h2 class="fw-semibold text-dark">빠르게 물어보세요!</h2>
-    
+
         <!-- 스텝 진행 과정 -->
-        <div class="d-flex justify-content-center align-items-center gap-3 mt-4 flex-wrap">
-            <div class="step-container">
-                <div class="step-item active">Step1</div>
-                <div class="step-text">지역 선택</div>
-            </div>
-            <div class="step-line"></div>
-            <div class="step-container">
-                <div class="step-item">Step2</div>
-                <div class="step-text">예산 선택</div>
-            </div>
-            <div class="step-line"></div>
-            <div class="step-container">
-                <div class="step-item">Step3</div>
-                <div class="step-text">누구랑 함께?</div>
-            </div>
-            <div class="step-line"></div>
-            <div class="step-container">
-                <div class="step-item">Step4</div>
-                <div class="step-text">여행 기간</div>
-            </div>
-            <div class="step-line"></div>
-            <div class="step-container">
-                <div class="step-item">Step5</div>
-                <div class="step-text">테마</div>
-            </div>
+        <div
+          class="d-flex justify-content-center align-items-center gap-3 mt-4 flex-wrap"
+        >
+          <div class="step-container">
+            <div class="step-item active">Step1</div>
+            <div class="step-text">지역 선택</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-container">
+            <div class="step-item">Step2</div>
+            <div class="step-text">예산 선택</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-container">
+            <div class="step-item">Step3</div>
+            <div class="step-text">누구랑 함께?</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-container">
+            <div class="step-item">Step4</div>
+            <div class="step-text">여행 기간</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-container">
+            <div class="step-item">Step5</div>
+            <div class="step-text">테마</div>
+          </div>
         </div>
-        
-    
+
         <!-- 지역 선택 -->
         <div class="mt-5">
+          <div class="step-form active" data-step="1">
             <h4 class="fw-semibold text-dark">원하는 지역이 있나요?</h4>
-            <div class="region-container">
-                <button class="btn region-btn active">전체</button>
-                <button class="btn region-btn">대전</button>
-                <button class="btn region-btn">충남</button>
-                <button class="btn region-btn">서울</button>
-                <button class="btn region-btn">울산</button>
-                <button class="btn region-btn">경북</button>
-                <button class="btn region-btn">부산</button>
-                <button class="btn region-btn">세종</button>
-                <button class="btn region-btn">경남</button>
-                <button class="btn region-btn">대구</button>
-                <button class="btn region-btn">경기</button>
-                <button class="btn region-btn">전북</button>
-                <button class="btn region-btn">인천</button>
-                <button class="btn region-btn">강원</button>
-                <button class="btn region-btn">전남</button>
-                <button class="btn region-btn">광주</button>
-                <button class="btn region-btn">충북</button>
-                <button class="btn region-btn">제주</button>
+            <p class="text-muted small">여러 개 선택이 가능합니다!</p>
+            <!-- 안내 문구 추가 -->
+            <div class="selection-container">
+              <button class="btn selection-btn">전체</button>
+              <button class="btn selection-btn">서울</button>
+              <button class="btn selection-btn">부산</button>
+              <button class="btn selection-btn">대구</button>
+              <button class="btn selection-btn">인천</button>
+              <button class="btn selection-btn">광주</button>
+              <button class="btn selection-btn">대전</button>
+              <button class="btn selection-btn">울산</button>
+              <button class="btn selection-btn">세종</button>
+              <button class="btn selection-btn">경기</button>
+              <button class="btn selection-btn">강원</button>
+              <button class="btn selection-btn">충북</button>
+              <button class="btn selection-btn">충남</button>
+              <button class="btn selection-btn">경북</button>
+              <button class="btn selection-btn">경남</button>
+              <button class="btn selection-btn">전북</button>
+              <button class="btn selection-btn">전남</button>
+              <button class="btn selection-btn">제주</button>
             </div>
+          </div>
         </div>
-    </div>
+
+        <div class="step-form" data-step="2">
+          <h4>예산은 얼마까지 생각하세요?</h4>
+          <div class="input-group w-50 mx-auto">
+            <!-- 크기 조절 (부트스트랩 활용) -->
+            <input
+              type="text"
+              class="form-control budget-input text-end"
+              placeholder="원하는 예산을 입력하세요!"
+              aria-label="예산 입력"
+            />
+            <span class="input-group-text">원</span>
+            <div class="invalid-feedback text-center">숫자만 입력하세요.</div>
+          </div>
+        </div>
+
+        <div class="step-form" data-step="3">
+          <h4 class="fw-semibold text-dark">누구와 함께 여행을 떠나시나요?</h4>
+          <p class="text-muted small">여러 개 선택이 가능합니다!</p>
+          <!-- 안내 문구 추가 -->
+          <div class="selection-container">
+            <button class="btn selection-btn">혼자</button>
+            <button class="btn selection-btn">친구</button>
+            <button class="btn selection-btn">연인</button>
+            <button class="btn selection-btn">배우자</button>
+            <button class="btn selection-btn">아이</button>
+            <button class="btn selection-btn">부모님</button>
+            <button class="btn selection-btn">반려동물</button>
+          </div>
+        </div>
+
+        <div class="step-form" data-step="4">
+          <h4 class="fw-semibold text-dark">
+            여행 기간은 어느 정도 생각하세요?
+          </h4>
+          <p class="text-muted small">여러 개 선택이 가능합니다!</p>
+          <!-- 안내 문구 추가 -->
+          <div class="selection-container">
+            <button class="btn selection-btn">당일치기</button>
+            <button class="btn selection-btn">1박 2일</button>
+            <button class="btn selection-btn">2박 3일</button>
+            <button class="btn selection-btn">3박 4일</button>
+            <button class="btn selection-btn">4박 5일</button>
+            <button class="btn selection-btn">5박 6일</button>
+            <button class="btn selection-btn">그 이상</button>
+          </div>
+        </div>
+
+        <div class="step-form" data-step="5">
+          <h4 class="fw-semibold text-dark">원하는 여행 테마가 있으신가요?</h4>
+          <p class="text-muted small">여러 개 선택이 가능합니다!</p>
+          <!-- 안내 문구 추가 -->
+          <div class="selection-container">
+            <button class="btn selection-btn">상관 없어</button>
+            <button class="btn selection-btn">먹방</button>
+            <button class="btn selection-btn">액티비티</button>
+            <button class="btn selection-btn">힐링</button>
+            <button class="btn selection-btn">명소</button>
+            <button class="btn selection-btn">이색 체험</button>
+            <button class="btn selection-btn">커플</button>
+            <button class="btn selection-btn">부부</button>
+            <button class="btn selection-btn">우정</button>
+            <button class="btn selection-btn">동아리</button>
+            <button class="btn selection-btn">감성</button>
+            <button class="btn selection-btn">포토존</button>
+            <button class="btn selection-btn">핫플</button>
+            <button class="btn selection-btn">배낭</button>
+            <button class="btn selection-btn">럭셔리</button>
+          </div>
+        </div>
+
+        <!-- 다음으로 버튼 -->
+        <div class="text-center mt-4">
+          <button class="btn next-btn disabled" id="nextStepBtn">
+            다음으로
+          </button>
+        </div>
+      </div>
       <!-- 여백 요소 추가 -->
       <div class="section-spacer"></div>
     </main>
