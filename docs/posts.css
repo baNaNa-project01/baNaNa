@@ -375,3 +375,101 @@ a:hover {
 .submit-comment:hover {
   background: #ffb700;
 }
+
+/* ====== 글쓰기 페이지 ========= */
+#post-create-form {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  gap: 30px;
+  border: 1.5px solid #b9b8b8;
+}
+
+#post-create-content {
+  width: 100%;
+  height: 500px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* 📌 버튼 스타일 */
+.submit-create-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffcc00;
+  color: #333;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* 제목 입력 필드 스타일 */
+.title-input {
+  width: 100%;
+  font-size: 35px;
+  font-weight: bold;
+  text-align: left;
+  border: none;
+  outline: none;
+  padding: 10px;
+  background: transparent;
+  color: black;
+  margin-bottom: 30px;
+}
+
+/* 입력하지 않았을 때 기본 스타일 */
+.title-input::placeholder {
+  color: #595656; /* 흐린 색상 */
+  font-weight: normal;
+}
+
+/* 이미지 업로드 버튼 */
+.upload-button {
+  display: inline-block;
+  background-color: #797875;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* 이미지 미리보기 */
+.image-preview-container {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.image-preview {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-preview .delete-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
