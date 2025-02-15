@@ -186,3 +186,127 @@
     transform: rotate(360deg);
   }
 }
+
+/* <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 게시물 디테일 섹션 ★★★★★ -->
+    <!-- **************************************************** --> */
+
+#post-detail-image {
+  max-width: 100%; /* 부모 요소 크기에 맞게 자동 조정 */
+  max-height: 400px; /* 최대 높이를 제한 (원하는 크기로 조정 가능) */
+  display: block; /* 이미지가 있으면 정상적으로 표시 */
+  margin: 20px auto; /* 가운데 정렬 */
+  border-radius: 10px; /* 모서리를 둥글게 (선택 사항) */
+  object-fit: cover; /* 이미지 비율을 유지하면서 크롭 */
+  text-align: center;
+}
+
+/* 📝 게시물 스타일 */
+
+.post-detail-full-container {
+  margin: 0 7%;
+}
+
+.post-detail-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.post-detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #777;
+  font-size: 14px;
+}
+
+.detail-author-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.detail-author-name {
+  font-weight: bold;
+}
+
+.detail-post-date {
+  color: #999;
+}
+
+.post-detail-image {
+  max-width: 100%;
+  max-height: 400px;
+  margin: 20px 0;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* 💬 댓글 스타일 */
+#comments-detail-container {
+  margin-top: 20px;
+}
+
+.comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.detail-comment-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-author {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #888;
+}
+
+/* 📝 댓글 입력창 스타일 */
+.comment-input-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#comment-detail-input {
+  flex: 1;
+  min-height: 80px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  resize: none;
+}
+
+.submit-comment {
+  width: 100%;
+  background: #ffcc00;
+  color: #333;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.submit-comment:hover {
+  background: #ffb700;
+}
