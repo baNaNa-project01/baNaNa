@@ -149,31 +149,229 @@
     </nav>
 
     <main class="main-content">
-      <div class="container text-center d-flex flex-column align-items-center mt-5">
+      <div
+        class="container text-center d-flex flex-column align-items-center mt-5"
+      >
         <!-- 헤더 텍스트 -->
         <h2 class="fw-semibold text-dark">근처 맛집으로 이상형 월드컵</h2>
-    
+
         <!-- 현재 위치 버튼 -->
         <button class="btn img-btn my-3">
-            <img src="./assets/world-cup/현재 위치로 바로 시작 버튼.svg" 
-                 alt="현재 위치로 바로 시작" class="img-fluid btn-image">
+          <img
+            src="./assets/world-cup/현재 위치로 바로 시작 버튼.svg"
+            alt="현재 위치로 바로 시작"
+            class="img-fluid btn-image"
+          />
         </button>
-    
+
         <!-- 검색창 -->
         <div class="w-50 h-25 justify-content-center">
-            <div class="input-group rounded-pill p-2 search-box">
-                <input type="text" class="form-control search-input" 
-                       placeholder="근처 맛집 이상형 월드컵을 진행할 위치를 검색해주세요." 
-                       aria-label="검색어 입력">
-                <button class="btn img-btn">
-                    <img src="./assets/world-cup/검색하기 버튼.svg" 
-                         alt="검색" class="img-fluid btn-image">
-                </button>
-            </div>
+          <div class="input-group rounded-pill p-2 search-box">
+            <input
+              type="text"
+              class="form-control search-input"
+              placeholder="근처 맛집 이상형 월드컵을 진행할 위치를 검색해주세요."
+              aria-label="검색어 입력"
+            />
+            <button class="btn img-btn">
+              <img
+                src="./assets/world-cup/검색하기 버튼.svg"
+                alt="검색"
+                class="img-fluid btn-image"
+              />
+            </button>
+          </div>
         </div>
-    </div>
-    
-    
+      </div>
+
+      <!-- 여백 요소 추가 -->
+      <div class="section-spacer"></div>
+
+      <!-- 배너 컨테이너 -->
+      <div class="banner-container position-relative">
+        <div class="banner">
+          <img
+            src="./assets/world-cup/월드컵 배너.svg"
+            alt="월드컵 배너"
+            class="img-fluid"
+          />
+        </div>
+
+        <!-- 월드컵 지역 선택 박스 -->
+        <div class="worldcup-box position-absolute shadow-lg p-4 rounded">
+          <div class="row g-3">
+            <!-- 지역 선택 버튼 (반복 가능) -->
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/전체.svg"
+                  alt="전체"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">전체</div>
+            </div>
+
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/서울.svg"
+                  alt="서울"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">서울</div>
+            </div>
+
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/부산.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">부산</div>
+            </div>
+
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/대구.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">대구</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/인천.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">인천</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/광주.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">광주</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/대전.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">대전</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/울산.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">울산</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/세종.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">세종</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/경기.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">경기</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/강원.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">강원</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/충북.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">충북</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/충남.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">충남</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/경북.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">경북</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/경남.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">경남</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/전북.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">전북</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/전남.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">전남</div>
+            </div>
+            <div class="col-4 col-md-2 text-center">
+              <button class="btn worldcup-btn">
+                <img
+                  src="./assets/world-cup/제주.svg"
+                  class="img-fluid rounded-circle"
+                />
+              </button>
+              <div class="worldcup-text">제주</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 여백 요소 추가 -->
       <div class="section-spacer"></div>
     </main>
