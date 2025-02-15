@@ -53,16 +53,16 @@
 
 /* 월드컵 지역 선택 박스 */
 .worldcup-box {
-  position: absolute;
-  bottom: -10%; /* 배너 아래쪽에 걸쳐야 하므로 조정 */
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative; /* absolute 제거 */
   width: 85%;
   max-width: 950px;
+  max-height: 400px; /* 너무 커지면 자동 스크롤 */
+  overflow: auto; /* 필요 시 스크롤 생성 */
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   padding: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 560px; /* 배너 위에 걸치도록 조정 */
 }
 
 /* 지역 선택 버튼 스타일 */
@@ -102,4 +102,70 @@
     width: 60px;
     height: 60px;
   }
+}
+
+/* 이미지 컨테이너 */
+.overlap-images {
+  position: relative;
+  width: 680px;
+  height: 210px;
+}
+
+/* 개별 이미지 스타일 */
+.overlap-img {
+  position: absolute;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+  cursor: pointer;
+}
+
+/* 기존 배치 유지 */
+.overlap-img.first {
+  left: 400px;
+}
+
+.overlap-img.second {
+  left: 250px;
+}
+
+.overlap-img.third {
+  left: 0;
+}
+
+/* 기본적으로 모든 이미지에 Dark Overlay 추가 */
+.overlap-img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 어두운 효과 */
+  border-radius: 8px;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1; /* 기본적으로 어둡게 */
+  z-index: 5; /* Dark Overlay가 이미지 위에 있도록 설정 */
+}
+
+/* 호버한 이미지의 오버레이만 제거 */
+.overlap-img:hover::after {
+  opacity: 0;
+}
+
+/* 호버한 이미지는 살짝 확대 */
+.overlap-img:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+/* 클릭한 이미지는 더 확대 + overlay 제거 */
+.overlap-img.active {
+  transform: scale(1.1);
+  z-index: 15;
+}
+
+/* 클릭된 이미지의 Dark Overlay 제거 */
+.overlap-img.active::after {
+  opacity: 0;
 }
