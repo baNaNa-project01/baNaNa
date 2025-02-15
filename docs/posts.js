@@ -1,3 +1,5 @@
+// 배나낭에서 소통해요 //
+
 const API_URL = "https://banana-flask-app.onrender.com/posts";
 const loadingSpinner = document.getElementById("loading-spinner");
 const postList = document.querySelector(".post-list");

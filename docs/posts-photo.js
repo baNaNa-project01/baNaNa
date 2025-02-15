@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "<p>이미지가 있는 게시물이 없습니다.</p>";
       } else {
         photoPosts.forEach((post) => {
+          console.log("📌 post.id 값 확인:", post.id);
           const dateObj = new Date(post.created_at);
           const formattedDate = `${dateObj.getFullYear()}.${(
             dateObj.getMonth() + 1
@@ -51,7 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
             .toString()
             .padStart(2, "0")}`;
 
-          const postHTML = `
+          const postElement = document.createElement("div");
+          postElement.classList.add("hot-card");
+          postElement.innerHTML = `
               <div class="hot-card">
                 <img src="${post.image_url}" alt="포토 후기 이미지" class="card-image" />
                 <div class="card-desc d-flex flex-column gap-0_75rem">
@@ -67,7 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
               </div>
             `;
 
-          photoPostContainer.innerHTML += postHTML;
+          postElement.addEventListener("click", function () {
+            console.log(`게시물 클릭됨: ${post.id}`);
+            window.location.href = `posts-detail.html?id=${post.id}`;
+          });
+
+          photoPostContainer.appendChild(postElement);
         });
       }
     } catch (error) {
