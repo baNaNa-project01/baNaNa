@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   const commentsContainer = document.getElementById(
     "comments-detail-container"
   );
+  const postTitleBreadcrumb = document.getElementById(
+    "post-detail-title-breadcrumb"
+  );
 
   // ✅ 현재 페이지 URL에서 id 가져오기
   const urlParams = new URLSearchParams(window.location.search);
@@ -55,6 +58,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       console.log("✅ 받아온 게시물 데이터:", post);
 
       // ✅ 게시물 데이터 삽입
+      postTitleBreadcrumb.textContent = post.title; // Breadcrumb에도 제목 표시
+
       postTitle.textContent = post.title;
       postContent.textContent = post.content;
       postAuthor.textContent = `${post.author}`;

@@ -202,6 +202,36 @@
 }
 
 /* 📝 게시물 스타일 */
+.post-detail-nav {
+  margin-bottom: 50px;
+  display: flex; /* 가로 정렬 */
+  align-items: center; /* 수직 정렬 */
+  gap: 8px; /* 요소 사이 간격 */
+  font-size: 16px;
+  color: #666;
+}
+
+a {
+  all: unset; /* 기본 스타일 제거 */
+  color: #d4af37;
+  margin-left: 30px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline; /* 마우스 올리면 밑줄 표시 */
+}
+
+.breadcrumb-divider {
+  color: black; /* 구분자 색상 */
+}
+
+#post-detail-title-breadcrumb {
+  color: #333; /* 제목 색상 */
+  font-weight: normal;
+}
+
 .detail-loading-container {
   text-align: center;
   margin: 3% 10%;
