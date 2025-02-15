@@ -161,85 +161,56 @@
           width="100%"
         />
       </section>
-
-      <!-- 여백 요소 추가 -->
-      <div class="section-spacer"></div>
-
-      <!-- **************************************************** -->
-      <!-- ★★★★★  여기부터 여행 포토 후기 섹션 ★★★★★ -->
-      <!-- **************************************************** -->
-      <div class="community-hot-list container my-5">
-        <!-- Title & More -->
-        <div
-          class="title-more d-flex justify-content-between align-items-center mb-4"
-        >
-          <div class="title d-flex align-items-center gap-1rem">
-            <h2 class="hot-title mb-0">
-              <span class="title-line">지금 핫한</span>
-              <span class="title-line">여행 포토 후기</span>
-            </h2>
-            <p class="hot-subtitle">
-              <span class="subtitle-line">실제 여행자들의</span>
-              <span class="subtitle-line">진솔한 이야기를 듣다</span>
-            </p>
-          </div>
-        </div>
-
-        <!-- 🟡 로딩 스피너 추가 -->
-        <div id="photo-loading-spinner" class="spinner-container">
-          <div class="spinner"></div>
-        </div>
-
-        <!-- 카드 리스트 -->
-        <div
-          class="card-set d-flex flex-wrap justify-content-center gap-1_5rem"
-        ></div>
-      </div>
     </main>
 
     <!-- 여백 요소 추가 -->
     <div class="section-spacer"></div>
 
     <!-- **************************************************** -->
-    <!-- ★★★★★  여기부터 게시물 리스트 섹션 ★★★★★ -->
+    <!-- ★★★★★  여기부터 게시물 작성하기 섹션 ★★★★★ -->
     <!-- **************************************************** -->
-    <!-- 🟡 배나낭에서 소통해요 섹션 -->
-    <section class="community-section">
-      <!-- 타이틀 -->
-      <div class="community-header">
-        <h2 class="community-title">배나낭에서 소통해요</h2>
-        <p class="community-subtitle">
-          여러분들의 다양한 여행 스토리를 나눠보세요
-        </p>
+
+    <div class="post-detail-full-container">
+      <!-- 🔹 게시판 경로 네비게이션 -->
+      <div class="post-detail-nav">
+        <img src="./assets/posts/post_home_icon.svg" alt="홈" />
+        <a href="./posts-service.html" class="post-detail-link">커뮤니티</a>
+        <span class="breadcrumb-divider">/ 글쓰기</span>
       </div>
 
-      <!-- 컨텐츠 랩퍼 -->
-      <div class="community-content">
-        <!-- 🌀 로딩 스피너 (게시글 리스트 바깥에 배치) -->
-        <div id="loading-spinner" class="spinner-container">
-          <div class="spinner"></div>
+      <!-- 게시판 작성 섹션 -->
+      <input
+        type="text"
+        id="post-title-input"
+        class="title-input"
+        placeholder="제목을 입력하세요"
+      />
+
+      <form id="post-create-form">
+        <!-- 이미지 업로드 -->
+        <div class="image-upload-container">
+          <label for="post-image" class="upload-button">📤 사진 업로드</label>
+          <input
+            type="file"
+            id="post-image"
+            name="image"
+            style="display: none"
+          />
         </div>
 
-        <!-- 📝 게시글 리스트 -->
-        <div class="post-list"></div>
+        <!-- 내용 입력 -->
+        <textarea
+          id="post-create-content"
+          name="content"
+          placeholder="내용을 입력하세요."
+          required
+        ></textarea>
 
-        <!-- 🟡 우측 유저 정보 및 글쓰기 버튼 -->
-        <aside class="community-sidebar">
-          <img
-            src="./assets/posts/기본 프로필 2x 1.svg"
-            alt="프로필 이미지"
-            class="user-avatar"
-          />
-          <h3 class="user-name">닉네임은8자리끝</h3>
-          <button
-            class="write-button"
-            onclick="location.href='posts-write.html'"
-          >
-            글쓰기
-          </button>
-        </aside>
-      </div>
-    </section>
+        <!-- 업로드된 이미지 미리보기 -->
+        <div class="image-preview-container" id="image-preview-container"></div>
+      </form>
+      <button type="submit" class="submit-comment">등록하기</button>
+    </div>
 
     <!-- **************************************************** -->
     <!-- ★★★★★  여기부터 푸터 섹션 ★★★★★ -->
@@ -356,7 +327,7 @@
 
   <!-- Bootstrap JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="posts.js" defer></script>
+
+  <script src="posts-write.js" defer></script>
   <script src="app.js" defer></script>
-  <script src="posts-photo.js" defer></script>
 </html>
