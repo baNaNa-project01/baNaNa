@@ -1,3 +1,167 @@
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                여행 포토 후기
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 기본 단위: 1rem = 16px 기준 */
+
+/* 전체 컨테이너: 최대 너비와 좌우 여백 조정 */
+.community-hot-list {
+  margin-top: 4rem; /* 캐러셀 바로 아래에 4rem 여백 추가 */
+}
+
+.title-more {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-left: 2.5rem !important;
+  margin-right: 2.5rem !important;
+}
+
+/* Title 영역 */
+.hot-title {
+  color: #333333;
+  font-size: 2.25rem; /* 36px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  margin-right: 1.5rem; /* 오른쪽 여백을 추가 */
+}
+
+.hot-subtitle {
+  color: #5c5c5c;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.more-link {
+  color: #5c5c5c;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Card Set: 중앙 정렬 및 카드 사이 간격 */
+.card-set {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem; /* 카드 간 간격 rem */
+}
+
+/* Hot Card */
+.hot-card {
+  width: 16rem; /* 256px = 16rem */
+  display: flex;
+  flex-direction: column;
+  gap: 1.1875rem; /* 19px ≒ 1.1875rem */
+  margin-bottom: 2rem;
+}
+
+/* Card Image */
+.card-image {
+  width: 100%;
+  height: 20rem; /* 320px = 20rem */
+  border-radius: 0.9375rem; /* 15px ≒ 0.9375rem */
+  object-fit: cover;
+}
+
+/* Card Description */
+.card-desc {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* 12px = 0.75rem */
+}
+
+/* Card Title */
+.card-title {
+  width: 100%;
+  text-align: center;
+  color: #333333;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Profile Description */
+.profile-desc {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.625rem; /* 10px = 0.625rem */
+}
+
+/* Profile Image */
+.profile-img {
+  width: 1.25rem; /* 20px = 1.25rem */
+  height: 1.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Nickname & Date */
+.nickname,
+.date {
+  color: #5c5c5c;
+  font-size: 1.125rem; /* 18px = 1.125rem */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* 반응형: 모바일 화면에서 전체 축소 */
+@media (max-width: 821px) {
+  .community-hot-list {
+    padding: 0 1rem;
+  }
+  /* 카드 셋은 flex에서 그리드로 변경 */
+  .card-set {
+    display: grid;
+    /* 최소 카드 너비 14rem, 여유 공간에 따라 자동 조정되도록 */
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+    justify-items: center;
+  }
+  /* hot-card는 grid 항목으로 100% 너비 사용 */
+  .hot-card {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  .title-line,
+  .subtitle-line {
+    display: block;
+  }
+
+  .hot-title {
+    font-size: 2rem; /* 축소된 폰트 크기 */
+  }
+  .hot-subtitle,
+  .more-link {
+    font-size: 1.25rem;
+  }
+  .card-title {
+    font-size: 1.375rem;
+  }
+  .nickname,
+  .date {
+    font-size: 1rem;
+  }
+  .card-image {
+    height: 18rem;
+  }
+}
+
 /* 🟡 배나낭에서 소통해요 섹션 */
 .community-section {
   width: 100%;
