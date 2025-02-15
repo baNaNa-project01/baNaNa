@@ -57,11 +57,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       // ✅ 게시물 데이터 삽입
       postTitle.textContent = post.title;
       postContent.textContent = post.content;
-      postAuthor.textContent = `작성자 : ${post.author}`;
+      postAuthor.textContent = `${post.author}`;
 
       // ✅ 날짜 포맷 변환 (YYYY.MM.DD)
       const dateObj = new Date(post.created_at);
-      postDate.textContent = `작성일 : ${dateObj.getFullYear()}.${(
+      postDate.textContent = `${dateObj.getFullYear()}.${(
         dateObj.getMonth() + 1
       )
         .toString()
@@ -112,8 +112,12 @@ document.addEventListener("DOMContentLoaded", async function () {
           const commentElement = document.createElement("div");
           commentElement.classList.add("comment");
           commentElement.innerHTML = `
-            <p><strong>${comment.author}</strong>: ${comment.content}</p>
+            <img src="./assets/posts/기본 프로필 2x 1.svg" alt="댓글 작성자" class="detail-comment-profile-img" />
+          <div class="comment-content">
+            <p class="comment-author">${comment.author}</p>
+            <p>${comment.content}</p>
             <p class="comment-date">${comment.created_at}</p>
+          </div>
           `;
           commentsContainer.appendChild(commentElement);
         });

@@ -154,7 +154,7 @@
 
     <div class="post-detail-full-container">
       <!-- ✅ 로딩 중 메시지 -->
-      <div id="loading-container" class="loading-container">
+      <div id="loading-container" class="detail-loading-container">
         <p>⏳ 게시물을 불러오는 중입니다...</p>
       </div>
 
@@ -184,27 +184,27 @@
           style="display: none"
         />
 
-        <hr />
-
         <!-- 💬 댓글 섹션 -->
         <h3>💬 댓글</h3>
         <div id="comments-detail-container">
           <p>댓글을 불러오는 중...</p>
         </div>
 
-        <hr />
-
         <!-- 📝 댓글 작성 -->
         <div class="detail-comment-input-container">
           <img
-            src="./assets/profile-icon.svg"
+            src="./assets/posts/기본 프로필 2x 1.svg"
             alt="내 프로필"
             class="detail-comment-profile-img"
           />
-          <textarea
-            id="comment-detail-input"
-            placeholder="댓글을 입력해주세요."
-          ></textarea>
+          <!-- 닉네임 + 댓글 입력 -->
+          <div class="comment-input-area">
+            <span class="comment-nickname">닉네임</span>
+            <textarea
+              id="comment-detail-input"
+              placeholder="댓글을 입력해주세요."
+            ></textarea>
+          </div>
         </div>
         <button id="submit-detail-comment" class="submit-comment">
           등록하기
