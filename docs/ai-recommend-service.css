@@ -118,7 +118,7 @@ body {
 .next-btn {
   font-family: "Pretendard-Medium";
   font-style: normal;
-  background-color: #FFD700;
+  background-color: #ffd700;
   color: #1a1a1a;
   font-size: 18px;
   /* font-weight: 600; */
@@ -131,7 +131,7 @@ body {
 
 /* 호버 시 색상 변경 */
 .next-btn:hover {
-  background-color: #DDB900;
+  background-color: #ddb900;
 }
 
 /* 비활성화 상태 */
@@ -143,6 +143,28 @@ body {
 }
 
 /* ==============================스타일 추가=================================== */
+/* 전체 화면을 덮는 로딩 오버레이 */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* 로딩 텍스트 스타일 */
+.loading-text {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+}
 
 .hidden {
   display: none;
@@ -166,7 +188,7 @@ body {
   font-size: 16px;
   border-radius: 30px;
   border: 2px solid lightgray;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   color: gray;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -176,14 +198,14 @@ body {
 }
 
 .ai-btn.selected {
-  border-color: #F7F7F7;
+  border-color: #f7f7f7;
   color: #1a1a1a;
   /* font-weight: bold; */
-  background-color: #FFD700;
+  background-color: #ffd700;
 }
 
 .ai-btn:hover {
-  border-color: #FFD700;
+  border-color: #ffd700;
   transition: border-color 0.3s ease;
 }
 
@@ -193,7 +215,7 @@ body {
 .back-btn {
   font-family: "Pretendard-Medium";
   font-style: normal;
-  background-color: #FFD700;
+  background-color: #ffd700;
   color: #1a1a1a;
   font-size: 18px;
   /* font-weight: 600; */
@@ -205,13 +227,13 @@ body {
 }
 
 .back-btn:disabled {
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   cursor: not-allowed;
 }
 
 /* 호버 시 색상 변경 */
 .back-btn:hover {
-  background-color: #DDB900;
+  background-color: #ddb900;
 }
 
 /* 결과 영역을 위한 스타일 */
@@ -221,38 +243,125 @@ body {
 }
 
 #resultText {
-  max-height: 400px; /* 원하는 높이 설정 */
-  overflow-y: auto; /* 수직 스크롤 활성화 */
-  padding: 10px;
-  border: 1px solid #FFD700;
+  max-height: 500px; /* 원하는 높이 설정 */
+  overflow-y: auto;
   border-radius: 8px;
   /* background-color: #f9f9f9; */
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 }
 
 /* Step 6 컨테이너 */
+.map-container {
+  width: 80%; /* 전체 너비 사용 */
+  height: 500px; /* 지도 컨테이너 높이 지정 */
+  border: 1px solid #ffd700;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+}
+
+/* 채팅 컨테이너 */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 85%;
+  height: auto;
+  margin: auto;
+}
+
+/* 채팅 버블과 캐릭터 정렬 */
+.chat-row {
+  display: flex;
+  align-items: flex-end; /* 말풍선과 캐릭터 하단 정렬 */
+  gap: 20px; /* 캐릭터와 말풍선 간격 */
+  margin-bottom: 15px;
+}
+
+/* 배나낭 캐릭터 스타일 */
+.character-avatar {
+  width: 50px; /* 캐릭터 크기 */
+  height: auto;
+}
+
+/* 채팅 말풍선 공통 */
+.chat-bubble {
+  max-width: 80%;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #f7f7f7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start; /* 내부 요소를 왼쪽 정렬 */
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.3s forwards;
+}
+
+/* Day 전용 말풍선 */
+.day-bubble {
+  background-color: #ffd700;
+}
+
+/* Day 텍스트 스타일 */
+.day-text {
+  font-family: "Pretendard-Medium";
+  font-weight: 600;
+  font-size: 18px;
+  color: #1a1a1a;
+}
+
+/* 말풍선 꼬리 효과 */
+.chat-bubble::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #f7f7f7;
+}
+
+.day-bubble::before {
+  border-right-color: #ffd700;
+}
+
+/* 말풍선 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 결과 컨테이너 */
 .result-container {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   margin: 20px auto;
-  width: 1300px;
-  margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+  max-width: 1500px;
 }
 
 .result-text {
-  width: 42%; /* 왼쪽 절반에 내용 표시 */
+  width: 100%;
   padding: 20px;
-  border: 1px solid #F7F7F7;
+  border: 1px solid #f7f7f7;
   border-radius: 8px;
-  background-color: #F7F7F7;
-}
-
-.map-container {
-  width: 57%; /* 오른쪽 절반에 지도 표시 */
-  border: 1px solid #FFD700;
-  border-radius: 8px;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
 }
 
 #map {
@@ -268,20 +377,6 @@ body {
   font-size: 18px;
   margin-top: 10px;
   color: #1a1a1a;
-}
-
-/* 스크롤바 스타일 (선택사항) */
-#resultText::-webkit-scrollbar {
-  width: 8px;
-}
-
-#resultText::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 10px;
-}
-
-#resultText::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
 }
 
 /* 마커 버튼에 대한 css */
@@ -300,39 +395,67 @@ body {
   cursor: pointer;
   border-radius: 30px;
   border: 2px solid lightgray;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   color: gray;
 }
 .day-buttons-container button:focus {
-  background-color: #FFD700;
+  background-color: #ffd700;
   color: #333333;
-  border-color: #F7F7F7;
+  border-color: #f7f7f7;
 }
 
 #step1,
 #step2,
 #step3,
 #step4,
-#step5,
-#step6 {
-  /* height: 550px; 원하는 고정 높이 설정 */
-  height: 650px; /* 원하는 고정 높이 설정 */
+#step5 {
+  height: 650px;
   overflow: hidden;
 }
 
-/* 배나낭 위치 */
-.character-container {
-  float: right;  /* 캐릭터를 왼쪽에 배치 */
-  margin-right: 20px;  /* 캐릭터와 다른 요소들 사이에 여백을 두기 */
+#step6 {
+  min-height: 650px; /* 최소 높이만 설정 */
+  height: auto; /* 내용에 따라 자동으로 높이 조절 */
+  overflow: visible; /* 내용이 넘치더라도 보이게 설정 */
+  padding-bottom: 40px; /* 하단 여백 추가 */
 }
 
 #characterImage {
-  width: 100px;  /* 캐릭터 이미지 크기 조정 */
+  width: 100px; /* 캐릭터 이미지 크기 조정 */
   height: auto;
 }
 
-p{
+p {
   font-family: "Pretendard-Medium";
   font-style: normal;
   font-size: medium;
+}
+
+/* resultText 내부 스크롤바 커스텀 */
+#resultText::-webkit-scrollbar {
+  width: 10px; /* 스크롤바 너비 */
+}
+
+/* 스크롤바 트랙 (배경) */
+#resultText::-webkit-scrollbar-track {
+  background: #f0f0f0; /* 연한 배경 */
+  border-radius: 30px; /* 둥근 모서리 */
+}
+
+/* 스크롤바 핸들 (움직이는 부분) */
+#resultText::-webkit-scrollbar-thumb {
+  background: #ffd700; /* 테마 색상 */
+  border-radius: 30px; /* 둥근 모서리 */
+  transition: background 0.3s ease-in-out;
+}
+
+/* 마우스 호버 시 스크롤바 */
+#resultText::-webkit-scrollbar-thumb:hover {
+  background: #ddb900; /* 더 진한 색상 */
+}
+
+/* Firefox 지원 (얇은 스크롤바 적용) */
+#resultText {
+  scrollbar-width: thin; /* 얇은 스크롤바 */
+  scrollbar-color: #ffd700 #f0f0f0; /* (스크롤바 핸들 / 트랙) */
 }
