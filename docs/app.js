@@ -23,9 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
  ***************************************************************/
 
 document.addEventListener("DOMContentLoaded", function () {
-  //  백엔드에서 설정한 OAuth 로그인 URL (API GATEWAY 배포 URL 입력)
   const BACKEND_URL = "https://banana-flask-app.onrender.com";
 
+  // ✅ 로그인 요청 (콜드 스타트 대응)
   async function loginWithRetry(provider, maxAttempts = 5, delay = 2000) {
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (serverReady.ok) {
           console.log("✅ 서버가 준비됨! 로그인 시작");
           window.location.href = `${BACKEND_URL}/login/${provider}`;
+          console.log("🔍 저장된 JWT:", localStorage.getItem("access_token"));
+
           return;
         }
       } catch (error) {
@@ -50,19 +52,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  //  카카오 로그인 버튼 클릭 시
+  // ✅ 로그인 버튼 이벤트 리스너
   document.getElementById("kakao-login").addEventListener("click", function () {
     console.log("🟡 카카오 로그인 버튼 클릭!");
     loginWithRetry("kakao");
   });
 
-  //  네이버 로그인 버튼 클릭 시
   document.getElementById("naver-login").addEventListener("click", function () {
     console.log("🟢 네이버 로그인 버튼 클릭!");
     loginWithRetry("naver");
   });
 
-  //  구글 로그인 버튼 클릭 시
   document
     .getElementById("google-login")
     .addEventListener("click", function () {
@@ -70,11 +70,33 @@ document.addEventListener("DOMContentLoaded", function () {
       loginWithRetry("google");
     });
 
+  // ✅ JWT 저장하기 (로그인 완료 후 콜백에서 실행)
+  function storeTokenFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    if (token) {
+      console.log("✅ JWT 저장 완료!");
+      localStorage.setItem("access_token", token);
+
+      // ✅ 로그인 후 불필요한 `token` 파라미터 제거
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else {
+      console.warn("🚨 URL에 토큰이 없음! 로그인 실패 가능성 높음");
+    }
+  }
+
+  // ✅ 로그인한 사용자 정보 가져오기 (JWT 저장 & API 요청)
   async function fetchUserInfo() {
     try {
+      const token = localStorage.getItem("access_token");
+      if (!token) throw new Error("로그인된 사용자가 없음");
+
       const response = await fetch(`${BACKEND_URL}/auth/me`, {
         method: "GET",
-        credentials: "include", // ✅ 쿠키를 포함해서 요청
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
       if (!response.ok) throw new Error("로그인 정보 없음");
@@ -84,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById(
         "user-info"
       ).innerText = `안녕하세요, ${userData.name}!`;
+
       return userData;
     } catch (error) {
       console.warn("🚨 로그인 정보 없음:", error);
@@ -91,5 +114,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  fetchUserInfo();
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("🔍 페이지 로드 완료, storeTokenFromURL() 실행!");
+
+    storeTokenFromURL(); // ✅ JWT 저장
+    fetchUserInfo(); // ✅ 사용자 정보 불러오기
+  });
 });
