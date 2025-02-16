@@ -28,6 +28,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 /* 모달이 열릴 때 body의 여백을 방지 */
