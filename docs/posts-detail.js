@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   const API_URL = `https://banana-flask-app.onrender.com/post/${postId}`;
   const COMMENTS_API_URL = `https://banana-flask-app.onrender.com/post/${postId}/comments`;
-  const CREATE_COMMENT_URL = `https://banana-flask-app.onrender.com/post/${postId}/comments`;
+  const CREATE_COMMENT_URL = `https://banana-flask-app.onrender.com/post/${postId}/comment`;
 
   let retryCount = 0;
   const MAX_RETRIES = 5; // 최대 5번 재시도

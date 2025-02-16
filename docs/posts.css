@@ -274,6 +274,22 @@
   border-radius: 10px;
 }
 
+.posts-photo-card {
+  cursor: pointer;
+}
+
+.post-list-curser {
+  cursor: pointer;
+}
+.post-card:hover {
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25); /* 더 강한 그림자 */
+  transform: scale(1.02); /* 약간 확대 효과 */
+}
+.card-image:hover {
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25); /* 더 강한 그림자 */
+  transform: scale(1.02); /* 약간 확대 효과 */
+}
+
 /* 🟡 유저 정보 및 글쓰기 버튼 */
 .community-sidebar {
   width: 300px; /* 고정된 너비 */
@@ -375,16 +391,13 @@
   color: #666;
 }
 
-a {
+#a-community {
   all: unset; /* 기본 스타일 제거 */
   color: #d4af37;
   margin-left: 30px;
   text-decoration: underline;
   font-weight: bold;
-}
-
-a:hover {
-  text-decoration: underline; /* 마우스 올리면 밑줄 표시 */
+  cursor: pointer;
 }
 
 .breadcrumb-divider {
