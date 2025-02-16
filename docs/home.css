@@ -191,9 +191,9 @@ body {
 
 .more-link {
   color: #5c5c5c;
-  font-size: 1.5rem; /* 24px */
+  font-size: 1.15rem; /* 24px */
   font-family: "Pretendard", sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   word-wrap: break-word;
 }
 
@@ -272,6 +272,22 @@ body {
   font-family: "Pretendard", sans-serif;
   font-weight: 500;
   word-wrap: break-word;
+}
+
+.posts-photo-card {
+  cursor: pointer;
+}
+
+.post-list-curser {
+  cursor: pointer;
+}
+.post-card:hover {
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25); /* 더 강한 그림자 */
+  transform: scale(1.02); /* 약간 확대 효과 */
+}
+.card-image:hover {
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.25); /* 더 강한 그림자 */
+  transform: scale(1.02); /* 약간 확대 효과 */
 }
 
 /* 반응형: 모바일 화면에서 전체 축소 */
