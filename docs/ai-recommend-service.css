@@ -118,7 +118,7 @@ body {
   color: white;
   font-size: 18px;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 10px 60px; /* 수평 패딩을 늘려 버튼 가로 크기 증가 */
   border-radius: 30px;
   border: none;
   cursor: pointer;
@@ -136,7 +136,7 @@ body {
   pointer-events: none;
   background-color: lightgray;
   cursor: not-allowed;
-} 
+}
 
 /* ==============================스타일 추가=================================== */
 
@@ -149,6 +149,10 @@ body {
   gap: 10px;
   justify-content: center;
   margin-bottom: 30px;
+  max-width: 720px; /* 최대 너비 고정 */
+  width: 100%; /* 전체 너비 사용 */
+  margin-left: auto; /* 중앙 정렬 */
+  margin-right: auto; /* 중앙 정렬 */
 }
 .btn {
   padding: 15px 20px;
@@ -168,19 +172,19 @@ body {
 }
 
 .btn:hover {
-  border-color: rgb(255, 207, 35); 
+  border-color: rgb(255, 207, 35);
   transition: border-color 0.3s ease;
 }
 
 /* 이전 버튼 */
 /* 기존 스타일에 추가 */
 
-.back-btn{
+.back-btn {
   background-color: #ffd700;
   color: white;
   font-size: 18px;
   font-weight: 600;
-  padding: 10px 20px;
+  padding: 10px 60px;
   border-radius: 30px;
   border: none;
   cursor: pointer;
@@ -247,10 +251,10 @@ body {
 }
 
 .day-title {
-  font-weight: 800;/* bold에서 800으로 변경 */
+  font-weight: 800; /* bold에서 800으로 변경 */
   font-size: 18px;
   margin-top: 10px;
-  color: #000;  
+  color: #000;
 }
 
 /* 스크롤바 스타일 (선택사항) */
@@ -291,16 +295,24 @@ body {
   border-color: white;
 }
 
-.loading-spinner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+#step1,
+#step2,
+#step3,
+#step4,
+#step5,
+#step6 {
+  /* height: 550px; 원하는 고정 높이 설정 */
+  height: 650px; /* 원하는 고정 높이 설정 */
+  overflow: hidden;
+}
+
+/* 배나낭 위치 */
+.character-container {
+  float: left;  /* 캐릭터를 왼쪽에 배치 */
+  margin-right: 20px;  /* 캐릭터와 다른 요소들 사이에 여백을 두기 */
+}
+
+#characterImage {
+  width: 100px;  /* 캐릭터 이미지 크기 조정 */
+  height: auto;
 }
