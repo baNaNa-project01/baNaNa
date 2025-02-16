@@ -48,13 +48,35 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const regionButtons = document.querySelectorAll(".btn-region");
 
+  // 기본 선택 지역을 "전체"로 설정합니다.
+  let selectedRegion = "전체";
+
+  // 각 버튼에 대해 이벤트 리스너를 추가하고,
+  // 기본으로 "전체" 버튼에 active 클래스를 추가합니다.
   regionButtons.forEach((button) => {
+    if (button.textContent.trim() === "전체") {
+      button.classList.add("active");
+    }
     button.addEventListener("click", function () {
-      // 모든 버튼에서 active 클래스 제거
+      // 모든 버튼에서 active 클래스를 제거
       regionButtons.forEach((btn) => btn.classList.remove("active"));
 
-      // 클릭한 버튼에 active 클래스 추가
+      // 클릭한 버튼에 active 클래스를 추가
       this.classList.add("active");
+
+      // 선택한 지역명을 업데이트합니다.
+      selectedRegion = this.textContent.trim();
     });
   });
+
+  // "월드컵 바로가기" 버튼(여기서는 class가 btn btn-world인 이미지 요소)을 선택합니다. <<<<<<<<<<<<<<
+  // => class 속성에 공백이 있을 경우 `.` 으로 이어줘야 합니다!!!!!!!!!
+  const goButton = document.querySelector(".btn.btn-worldcup"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  if (goButton) {
+    goButton.addEventListener("click", function () {
+      // 선택한 지역이 없을 경우를 체크할 필요 없이, 기본값 "전체"가 있으므로 바로 이동합니다.
+      window.location.href =
+        "./world-cup-game.html?region=" + encodeURIComponent(selectedRegion);
+    });
+  }
 });
