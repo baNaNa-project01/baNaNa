@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   const BACKEND_URL = "https://banana-flask-app.onrender.com";
-  const token = getCookie("access_token"); // 로그인 토큰 가져오기
 
   const titleInput = document.getElementById("post-title-input");
   const contentInput = document.getElementById("post-create-content");
@@ -42,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const title = titleInput.value.trim();
     const content = contentInput.value.trim();
     const imageFile = imageInput.files[0];
+    const token = localStorage.getItem("access_token");
 
     if (!title || !content) {
       alert("제목과 내용을 입력하세요!");
@@ -54,6 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
     formData.append("content", content);
     if (imageFile) {
       formData.append("image", imageFile);
+    }
+
+    if (!token) {
+      alert("🚨 로그인 후 글을 작성할 수 있습니다!");
+      return;
     }
 
     // ✅ 백엔드 API 요청
@@ -79,16 +84,4 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("서버 오류가 발생했습니다.");
     }
   });
-
-  // 🔹 쿠키에서 JWT 토큰 가져오기 함수
-  function getCookie(name) {
-    const cookies = document.cookie.split("; ");
-    for (const cookie of cookies) {
-      const [cookieName, cookieValue] = cookie.split("=");
-      if (cookieName === name) {
-        return cookieValue;
-      }
-    }
-    return null;
-  }
 });
