@@ -1,10 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const BACKEND_URL = "https://banana-flask-app.onrender.com";
+  const token = getCookie("access_token"); // 로그인 토큰 가져오기
+
+  const titleInput = document.getElementById("post-title-input");
+  const contentInput = document.getElementById("post-create-content");
   const imageInput = document.getElementById("post-image");
   const imagePreviewContainer = document.getElementById(
     "image-preview-container"
   );
+  const submitButton = document.querySelector(".submit-comment");
 
-  // 이미지 미리보기
+  // 🔹 이미지 미리보기 기능
   imageInput.addEventListener("change", function (event) {
     const files = event.target.files;
     imagePreviewContainer.innerHTML = "";
@@ -28,32 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsDataURL(file);
     });
   });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  const BACKEND_URL = "https://banana-flask-app.onrender.com";
-  const token = getCookie("access_token"); // 로그인 토큰 가져오기
-
-  const titleInput = document.getElementById("post-title-input");
-  const contentInput = document.getElementById("post-create-content");
-  const imageInput = document.getElementById("post-image");
-  const imagePreviewContainer = document.getElementById(
-    "image-preview-container"
-  );
-  const submitButton = document.querySelector(".submit-comment");
-
-  // 🔹 이미지 미리보기 기능
-  imageInput.addEventListener("change", function (event) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        imagePreviewContainer.innerHTML = `<img src="${e.target.result}" alt="미리보기" class="image-preview">`;
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
   // 🔹 게시글 업로드 이벤트
   submitButton.addEventListener("click", async function (event) {
     event.preventDefault();

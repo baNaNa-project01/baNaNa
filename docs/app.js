@@ -69,4 +69,27 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("🔵 구글 로그인 버튼 클릭!");
       loginWithRetry("google");
     });
+
+  async function fetchUserInfo() {
+    try {
+      const response = await fetch(`${BACKEND_URL}/auth/me`, {
+        method: "GET",
+        credentials: "include", // ✅ 쿠키를 포함해서 요청
+      });
+
+      if (!response.ok) throw new Error("로그인 정보 없음");
+      const userData = await response.json();
+      console.log("✅ 로그인한 사용자:", userData);
+
+      document.getElementById(
+        "user-info"
+      ).innerText = `안녕하세요, ${userData.name}!`;
+      return userData;
+    } catch (error) {
+      console.warn("🚨 로그인 정보 없음:", error);
+      return null;
+    }
+  }
+
+  fetchUserInfo();
 });
