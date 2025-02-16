@@ -1,60 +1,165 @@
+/* 공통 리셋 및 기본 스타일 */
 body {
-    font-family: 'Pretendard-Medium', sans-serif;
-    background-color: #F7F7F7;
-  }
-  
-  /* 제목 스타일 */
-  .title {
-    color: #333333;
-    font-size: 36px;
-    font-weight: 600;
-    word-wrap: break-word;
-  }
-  
-  .subtitle {
-    color: #333333;
-    font-size: 32px;
-    font-weight: 600;
-    word-wrap: break-word;
-  }
-  
-  .divider {
-    border: 1px solid #626262;
-    margin-bottom: 16px;
-  }
-  
-  /* 배지 스타일 */
-  .badge-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  
-  .badge {
-    display: inline-block;
-    padding: 10px 24px;
-    border-radius: 30px;
-    font-size: 20px;
-    font-weight: 600;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border: 1.5px solid #DDB900;
-    color: #333333;
-    background: #F7F7F7;
-  }
-  
-  /* 선택된 배지 */
-  .badge.active {
-    background: #DDB900;
-    color: #F7F7F7;
-  }
-  
-  /* 호버 효과 */
-  .badge:hover {
-    background: #DDB900;
-    color: #F7F7F7;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard-Medium", sans-serif;
+  background-color: #f7f7f7;
+}
 
-  
-  
+/* 내비게이션 바 스타일 (기존 스타일 유지) */
+#navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: #f8f41a;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+#navbar .logo {
+  font-weight: bolder;
+  font-size: 25px;
+  color: rgb(22, 19, 19);
+}
+#navbar #todayDate {
+  margin-left: 20px;
+  font-size: 16px;
+  color: rgb(22, 19, 19);
+}
+
+/* 배너 스타일 */
+.banner img {
+  width: 100%;
+  height: auto;
+}
+
+/* 새로 추가한 지도와 컨트롤 영역 컨테이너 */
+.map-ui-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 70vh; /* 필요에 따라 높이 조정 */
+  box-sizing: border-box;
+  margin: 20px 0;
+}
+
+/* 좌측 지도 영역 (75% 너비) */
+.map-area {
+  width: 75%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#map {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+}
+
+/* 우측 컨트롤 영역 (25% 너비) */
+.control-area {
+  width: 25%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+/* 지역 선택 및 세부 컨트롤 스타일 */
+.region-selection,
+.sub-control {
+  margin-bottom: 20px;
+}
+.region-selection h3,
+.sub-control h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* 배지 컨테이너 및 배지 스타일 (지역, 관광 타입 버튼) */
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.badge {
+  padding: 10px 20px;
+  border: 1px solid #ddb900;
+  background: #f7f7f7;
+  color: #333;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.badge:hover,
+.badge.active {
+  background: #ddb900;
+  color: #f7f7f7;
+}
+
+/* 기존 지도 관련 스타일 (마커, 검색창, 인포윈도우 등) 유지 */
+.marker {
+  width: 20px;
+  height: 20px;
+  background: blue;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.search-marker {
+  width: 24px;
+  height: 24px;
+  background: red;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+/* 검색창 스타일 (지도 내부 중앙 상단) */
+#search {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  max-width: 800px;
+  display: flex;
+  box-sizing: border-box;
+  border-radius: 30px;
+  overflow: hidden;
+  z-index: 1000;
+}
+#search_input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  box-sizing: border-box;
+  border-radius: 30px 0 0 30px;
+}
+#search_input::placeholder {
+  color: #fff;
+}
+#search_btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background: #f8f41a;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+  border-radius: 0 30px 30px 0;
+}
+#search_btn:hover {
+  background: #e6d31a;
+}
+
+/* 기타 기존 스타일 (푸터, 모달, 게시판 등) */
+/* ... 필요 시 기존 style.css 또는 map.css의 나머지 코드를 함께 포함하면 됨 ... */
