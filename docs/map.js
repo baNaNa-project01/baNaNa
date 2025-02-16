@@ -18,12 +18,24 @@ let currentLocationMarker;
 let tourBoardData = [];
 let tourBoardCurrentPage = 1;
 const tourBoardItemsPerPage = 15;
-const defaultImageURL = "./assets/defaultImg.png"; // 이미지 없을 경우 대체
+const defaultImageURL = "./assets/map-service/defaultImg.svg"; // 이미지 없을 경우 대체
 
 // 선택된 지역/세부지역/관광타입 저장
 let selectedAreaCode = null;
 let selectedSigunguCode = null;
 let selectedContentTypeId = null;
+
+// (전역 상단에 추가)
+const contentTypeMapping = {
+  12: "관광지",
+  14: "문화시설",
+  15: "행사/공연/축제",
+  25: "여행코스",
+  28: "레포츠",
+  32: "숙박",
+  38: "쇼핑",
+  39: "음식점",
+};
 
 // ---------------------- 콘텐츠 타입별 상세 필드 매핑 ----------------------
 const detailFields = {
@@ -210,9 +222,9 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => res.json())
     .then((data) => {
       markerData = data;
-      if (map) {
-        addMarkers();
-      }
+      // if (map) {
+      //   addMarkers();
+      // }
     })
     .catch((error) => console.error("Error fetching tourism data:", error));
 
@@ -228,10 +240,6 @@ function initMap() {
   };
   map = new naver.maps.Map("map", mapOptions);
   console.log("Naver map initialized");
-
-  if (markerData.length > 0) {
-    addMarkers();
-  }
 
   // 지도 클릭 시 검색/지역 기반 인포윈도우 닫기
   naver.maps.Event.addListener(map, "click", () => {
@@ -257,8 +265,10 @@ function addMarkers() {
         <div class="infowindow_content">${location.content}</div>
         <div class="infowindow_createdTime">${location.createdTime}</div>
       </div>`;
+    // 인포윈도우 콘텐츠를 페이드인 효과로 감싸기
+    const animatedContent = `<div class="fadeIn">${content}</div>`;
     const infoWindow = new naver.maps.InfoWindow({
-      content: content,
+      content: animatedContent,
       backgroundColor: "rgba(255,255,255,0.9)",
       borderColor: "#ccc",
     });
@@ -277,22 +287,22 @@ function closeAllRegionTourInfoWindows() {
 }
 
 // ---------------------- 카테고리 검색 함수 추가 ----------------------
+let currentCategoryCode = null; // 현재 선택된 카테고리 저장
+
 function searchByCategory(categoryCode) {
   if (!categoryCode) {
     alert("카테고리를 선택해주세요.");
     return;
   }
+  currentCategoryCode = categoryCode;
   console.log("Category search requested:", categoryCode);
   if (window.search_loc) {
-    // 지도에서 현재 보이는 영역의 경계 구하기 (네이버)
     const naverBounds = map.getBounds();
     const sw = naverBounds.getSW();
     const ne = naverBounds.getNE();
-    // 카카오 지도 LatLng 객체로 변환
     const kakaoSw = new kakao.maps.LatLng(sw.lat(), sw.lng());
     const kakaoNe = new kakao.maps.LatLng(ne.lat(), ne.lng());
     const kakaoBounds = new kakao.maps.LatLngBounds(kakaoSw, kakaoNe);
-    // 카테고리 검색 실행
     window.search_loc.categorySearch(categoryCode, categorySearchCB, {
       bounds: kakaoBounds,
     });
@@ -314,7 +324,8 @@ function categorySearchCB(data, status, pagination) {
         map: map,
         position: position,
         icon: {
-          content: "<div class='search-marker'></div>",
+          content:
+            '<img src="./assets/map-service/kakaoResearchMarker.svg" style="width:30px;height:30px;">',
           anchor: new naver.maps.Point(12, 12),
         },
       });
@@ -327,14 +338,14 @@ function categorySearchCB(data, status, pagination) {
             place.phone ? place.phone : "No phone info"
           }</div>
         </div>`;
+      const animatedContent = `<div class="fadeIn">${content}</div>`;
       const infoWindow = new naver.maps.InfoWindow({
-        content: content,
+        content: animatedContent,
         backgroundColor: "rgba(255,255,255,0.9)",
         borderColor: "#ccc",
       });
       searchInfoWindows.push(infoWindow);
       naver.maps.Event.addListener(marker, "click", () => {
-        searchInfoWindows.forEach((iw) => iw.close());
         infoWindow.open(map, marker);
       });
       bounds.extend(position);
@@ -378,7 +389,8 @@ function searchPlaceCallback(data, status, pagination) {
         map: map,
         position: position,
         icon: {
-          content: "<div class='search-marker'></div>",
+          content:
+            '<img src="./assets/map-service/kakaoResearchMarker.svg" style="width:24px;height:24px;">',
           anchor: new naver.maps.Point(12, 12),
         },
       });
@@ -391,14 +403,14 @@ function searchPlaceCallback(data, status, pagination) {
             place.phone ? place.phone : "No phone info"
           }</div>
         </div>`;
+      const animatedContent = `<div class="fadeIn">${content}</div>`;
       const infoWindow = new naver.maps.InfoWindow({
-        content: content,
+        content: animatedContent,
         backgroundColor: "rgba(255,255,255,0.9)",
         borderColor: "#ccc",
       });
       searchInfoWindows.push(infoWindow);
       naver.maps.Event.addListener(marker, "click", () => {
-        searchInfoWindows.forEach((iw) => iw.close());
         infoWindow.open(map, marker);
       });
       bounds.extend(position);
@@ -429,7 +441,7 @@ function displayPagination(pagination) {
 }
 
 // ---------------------- 검색 결과 목록 표시 함수 ----------------------
-// 기존 document.body에 추가하던 대신, .map-section 내부 현재 위치 버튼 아래에 추가
+// .map-section 내부 현재 위치 버튼 아래에 표시
 function updateSearchResultsList(data, pagination) {
   let mapSection = document.querySelector(".map-section");
   let resultsContainer = document.getElementById("search-results");
@@ -437,7 +449,6 @@ function updateSearchResultsList(data, pagination) {
     resultsContainer = document.createElement("div");
     resultsContainer.id = "search-results";
     resultsContainer.style.position = "absolute";
-    // 현재 위치 버튼 아래에 배치: 현재 버튼의 offsetTop+offsetHeight + 약간의 마진
     let currentBtn = document.getElementById("current-btn");
     let topOffset = currentBtn.offsetTop + currentBtn.offsetHeight + 5;
     resultsContainer.style.top = topOffset + "px";
@@ -489,8 +500,8 @@ function setupEventListeners() {
             position: latlng,
             map: map,
             icon: {
-              // .myloc 클래스에 pulse 애니메이션이 적용되어야 함 (CSS 확인)
-              content: '<img class="myloc" src="./assets/mylocation.png">',
+              content:
+                '<img class="myloc" src="./assets/map-service/myLocMarker.svg">',
               anchor: new naver.maps.Point(11, 11),
             },
           });
@@ -516,7 +527,7 @@ function setupEventListeners() {
     if (e.key === "Enter") searchHandler();
   });
 
-  // 우측 컨트롤의 카테고리 버튼 (대형마트부터 약국까지)
+  // 우측 컨트롤의 카테고리 버튼
   document.querySelectorAll(".category-btn").forEach((btn) => {
     btn.addEventListener("click", function () {
       const catCode = this.dataset.cat;
@@ -524,7 +535,7 @@ function setupEventListeners() {
     });
   });
 
-  // 지도 유형 변경 버튼 (오른쪽 컨트롤 내 map-type-btn)
+  // 지도 유형 변경 버튼
   document.querySelectorAll(".map-type-btn").forEach((btn) => {
     btn.addEventListener("click", function () {
       document
@@ -575,6 +586,9 @@ function setupEventListeners() {
       alert("관광타입을 선택해주세요.");
       return;
     }
+    // 관광정보 게시판에 로딩중 문구 표시
+    document.getElementById("tourBoardItems").innerHTML =
+      '<div class="loading">로딩중...</div>';
     const url = `https://fate-star-gram.glitch.me/api/region-tour-info?contentTypeId=${selectedContentTypeId}&areaCode=${selectedAreaCode}&sigunguCode=${selectedSigunguCode}`;
     fetch(url)
       .then((res) => res.json())
@@ -582,7 +596,8 @@ function setupEventListeners() {
         clearRegionTourMarkers();
         let items = myJson.response.body.items.item;
         if (!items) {
-          alert("조회된 정보가 없습니다.");
+          document.getElementById("tourBoardItems").innerHTML =
+            "조회된 정보가 없습니다.";
           return;
         }
         if (!Array.isArray(items)) {
@@ -597,7 +612,8 @@ function setupEventListeners() {
             map: map,
             position: position,
             icon: {
-              content: "<div class='regionTourMarker'></div>",
+              content:
+                '<img src="./assets/map-service/myLocMarker.svg" style="width:30px;height:30px;">',
               anchor: new naver.maps.Point(12, 12),
             },
           });
@@ -619,8 +635,9 @@ function setupEventListeners() {
                   }
                 </div>
               </div>`;
+          const animatedContent = `<div class="fadeIn">${content}</div>`;
           const infoWindow = new naver.maps.InfoWindow({
-            content: content,
+            content: animatedContent,
             backgroundColor: "rgba(255,255,255,0.9)",
             borderColor: "#ccc",
           });
@@ -655,6 +672,10 @@ function setupEventListeners() {
         alert("검색어를 입력하세요.");
         return;
       }
+      // 게시판에 로딩중 문구 표시
+      document.getElementById("tourBoardItems").innerHTML =
+        '<div class="loading">로딩중...</div>';
+
       const url = `https://fate-star-gram.glitch.me/api/search-keyword?keyword=${encodeURIComponent(
         keyword
       )}`;
@@ -667,11 +688,58 @@ function setupEventListeners() {
             data.response.body.items &&
             data.response.body.items.item;
           if (!items) {
-            alert("조회된 관광정보가 없습니다.");
+            document.getElementById("tourBoardItems").innerHTML =
+              "조회된 관광정보가 없습니다.";
             return;
           }
           if (!Array.isArray(items)) {
             items = [items];
+          }
+          // 지역 기반 관광정보와 동일하게 마커 생성 (아이콘: myLocMarker.svg)
+          clearRegionTourMarkers();
+          items.forEach((item) => {
+            const position = new naver.maps.LatLng(
+              parseFloat(item.mapy),
+              parseFloat(item.mapx)
+            );
+            const marker = new naver.maps.Marker({
+              map: map,
+              position: position,
+              icon: {
+                content:
+                  '<img src="./assets/map-service/myLocMarker.svg" style="width:30px;height:30px;">',
+                anchor: new naver.maps.Point(12, 12),
+              },
+            });
+            regionTourMarkers.push(marker);
+            const content = `
+            <div class="infowindow_wrap">
+              <div class="infowindow_title">${item.title}</div>
+              <div class="infowindow_content">
+                주소: ${item.addr1 ? item.addr1 : ""} ${
+              item.addr2 ? item.addr2 : ""
+            }
+                <br>타입: ${item.contenttypeid}
+              </div>
+            </div>`;
+            const animatedContent = `<div class="fadeIn">${content}</div>`;
+            const infoWindow = new naver.maps.InfoWindow({
+              content: animatedContent,
+              backgroundColor: "rgba(255,255,255,0.9)",
+              borderColor: "#ccc",
+            });
+            regionTourInfoWindows.push(infoWindow);
+            naver.maps.Event.addListener(marker, "click", () => {
+              regionTourInfoWindows.forEach((iw) => iw.close());
+              infoWindow.open(map, marker);
+            });
+          });
+          if (regionTourMarkers.length > 0) {
+            let bounds = new naver.maps.LatLngBounds();
+            regionTourMarkers.forEach((marker) =>
+              bounds.extend(marker.getPosition())
+            );
+            map.fitBounds(bounds);
           }
           tourBoardData = items;
           tourBoardCurrentPage = 1;
@@ -718,15 +786,11 @@ let currentDetailRegionsAbortController = null;
 
 function populateDetailRegions(areaCode) {
   const container = document.getElementById("detail-region-container");
-  // 로딩 애니메이션(또는 텍스트) 표시
   container.innerHTML = '<div class="loading">로딩중...</div>';
-
-  // 이전 요청이 있다면 중단
   if (currentDetailRegionsAbortController) {
     currentDetailRegionsAbortController.abort();
   }
   currentDetailRegionsAbortController = new AbortController();
-
   fetch(
     `https://fate-star-gram.glitch.me/api/detail-region?areaCode=${areaCode}`,
     {
@@ -735,7 +799,7 @@ function populateDetailRegions(areaCode) {
   )
     .then((res) => res.json())
     .then((myJson) => {
-      container.innerHTML = ""; // 로딩 애니메이션 제거
+      container.innerHTML = "";
       let items = myJson.response.body.items.item;
       if (!items) {
         container.innerHTML = "해당 지역에 세부지역 정보가 없습니다.";
@@ -801,24 +865,27 @@ function renderTourBoardPage(page) {
     div.setAttribute("data-firstimage", firstImg);
     div.setAttribute("data-firstimage2", secondImg);
     div.innerHTML = `
-      <div class="board-item-title">${item.title}</div>
-      <div class="board-item-image"><img src="${firstImg}" alt="${
+  <div class="board-item-title">${item.title}</div>
+  <div class="board-item-image"><img src="${firstImg}" alt="${
       item.title
     }"></div>
-      <div class="board-item-address">${item.addr1 ? item.addr1 : ""} ${
+  <div class="board-item-address">주소: ${item.addr1 ? item.addr1 : ""} ${
       item.addr2 ? item.addr2 : ""
     }</div>
-      <div class="board-item-details">
-        관광타입: ${item.contenttypeid}<br>
-        생성일: ${item.createdtime}
-      </div>`;
+  <div class="board-item-details">
+    여행 분류: ${contentTypeMapping[item.contenttypeid] || item.contenttypeid}
+  </div>`;
+    // renderTourBoardPage 함수 내 게시글 클릭 이벤트 수정
     div.addEventListener("click", () => {
       const contentId = div.getAttribute("data-contentid");
       const contentTypeId = div.getAttribute("data-contenttypeid");
       const firstImage = div.getAttribute("data-firstimage");
       const secondImage = div.getAttribute("data-firstimage2");
-      showDetailPopup(contentId, contentTypeId, firstImage, secondImage);
+      // 게시글 제목 추출 (게시글 제목이 .board-item-title 요소에 있음)
+      const title = div.querySelector(".board-item-title").innerText;
+      showDetailPopup(contentId, contentTypeId, firstImage, secondImage, title);
     });
+
     boardContainer.appendChild(div);
   });
   renderTourBoardPagination();
@@ -845,8 +912,29 @@ function renderTourBoardPagination() {
 }
 
 // ---------------------- 상세정보 팝업 및 이미지 슬라이더 ----------------------
-function showDetailPopup(contentId, contentTypeId, firstImage, secondImage) {
+function showDetailPopup(
+  contentId,
+  contentTypeId,
+  firstImage,
+  secondImage,
+  title
+) {
+  const modalTitleElement = document.getElementById("modalTitle");
+  if (modalTitleElement) {
+    modalTitleElement.innerText = title;
+  } else {
+    console.log("modalTitle element not found.");
+  }
+
+  // 로딩중 문구 표시
+  document.getElementById("modalDetails").innerHTML =
+    '<div class="loading" style="text-align:center; font-size:18px;">로딩중...</div>';
+  document.getElementById("detailModal").style.display = "block";
+
+  // 이미지 슬라이더 업데이트
   renderImageSlider(firstImage, secondImage);
+
+  // API 호출로 상세 정보 가져오기
   fetch(
     `https://fate-star-gram.glitch.me/api/detail-intro?contentId=${contentId}&contentTypeId=${contentTypeId}`
   )
@@ -923,14 +1011,12 @@ function showDetailPopup(contentId, contentTypeId, firstImage, secondImage) {
           }
           detailsHtml += "<h3>반려동물 동반 정보</h3>" + petInfoHtml;
           document.getElementById("modalDetails").innerHTML = detailsHtml;
-          document.getElementById("detailModal").style.display = "block";
         })
         .catch((error) => {
           console.error("반려동물 정보 호출 오류:", error);
           detailsHtml +=
             "<h3>반려동물 동반 정보</h3><p>반려동물 동반 정보 없음.</p>";
           document.getElementById("modalDetails").innerHTML = detailsHtml;
-          document.getElementById("detailModal").style.display = "block";
         });
     })
     .catch((error) => {
