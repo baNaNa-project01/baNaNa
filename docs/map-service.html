@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>배나낭</title>
 
-    <!-- 파비콘  -->
+    <!-- 파비콘 및 OG 태그 -->
     <link
       rel="icon"
       type="image/png"
@@ -20,8 +20,6 @@
       href="./assets/favicon/apple-touch-icon.png"
     />
     <link rel="manifest" href="./assets/favicon/site.webmanifest" />
-
-    <!-- OG 태그 -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="배나낭" />
     <meta
@@ -41,22 +39,17 @@
       rel="stylesheet"
     />
 
-    <!-- 커스텀 공통 CSS -->
+    <!-- 공통 CSS 및 지도 관련 CSS -->
     <link rel="stylesheet" href="style.css" />
-
-    <!-- 커스텀 메인 홈홈 CSS -->
     <link rel="stylesheet" href="map.css" />
   </head>
   <body>
-    <!-- **************************************************** -->
-    <!-- ★★★★★  여기부터 내비게이션 바 섹션 ★★★★★ -->
-    <!-- **************************************************** -->
+    <!-- ★ 내비게이션 바 섹션 ★ -->
     <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
       <div class="container-fluid">
-        <a class="navbar-brand-logo" href="#"
-          ><img src="./assets/배나낭 3d 로고.svg" alt="배나낭 로고"
-        /></a>
-
+        <a class="navbar-brand-logo" href="#">
+          <img src="./assets/배나낭 3d 로고.svg" alt="배나낭 로고" />
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -74,11 +67,8 @@
           aria-labelledby="offcanvasNavbar2Label"
         >
           <div class="offcanvas-header">
-            <!-- 메뉴  -->
             <h5 class="offcanvas-title" id="offcanvasNavbar2Label">MENU</h5>
-
             <div class="d-flex align-items-center">
-              <!-- 로그인 버튼 -->
               <button
                 class="btn btn-outline-success me-2"
                 type="button"
@@ -87,8 +77,6 @@
               >
                 로그인
               </button>
-
-              <!-- 닫기 버튼 -->
               <button
                 type="button"
                 class="btn-close btn-close-white"
@@ -138,7 +126,7 @@
             </ul>
           </div>
         </div>
-        <!-- PC용 로그인 버튼 (큰 화면에서만 보임) -->
+        <!-- PC용 로그인 버튼 -->
         <div class="d-none d-lg-flex ms-auto">
           <button
             class="btn btn-outline-success me-2"
@@ -152,6 +140,7 @@
       </div>
     </nav>
 
+    <!-- ★ 메인 콘텐츠 섹션 ★ -->
     <main class="main-content">
       <!-- 배너 섹션 -->
       <div class="banner">
@@ -162,92 +151,154 @@
         />
       </div>
 
-      <!-- 여백 요소 추가 -->
+      <!-- Spacer -->
       <div class="section-spacer"></div>
 
-      <div class="container-fluid px-4">
-        <div class="container">
-          <!-- 제목 섹션 -->
-          <div class="row align-items-start mt-5 mb-4">
-            <div class="col-lg-6">
-              <h2 class="title">
-                원하는 지역의 여행 정보를<br />지도로 한눈에 파악하세요.
-              </h2>
+      <!-- 지도와 컨트롤 영역을 감싸는 새 컨테이너 -->
+      <div class="map-ui-container">
+        <!-- 좌측: 지도 영역 (75% 너비) -->
+        <div class="map-area">
+          <div id="map"></div>
+        </div>
+        <!-- 우측: 지역 선택/카테고리 컨트롤 영역 (25% 너비) -->
+        <div class="control-area">
+          <!-- 지역 선택 영역 -->
+          <div class="region-selection">
+            <h3>지역 선택</h3>
+            <div class="badge-container">
+              <button
+                class="badge active"
+                data-code="1"
+                onclick="toggleBadge(this)"
+              >
+                서울
+              </button>
+              <button class="badge" data-code="2" onclick="toggleBadge(this)">
+                인천
+              </button>
+              <button class="badge" data-code="3" onclick="toggleBadge(this)">
+                대전
+              </button>
+              <button class="badge" data-code="4" onclick="toggleBadge(this)">
+                대구
+              </button>
+              <button class="badge" data-code="5" onclick="toggleBadge(this)">
+                광주
+              </button>
+              <button class="badge" data-code="6" onclick="toggleBadge(this)">
+                부산
+              </button>
+              <button class="badge" data-code="7" onclick="toggleBadge(this)">
+                울산
+              </button>
+              <button class="badge" data-code="8" onclick="toggleBadge(this)">
+                세종
+              </button>
+              <button class="badge" data-code="31" onclick="toggleBadge(this)">
+                경기
+              </button>
+              <button class="badge" data-code="32" onclick="toggleBadge(this)">
+                강원
+              </button>
+              <button class="badge" data-code="33" onclick="toggleBadge(this)">
+                충북
+              </button>
+              <button class="badge" data-code="34" onclick="toggleBadge(this)">
+                충남
+              </button>
+              <button class="badge" data-code="35" onclick="toggleBadge(this)">
+                경북
+              </button>
+              <button class="badge" data-code="36" onclick="toggleBadge(this)">
+                경남
+              </button>
+              <button class="badge" data-code="37" onclick="toggleBadge(this)">
+                전북
+              </button>
+              <button class="badge" data-code="38" onclick="toggleBadge(this)">
+                전남
+              </button>
+              <button class="badge" data-code="39" onclick="toggleBadge(this)">
+                제주
+              </button>
             </div>
           </div>
-
-          <!-- 지도 및 선택 섹션 -->
-          <div class="row align-items-start g-5">
-            <!-- g-5 추가로 간격 넓힘 -->
-            <!-- 왼쪽: 지도 -->
-            <div class="col-lg-6 text-center">
-              <img
-                src="./assets/travel-info/지도.svg"
-                alt="지도 이미지"
-                class="img-fluid rounded custom-map-size"
-              />
-            </div>
-
-            <!-- 오른쪽: 지역 & 카테고리 선택 -->
-            <div class="col-lg-5 d-flex flex-column justify-content-start">
-              <!-- 지역 선택 -->
-              <div class="mb-4">
-                <h4 class="subtitle">지역을 선택하세요.</h4>
-                <hr class="divider" />
-                <div class="badge-container">
-                  <span class="badge active" onclick="toggleBadge(this)"
-                    >전체</span
-                  >
-                  <span class="badge" onclick="toggleBadge(this)">서울</span>
-                  <span class="badge" onclick="toggleBadge(this)">부산</span>
-                  <span class="badge" onclick="toggleBadge(this)">대구</span>
-                  <span class="badge" onclick="toggleBadge(this)">인천</span>
-                  <span class="badge" onclick="toggleBadge(this)">광주</span>
-                  <span class="badge" onclick="toggleBadge(this)">대전</span>
-                  <span class="badge" onclick="toggleBadge(this)">울산</span>
-                  <span class="badge" onclick="toggleBadge(this)">세종</span>
-                  <span class="badge" onclick="toggleBadge(this)">경기</span>
-                  <span class="badge" onclick="toggleBadge(this)">강원</span>
-                  <span class="badge" onclick="toggleBadge(this)">충북</span>
-                  <span class="badge" onclick="toggleBadge(this)">충남</span>
-                  <span class="badge" onclick="toggleBadge(this)">경북</span>
-                  <span class="badge" onclick="toggleBadge(this)">경남</span>
-                  <span class="badge" onclick="toggleBadge(this)">전북</span>
-                  <span class="badge" onclick="toggleBadge(this)">전남</span>
-                  <span class="badge" onclick="toggleBadge(this)">제주</span>
-                </div>
-              </div>
-
-              <!-- 카테고리 선택 -->
-              <div class="mt-3">
-                <h4 class="subtitle">카테고리를 선택하세요.</h4>
-                <hr class="divider" />
-                <div class="badge-container">
-                  <span class="badge active" onclick="toggleBadge(this)"
-                    >명소</span
-                  >
-                  <span class="badge" onclick="toggleBadge(this)">식당</span>
-                  <span class="badge" onclick="toggleBadge(this)">카페</span>
-                  <span class="badge" onclick="toggleBadge(this)">쇼핑</span>
-                </div>
-              </div>
+          <!-- 세부 지역 및 관광 타입 선택 영역 -->
+          <div class="sub-control">
+            <h3>세부 지역 및 관광 타입</h3>
+            <!-- 세부 지역 선택 (동적으로 생성될 영역) -->
+            <div id="sigunguButtonsContainer"></div>
+            <!-- 관광 타입 버튼들 -->
+            <div class="content-type-selection">
+              <button
+                class="badge"
+                data-contenttypeid="12"
+                onclick="toggleBadge(this)"
+              >
+                관광지
+              </button>
+              <button
+                class="badge"
+                data-contenttypeid="14"
+                onclick="toggleBadge(this)"
+              >
+                문화시설
+              </button>
+              <button
+                class="badge"
+                data-contenttypeid="15"
+                onclick="toggleBadge(this)"
+              >
+                행사/공연/축제
+              </button>
+              <button
+                class="badge"
+                data-contenttypeid="25"
+                onclick="toggleBadge(this)"
+              >
+                여행코스
+              </button>
+              <button
+                class="badge"
+                data-contenttypeid="28"
+                onclick="toggleBadge(this)"
+              >
+                레포츠
+              </button>
+              <button
+                class="badge"
+                data-contenttypeid="32"
+                onclick="toggleBadge(this)"
+              >
+                숙박
+              </button>
+              <button
+                class="badge"
+                data-contenttypeid="38"
+                onclick="toggleBadge(this)"
+              >
+                쇼핑
+              </button>
+              <button
+                class="badge"
+                data-contenttypeid="39"
+                onclick="toggleBadge(this)"
+              >
+                음식점
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 여백 요소 추가 -->
+      <!-- Spacer -->
       <div class="section-spacer"></div>
 
-      <!-- 여백 요소 추가 -->
-      <div class="section-spacer"></div>
+      <!-- (필요한 경우 추가 콘텐츠 영역 삽입) -->
     </main>
 
-    <!-- **************************************************** -->
-    <!-- ★★★★★  여기부터 푸터 섹션 ★★★★★ -->
-    <!-- **************************************************** -->
+    <!-- ★ 푸터 섹션 ★ -->
     <div class="container-fluid mx-0 px-0">
-      <!-- 🔹 전체 너비를 차지하도록 수정 -->
       <footer
         class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top"
       >
@@ -273,9 +324,7 @@
       </footer>
     </div>
 
-    <!-- **************************************************** -->
-    <!-- ★★★★★  여기부터 로그인 모달 ★★★★★ -->
-    <!-- **************************************************** -->
+    <!-- ★ 로그인 모달 ★ -->
     <div
       class="modal fade"
       id="loginModal"
@@ -288,7 +337,6 @@
           class="modal-content rounded-4 shadow"
           style="background: #f7f7f7; border-radius: 10px"
         >
-          <!-- 닫기 버튼 -->
           <div class="modal-header border-bottom-0 d-flex justify-content-end">
             <button
               type="button"
@@ -297,10 +345,7 @@
               aria-label="Close"
             ></button>
           </div>
-
-          <!-- 모달 본문 -->
           <div class="modal-body text-center">
-            <!-- 배나낭 로고 -->
             <div class="d-flex justify-content-center align-items-center mb-3">
               <div class="logo-container">
                 <img
@@ -312,18 +357,13 @@
                 <h1 class="fw-bold ms-3">배나낭</h1>
               </div>
             </div>
-
-            <!-- 로그인 안내 문구 -->
             <h2 class="fw-semibold" style="font-size: 36px; color: #333">
               소셜 로그인
             </h2>
             <p style="font-size: 24px; color: #5c5c5c">
               소셜 계정으로 3초 만에 로그인하기
             </p>
-
-            <!-- 로그인 버튼 -->
             <div class="d-flex flex-column gap-3 mt-4">
-              <!-- 카카오 로그인 -->
               <button type="button" class="btn w-100 p-3" id="kakao-login">
                 <img
                   src="./assets/home/카카오 아이디 로그인 버튼.svg"
@@ -331,8 +371,6 @@
                   class="me-2"
                 />
               </button>
-
-              <!-- 네이버 로그인 -->
               <button type="button" class="btn w-100 p-3" id="naver-login">
                 <img
                   src="./assets/home/네이버 로그인 버튼.svg"
@@ -340,8 +378,6 @@
                   class="me-2"
                 />
               </button>
-
-              <!-- 구글 로그인 -->
               <button type="button" class="btn w-100 p-3" id="google-login">
                 <img
                   src="./assets/home/구글 로그인 버튼.svg"
@@ -354,10 +390,11 @@
         </div>
       </div>
     </div>
-  </body>
 
-  <!-- Bootstrap JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="map.js" defer></script>
-  <script src="app.js" defer></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 기존 JS 파일들 (map.js, app.js) -->
+    <script src="map.js" defer></script>
+    <script src="app.js" defer></script>
+  </body>
 </html>
