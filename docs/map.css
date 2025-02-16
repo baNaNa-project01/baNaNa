@@ -11,30 +11,6 @@ html {
   background-color: #f7f7f7;
 }
 
-/* ---------- 내비게이션 바 ---------- */
-.navbar {
-  background-color: #f8f41a;
-  padding: 10px 20px;
-}
-.navbar .container-fluid {
-  display: flex;
-  align-items: center;
-}
-.navbar .navbar-brand-logo img {
-  height: 40px;
-}
-.navbar .offcanvas-body ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 15px;
-}
-.navbar .offcanvas-body ul li a {
-  text-decoration: none;
-  color: #333;
-}
-
 /* ---------- 배너 ---------- */
 .banner img {
   width: 100%;
@@ -183,10 +159,10 @@ html {
   color: #000;
 }
 
-/* 검색 결과 목록 스타일 (전체 페이지 디자인에 맞춤) */
+/* ---------- 검색 결과 목록 스타일 ---------- */
 #search-results {
   position: absolute;
-  top: 70px; /* 현재 위치 버튼 아래에 위치하도록 조정 */
+  top: 70px; /* 현재 위치 버튼 아래 */
   left: 10px;
   width: 300px;
   background: #fff;
@@ -198,23 +174,21 @@ html {
   font-family: "Pretendard-Medium", sans-serif;
   color: #333;
 }
-
 #search-results .search-result-item {
   padding: 8px 10px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
   transition: background 0.2s;
 }
-
 #search-results .search-result-item:last-child {
   border-bottom: none;
 }
-
 #search-results .search-result-item:hover {
   background-color: #f8f41a;
   color: #000;
 }
-/* 로딩 애니메이션 (텍스트 스타일) */
+
+/* ---------- 로딩 애니메이션 (텍스트 스타일) ---------- */
 .loading {
   text-align: center;
   font-size: 16px;
@@ -229,7 +203,7 @@ html {
   padding: 10px;
   margin-bottom: 20px;
 }
-/* 1. 세부지역 버튼을 다른 버튼과 동일한 디자인으로 설정 */
+/* 세부지역 버튼 디자인 (다른 버튼과 동일) */
 .detail-region-btn {
   border: 1px solid #f8f41a;
   background-color: #fff;
@@ -242,7 +216,7 @@ html {
   transition: background-color 0.2s, color 0.2s;
 }
 
-/* 2. 선택된 버튼 (지역, 세부지역, 관광타입 등) 스타일: 배경 검정, 글자 흰색 */
+/* 선택된 버튼 스타일: 배경 검정, 글자 흰색 */
 .badge.active {
   background-color: #000;
   color: #fff;
@@ -293,10 +267,11 @@ html {
 
 /* ---------- 관광정보 게시판 ---------- */
 #tourBoard {
-  margin-top: 20px;
-  padding: 20px;
   background-color: #fff;
-  border-top: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
 #tourBoard h2 {
   text-align: center;
@@ -304,33 +279,42 @@ html {
   font-size: 24px;
   color: #000;
 }
-/* 수정된 관광정보 게시판 스타일 */
 .tour-board-items {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5열 고정 */
-  gap: 15px;
-}
-
-.tour-board-item {
-  border: 1px solid #ccc;
+  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개 */
+  gap: 20px;
   padding: 10px;
-  border-radius: 4px;
-  background-color: #f9f9f9;
-  text-align: center;
-  transition: box-shadow 0.3s;
-  overflow: hidden;
 }
-
+.tour-board-item {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.tour-board-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
 .tour-board-item img {
   width: 100%;
-  height: 150px; /* 고정 높이 설정 */
-  object-fit: cover; /* 이미지가 박스 내부에 꽉 차도록 */
-  border-radius: 3px;
-  margin-bottom: 5px;
+  height: 150px; /* 고정 높이 */
+  object-fit: cover; /* 이미지 꽉 채우기 */
+  display: block;
 }
-
-.tour-board-item:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+.board-item-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px;
+  text-align: center;
+}
+.board-item-address,
+.board-item-details {
+  font-size: 14px;
+  color: #666;
+  margin: 0 10px 10px;
+  text-align: center;
 }
 .tour-board-pagination {
   text-align: center;
@@ -373,9 +357,9 @@ html {
   z-index: 10;
 }
 
-/* ---------- 모달 ---------- */
+/* ---------- 모달 (상세정보 팝업) ---------- */
 .modal {
-  display: none;
+  display: none; /* 기본적으로 숨김 */
   position: fixed;
   z-index: 2000;
   left: 0;
@@ -389,14 +373,14 @@ html {
   background-color: #fff;
   margin: 5% auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border: none;
+  width: 90%;
   max-width: 800px;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 .modal-content .close {
-  color: #aaa;
-  float: right;
+  color: #333;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
@@ -407,19 +391,25 @@ html {
 }
 .modal-body {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 .modal-left {
   flex: 1;
 }
-.modal-left img {
-  width: 100%;
-  border-radius: 4px;
-}
 .modal-right {
-  flex: 2;
+  flex: 1.5;
+  max-height: 500px;
   overflow-y: auto;
-  max-height: 400px;
+  padding: 10px;
+}
+
+/* 모달 왼쪽: 제목 및 이미지 슬라이더 */
+.modal-left h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #333;
 }
 .image-slider {
   position: relative;
@@ -447,27 +437,8 @@ html {
 .slider-next {
   right: 10px;
 }
-/* map.css (어딘가 포함되어야 함) */
-.myloc {
-  display: block;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
-  animation: pulse 1.7s infinite;
-}
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
-  }
-}
 
+/* 인포윈도우 컨테이너 스타일 */
 .infowindow_wrap {
   padding: 10px;
   background-color: #fff;
@@ -477,19 +448,39 @@ html {
   color: #333;
   max-width: 250px;
 }
+
+/* 인포윈도우 제목 스타일 */
 .infowindow_title {
   font-weight: bold;
   margin-bottom: 5px;
 }
+
+/* 인포윈도우 내용 스타일 */
 .infowindow_content {
   margin-bottom: 5px;
 }
+
+/* 인포윈도우 추가 정보 (생성시간, 전화번호 등) */
 .infowindow_createdTime,
 .infowindow_phone {
   font-size: 12px;
   color: #666;
 }
-/* 눌림(pressed) 효과 추가 */
+
+/* 페이드인 애니메이션 (인포윈도우에 적용) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  animation: fadeIn 0.3s ease;
+}
+
+/* ---------- 눌림(pressed) 효과 ---------- */
 button:active,
 .badge:active {
   transform: scale(0.95);
