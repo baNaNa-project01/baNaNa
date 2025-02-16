@@ -36,7 +36,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (serverReady.ok) {
           console.log("✅ 서버가 준비됨! 로그인 시작");
           window.location.href = `${BACKEND_URL}/login/${provider}`;
-          console.log("🔍 저장된 JWT:", localStorage.getItem("access_token"));
+
+          // 🚀 1️⃣ 리디렉트 후에도 `storeTokenFromURL()` 실행 보장
+          setTimeout(() => {
+            console.log("🔥 로그인 후 storeTokenFromURL() 실행 시도!");
+            storeTokenFromURL();
+            fetchUserInfo();
+          }, 2000); // 🔹 로그인 후 2초 후 실행
 
           return;
         }
@@ -70,13 +76,20 @@ document.addEventListener("DOMContentLoaded", function () {
       loginWithRetry("google");
     });
 
-  // ✅ JWT 저장하기 (로그인 완료 후 콜백에서 실행)
+  console.log("🔥 페이지 로드 완료, storeTokenFromURL() 실행 대기...");
+
+  // ✅ 1️⃣ JWT 저장하기 (로그인 완료 후 실행)
   function storeTokenFromURL() {
+    console.log("✅ storeTokenFromURL() 실행 시작!");
+
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
 
+    console.log("🔍 현재 URL:", window.location.href);
+    console.log("🔍 URL에서 추출한 토큰:", token);
+
     if (token) {
-      console.log("✅ JWT 저장 완료!");
+      console.log("✅ JWT 저장 완료! 토큰:", token);
       localStorage.setItem("access_token", token);
 
       // ✅ 로그인 후 불필요한 `token` 파라미터 제거
@@ -86,10 +99,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // ✅ 로그인한 사용자 정보 가져오기 (JWT 저장 & API 요청)
+  // ✅ 2️⃣ 로그인한 사용자 정보 가져오기
   async function fetchUserInfo() {
     try {
       const token = localStorage.getItem("access_token");
+      console.log("🔍 localStorage에서 가져온 JWT:", token);
+
       if (!token) throw new Error("로그인된 사용자가 없음");
 
       const response = await fetch(`${BACKEND_URL}/auth/me`, {
@@ -114,10 +129,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
-    console.log("🔍 페이지 로드 완료, storeTokenFromURL() 실행!");
-
-    storeTokenFromURL(); // ✅ JWT 저장
-    fetchUserInfo(); // ✅ 사용자 정보 불러오기
-  });
+  // ✅ **페이지가 로드될 때 storeTokenFromURL() 실행 보장**
+  setTimeout(() => {
+    console.log("🔥 storeTokenFromURL() 강제 실행 시도!");
+    storeTokenFromURL();
+    fetchUserInfo();
+  }, 3000);
 });
