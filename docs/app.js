@@ -22,24 +22,24 @@ document.addEventListener("DOMContentLoaded", function () {
  * API GATEWAY 배포 URL을 BACKEND_URL에 설정하세요.
  ***************************************************************/
 
-/*
 document.addEventListener("DOMContentLoaded", function () {
   //  백엔드에서 설정한 OAuth 로그인 URL (API GATEWAY 배포 URL 입력)
-  const BACKEND_URL = "API GATEWAY 배포 URL";
+  const BACKEND_URL = "https://banana-flask-app.onrender.com";
 
   //  카카오 로그인 버튼 클릭 시
   document.getElementById("kakao-login").addEventListener("click", function () {
-    window.location.href = `${BACKEND_URL}/kakao`;
+    window.location.href = `${BACKEND_URL}/login/kakao`;
   });
 
   //  네이버 로그인 버튼 클릭 시
   document.getElementById("naver-login").addEventListener("click", function () {
-    window.location.href = `${BACKEND_URL}/naver`;
+    window.location.href = `${BACKEND_URL}/login/naver`;
   });
 
   //  구글 로그인 버튼 클릭 시
-  document.getElementById("google-login").addEventListener("click", function () {
-    window.location.href = `${BACKEND_URL}/google`;
-  });
+  document
+    .getElementById("google-login")
+    .addEventListener("click", function () {
+      window.location.href = `${BACKEND_URL}/login/google`;
+    });
 });
-*/
