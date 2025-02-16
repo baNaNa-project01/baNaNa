@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (serverReady.ok) {
           console.log("✅ 서버가 준비됨! 로그인 시작");
           window.location.href = `${BACKEND_URL}/login/${provider}`;
+          console.log("🔍 저장된 JWT:", localStorage.getItem("access_token"));
+
           return;
         }
       } catch (error) {
@@ -79,6 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // ✅ 로그인 후 불필요한 `token` 파라미터 제거
       window.history.replaceState({}, document.title, window.location.pathname);
+    } else {
+      console.warn("🚨 URL에 토큰이 없음! 로그인 실패 가능성 높음");
     }
   }
 
@@ -110,8 +114,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  if (!localStorage.getItem("access_token")) {
-    storeTokenFromURL();
-  }
-  fetchUserInfo();
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("🔍 페이지 로드 완료, storeTokenFromURL() 실행!");
+
+    storeTokenFromURL(); // ✅ JWT 저장
+    fetchUserInfo(); // ✅ 사용자 정보 불러오기
+  });
 });
