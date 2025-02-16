@@ -353,61 +353,78 @@ function initMap() {
 
 // 5단계에서 결과 보기
 function showSelection() {
-  // ✅ 로딩 스피너 표시
   document.getElementById("loadingOverlay").classList.remove("hidden");
-  // Gemini API 호출하여 여행 일정 데이터 가져오기
-  callGeminiAPI().then((reply) => {
-    console.log("API 응답:", reply); // API 응답 확인 (디버깅용)
 
-    // ✅ 로딩 스피너 숨기기 (결과가 준비된 후)
+  callGeminiAPI().then((reply) => {
+    console.log("API 응답:", reply);
     document.getElementById("loadingOverlay").classList.add("hidden");
 
-    // 결과를 표시할 HTML 요소 가져오기
     const resultText = document.getElementById("resultText");
+    resultText.innerHTML = "";
 
-    resultText.innerHTML = ""; // 기존 내용을 초기화하여 새로운 결과를 표시
-
-    // 응답 내용을 줄바꿈(\n) 기준으로 나누어 배열로 변환
     const lines = reply.split("\n");
+    let currentDayText = "";
+    let isFirstDay = true;
 
-    let currentDay = ""; // 현재 날짜를 저장할 변수
-    lines.forEach((line) => {
+    lines.forEach((line, index) => {
+      if (line.trim() === "") return;
+
       if (line.startsWith("Day")) {
-        // "Day"로 시작하는 줄이면 날짜 제목을 div로 생성
-        currentDay = document.createElement("div");
-        currentDay.classList.add("day-title"); // CSS 스타일 적용을 위해 클래스 추가
-        currentDay.textContent = line; // 텍스트 설정
-        resultText.appendChild(currentDay); // 결과 영역(resultText)에 추가
+        if (currentDayText && !isFirstDay) {
+          appendChatBubble(resultText, currentDayText, false);
+        }
+
+        appendChatBubble(resultText, `<span class="day-text">${line}</span>`, true);
+        currentDayText = "";
+        isFirstDay = false;
       } else {
-        // 방문 장소인 경우 p 태그로 생성하여 추가
-        const p = document.createElement("p");
-        p.textContent = line;
-        resultText.appendChild(p);
+        currentDayText += line + "<br>";
+      }
+
+      if (index === lines.length - 1 && currentDayText) {
+        appendChatBubble(resultText, currentDayText, false);
       }
     });
 
-    // Day별 방문 장소 배열 저장 (전역 변수로 사용)
     dayPlaces = extractDayPlaces(reply);
-    console.log("추출된 dayPlaces:", dayPlaces); // 추출된 데이터 확인 (디버깅용)
+    console.log("추출된 dayPlaces:", dayPlaces);
 
-    // dayPlaces가 비어 있으면 오류 메시지 출력 후 함수 종료
     if (!dayPlaces || Object.keys(dayPlaces).length === 0) {
       console.error("dayPlaces가 비어 있음!");
       return;
     }
 
-    // 지도 컨테이너를 보이도록 변경 (기본적으로 숨겨져 있을 가능성이 있음)
     document.getElementById("mapContainer").classList.remove("hidden");
-
-    // 화면 전환: 진행 중 화면(step5) 숨기고 결과 화면(step6) 표시
     document.getElementById("step5").classList.add("hidden");
     document.getElementById("step6").classList.remove("hidden");
-    updateProgressBar(6); // 여기에 추가
-    console.log("initMap 호출 전 dayPlaces:", dayPlaces); // 지도 초기화 전에 데이터 확인
+    updateProgressBar(6);
 
-    // 지도 초기화 함수 실행 (마커 찍기)
     initMap();
-    // 날짜 버튼 표시
     showDayButtons();
   });
+}
+
+/* 채팅 말풍선 추가 함수 */
+function appendChatBubble(container, text, isDay) {
+  // 채팅 행(row) 생성
+  const chatRow = document.createElement("div");
+  chatRow.className = "chat-row";
+
+  // 배나낭 캐릭터 추가
+  const avatar = document.createElement("img");
+  avatar.src = "./assets/ai-recommend-service/배나낭 채팅.svg"; // 배나낭 캐릭터 이미지 경로
+  avatar.alt = "배나낭 캐릭터";
+  avatar.className = "character-avatar";
+
+  // 채팅 버블 생성
+  const chatBubble = document.createElement("div");
+  chatBubble.className = isDay ? "chat-bubble day-bubble" : "chat-bubble";
+  chatBubble.innerHTML = text;
+
+  // 요소 정렬
+  chatRow.appendChild(avatar);
+  chatRow.appendChild(chatBubble);
+
+  // 결과 컨테이너에 추가
+  container.appendChild(chatRow);
 }
