@@ -40,7 +40,9 @@ document.addEventListener("DOMContentLoaded", function () {
         photoPostContainer.innerHTML =
           "<p>이미지가 있는 게시물이 없습니다.</p>";
       } else {
-        photoPosts.forEach((post) => {
+        const latestPosts = photoPosts.slice(0, 4);
+
+        latestPosts.forEach((post) => {
           console.log("📌 post.id 값 확인:", post.id);
           const dateObj = new Date(post.created_at);
           const formattedDate = `${dateObj.getFullYear()}.${(
