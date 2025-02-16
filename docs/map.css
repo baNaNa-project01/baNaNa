@@ -9,6 +9,15 @@
   display: block;
 }
 
+/* 여행 정보 문구 스타일 */
+.travel-info-text {
+  text-align: center; /* 중앙 정렬 */
+  font-size: fpx; /* 텍스트 크기 */
+  font-weight: 600; /* 강조 */
+  color: #333; /* 가독성 좋은 색상 */
+  margin-bottom: 80px;
+}
+
 /* ---------- 메인 콘텐츠 ---------- */
 .main-content {
   margin: 20px;
@@ -120,18 +129,22 @@
 
 /* ---------- 사이드 패널 (우측) ---------- */
 .side-panel {
-  width: 28%;
+  max-width: 400px; /* 패널 최대 크기 제한 */
   min-width: 250px;
+  overflow-y: auto; /* 내부 내용이 넘칠 경우 스크롤 표시 */
   background-color: #ffd700;
   padding: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 .side-panel h4 {
   margin-bottom: 10px;
   font-size: 18px;
-  color: #000;
+  color: #333;
 }
 .region-selection-panel .badge-container,
 .tour-type .badge-container {
