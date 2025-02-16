@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배나낭</title>
+
+    <style>
+      .pair {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .pair img {
+        max-width: 300px;
+        margin: 0 10px;
+        cursor: pointer;
+        border: 2px solid #ccc;
+      }
+      #winner {
+        margin-top: 30px;
+        font-size: 24px;
+      }
+      .match-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 300px;
+      }
+      .restaurant-name {
+        font-size: 24px;
+      }
+    </style>
+
+    <!-- Supabase JavaScript 클라이언트 라이브러리 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+    <!-- 파비콘  -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+
+    <!-- OG 태그 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="배나낭" />
+    <meta
+      property="og:description"
+      content="국내 여행자들을 위한 통합 커뮤니티 플랫폼, 배나낭"
+    />
+    <meta property="og:image" content="https://i.imgur.com/hUWbcdU.png" />
+    <meta
+      property="og:url"
+      content="https://banana-project01.github.io/baNaNa-frontend/"
+    />
+    <meta property="og:locale" content="ko_KR" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- 커스텀 공통 CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 내비게이션 바 섹션 ★★★★★ -->
+    <!-- **************************************************** -->
+    <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
+      <div class="container-fluid">
+        <a class="navbar-brand-logo" href="#"
+          ><img src="./assets/배나낭 3d 로고.svg" alt="배나낭 로고"
+        /></a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar2"
+          aria-controls="offcanvasNavbar2"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar2"
+          aria-labelledby="offcanvasNavbar2Label"
+        >
+          <div class="offcanvas-header">
+            <!-- 메뉴  -->
+            <h5 class="offcanvas-title" id="offcanvasNavbar2Label">MENU</h5>
+
+            <div class="d-flex align-items-center">
+              <!-- 로그인 버튼 -->
+              <button
+                class="btn btn-outline-success me-2"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+              >
+                로그인
+              </button>
+
+              <!-- 닫기 버튼 -->
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="https://banana-project01.github.io/baNaNa-frontend/"
+                  >홈</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://banana-project01.github.io/baNaNa-frontend/posts-service.html"
+                  >커뮤니티</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://banana-project01.github.io/baNaNa-frontend/world-cup-service.html"
+                  >뭐 먹지?</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://banana-project01.github.io/baNaNa-frontend/ai-recommend-service.html"
+                  >어디 가지?</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://banana-project01.github.io/baNaNa-frontend/map-service.html"
+                  >여행 정보</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- PC용 로그인 버튼 (큰 화면에서만 보임) -->
+        <div class="d-none d-lg-flex ms-auto">
+          <button
+            class="btn btn-outline-success me-2"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal"
+          >
+            로그인
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 이상형 월드컵 섹션 ★★★★★ -->
+    <!-- **************************************************** -->
+    <!-- 헤드라인 -->
+    <h1></h1>
+    <!-- 헤드라인 바로 아래 라운드/축하 메시지 영역 -->
+    <h2 id="round-info"></h2>
+    <!-- 대진표 영역 -->
+    <div id="game"></div>
+    <!-- 최종 우승자 영역 -->
+    <div id="winner"></div>
+
+    <script>
+      const SUPABASE_URL = "https://webbnaqruijdsegrngpy.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmJuYXFydWlqZHNlZ3JuZ3B5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkyMzY1MDMsImV4cCI6MjA1NDgxMjUwM30.JznJ_7NJzoE1oAX-AsLd8F4oRswxi19Tc0T0FDE5ixs";
+      const supabaseClient = supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
+
+      let images = [];
+      let currentRound = [];
+      let winners = [];
+
+      // URL에서 region 파라미터를 추출합니다.
+      function getRegionFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get("region") || "seoul"; // 기본값을 "seoul"로 설정
+      }
+
+      async function fetchImages() {
+        const region = getRegionFromURL();
+
+        // 지역명과 Storage 폴더명이 다르다면, 아래와 같이 매핑할 수 있습니다.
+        const folderMapping = {
+          전체: "all",
+          서울: "seoul",
+          부산: "busan",
+          대구: "daegu",
+          인천: "incheon",
+          광주: "gwangju",
+          대전: "daejeon",
+          울산: "ulsan",
+          세종: "sejong",
+          경기: "gyeonggi",
+          강원: "gangwon",
+          충북: "chungbuk",
+          충남: "chungnam",
+          경북: "gyeongbuk",
+          경남: "gyeongnam",
+          전북: "jeonbuk",
+          전남: "jeonnam",
+          제주: "jeju",
+        };
+        const folder = folderMapping[region] || region;
+
+        // localStorage 캐싱 기능 추가
+        const cacheKey = "images_" + folder;
+        const cachedData = localStorage.getItem(cacheKey);
+        if (cachedData) {
+          images = JSON.parse(cachedData);
+          startTournament();
+          return;
+        }
+
+        // API 트래픽 제한을 위해 300ms 딜레이 추가
+        await new Promise((resolve) => setTimeout(resolve, 300));
+
+        // 추출한 폴더명을 사용하여 해당 폴더의 파일 목록을 가져옵니다.
+        const { data: fileList, error: listError } =
+          await supabaseClient.storage
+            .from("my-bucket")
+            .list(folder, { limit: 272, offset: 0 });
+
+        if (listError) {
+          console.error("이미지 데이터를 불러오지 못했습니다:", listError);
+          document.getElementById("game").innerHTML =
+            "<p>이미지를 불러올 수 없습니다.</p>";
+          return;
+        }
+
+        if (!fileList || fileList.length === 0) {
+          document.getElementById("game").innerHTML =
+            "<p>불러올 이미지가 없습니다.</p>";
+          return;
+        }
+
+        // 파일명에 따라 식당 이름을 매핑하는 객체입니다.
+        const restaurantMapping = {
+          // #서울
+          "seoul_1_nanpo.jpg": "난포(한식)",
+          "seoul_2_chorisanggyeong.jpg": "쵸리상경(한식)",
+          "seoul_3_songgyeok.jpg": "송계옥(닭요리)",
+          "seoul_4_goldenpigrestaurant.jpg": "금돼지식당(2024 미쉐린 가이드)",
+          "seoul_5_contidetulear.jpg": "꽁티드툴레아(브런치)",
+          "seoul_6_ojeje.jpg": "오제제(일식)",
+          "seoul_7_jestysaloon.jpg": "제스티살룬(햄버거)",
+          "seoul_8_wooraeok.jpg": "우래옥(평양냉면)",
+          "seoul_9_jinjakdining.jpg": "진작 다이닝(일식)",
+          "seoul_10_oncheonjib.jpg": "온천집(샤브샤브)",
+          "seoul_11_hanikalgugsu.jpg": "하니칼국수(한식)",
+          "seoul_12_salthousedeli.jpg": "소금집 델리(샌드위치)",
+          "seoul_13_haha.jpg": "하하(중식)",
+          "seoul_14_woomihak.jpg": "우미학(숙성 한우)",
+          "seoul_15_doughroom.jpg": "도우룸(2024 미쉐린 가이드)",
+          "seoul_16_jungsikdang.jpg": "정식당(2024 미쉐린 2스타)",
+
+          // #부산
+          "busan_1_haeundaegalbi.jpg": "해운대 암소갈비집(한우)",
+          "busan_2_sogsiwon.jpg": "속시원한 대구탕(단일 메뉴)",
+          "busan_3_twinpork.jpg": "쌍둥이 돼지국밥",
+          "busan_4_geumsu.jpg": "금수복국(복어요리)",
+          "busan_5_baekhwa.jpg": "백화 양곱창",
+          "busan_6_giant.jpg": "거인통닭",
+          "busan_7_gaegeun.jpg": "개금밀면",
+          "busan_8_shoe.jpg": "신발원(만두)",
+          "busan_9_haemok.jpg": "해목(일식)",
+          "busan_10_subyeon.jpg": "수변최고 돼지국밥",
+          "busan_11_bonjeon.jpg": "본전 돼지국밥",
+          "busan_12_tonsho.jpg": "톤쇼우(돈카츠)",
+          "busan_13_palate.jpg": "Palate(파인 다이닝)",
+          "busan_14_dongrae.jpg": "동래 할매파전",
+          "busan_15_original.jpg": "원조 18번 완당(국수)",
+          "busan_16_uhwa.jpg": "유화(스시 오마카세)",
+
+          // #대구
+          "daegu_1_anmyeon.jpg": "부산안면옥(맛있는 녀석들)",
+          "daegu_2_kingspiderrest.jpg": "왕거미식당(뭉티기)",
+          "daegu_3_miseongdangdump.jpg": "미성당 납작만두(분식)",
+          "daegu_4_middle.jpg": "중앙떡볶이",
+          "daegu_5_sinsongja.jpg": "신송자 신마산식당(국밥)",
+          "daegu_6_udongbulgogi.jpg": "원조 북성로우동불고기",
+          "daegu_7_80.jpg": "팔공막창",
+          "daegu_8_subong.jpg": "수봉반점",
+          "daegu_9_goonwerest.jpg": "군위식당(성시경의 먹을텐데)",
+          "daegu_10_doma29rest.jpg": "도마29",
+          "daegu_11_90tanrest.jpg": "구공탄막창",
+          "daegu_12_sapa.jpg": "사파키친(베트남)",
+          "daegu_13_bunggeul.jpg": "벙글벙글 찜갈비",
+          "daegu_14_dangol.jpg": "단골식당(백종원의 3대천왕)",
+          "daegu_15_pureon.jpg": "푸른회식당(오징어무침회)",
+          "daegu_16_nok.jpg": "녹향구이(뭉티기)",
+
+          // #인천
+          "incheon_1_sinpo.jpg": "원조신포닭강정",
+          "incheon_2.gong.jpg": "공화춘",
+          "incheon_3_hwanghae.jpg": "황해해물칼국수",
+          "incheon_4_cungnam.jpg": "충남서산집(꽃게탕)",
+          "incheon_5_india.jpg": "스와갓 인디아레스토랑",
+          "incheon_6_myeong.jpg": "명동식당",
+          "incheon_7_jung.jpg": "중화루",
+          "incheon_8_inha.jpg": "인하의집",
+          "incheon_9_sinseong.jpg": "신승반점(수요미식회)",
+          "incheon_10_garibi.jpg": "가리비 칼국수",
+          "incheon_11_ogil.jpg": "권오길손국수 본점",
+          "incheon_12_rabi.jpg": "라비스타",
+          "incheon_13_bulmal.jpg": "벌말매운탕",
+          "incheon_14_onsen.jpg": "온센 신포점",
+          "incheon_15_buam.jpg": "부암갈비",
+          "incheon_16_sumil.jpg": "수밀원",
+
+          // #광주
+          "gwangju_1_song.jpg": "송정떡갈비(백종원의 3대천왕)",
+          "gwangju_2_ori.jpg": "영미오리탕",
+          "gwangju_3_dae.jpg": "대광식당(육전)",
+          "gwangju_4_mimi.jpg": "미미원(육전)",
+          "gwangju_5_hwang.jpg": "황솔촌(갈비)",
+          "gwangju_6_first.jpg": "퍼스트네팔",
+          "gwangju_7_bo.jpg": "보광옥(갈비)",
+          "gwangju_8_haenam.jpg": "해남식당(해장국)",
+          "gwangju_9_daegeum.jpg": "대금육회(생차돌박이)",
+          "gwangju_10_kan.jpg": "칸세이스시",
+          "gwangju_11_menta.jpg": "멘타루",
+          "gwangju_12_bit.jpg": "빛고을떡갈비",
+          "gwangju_13_tobang.jpg": "토방닭매운탕",
+          "gwangju_14_ganjang.jpg": "오늘부터애간장(게장)",
+          "gwangju_15_moms.jpg": "엄마네돼지찌개",
+          "gwangju_16_blue.jpg": "르시엘블루(양식)",
+
+          // #대전
+          "daejeon_1_kal.jpg": "오씨칼국수",
+          "daejeon_2_cow.jpg": "태평소국밥",
+          "daejeon_3_gwang.jpg": "광천식당(두부두루치기)",
+          "daejeon_4_star.jpg": "별난집(두부두루치기)",
+          "daejeon_5_madangand.jpg": "마당에모닥불하늘엔둥근달",
+          "daejeon_6_dong.jpg": "동천홍(사천탕면)",
+          "daejeon_7_king.jpg": "킹덤뷔페",
+          "daejeon_8_nuo.jpg": "누오보나폴리(화덕피자)",
+          "daejeon_9_ildang.jpg": "일당감자탕",
+          "daejeon_10_ok.jpg": "대전옥(한정식)",
+          "daejeon_11_sundae.jpg": "오문창순대국밥",
+          "daejeon_12_hanyoung.jpg": "한영식당(닭볶음탕)",
+          "daejeon_13_jogi.jpg": "조기종의 향미각",
+          "daejeon_14_jinro.jpg": "진로집(두부두루치기)",
+          "daejeon_15_nong.jpg": "농민순대",
+          "daejeon_16_baro.jpg": "바로그집(분식)",
+
+          // #울산
+          "ulsan_1_unyang.jpg": "언양 기와집 불고기",
+          "ulsan_2_bau.jpg": "떡바우횟집",
+          "ulsan_3_unyang.jpg": "언양 진미불고기",
+          "ulsan_4_nama.jpg": "나마스까르",
+          "ulsan_5_grapa.jpg": "그라파 피자리아",
+          "ulsan_6_gyeong.jpg": "경복궁 울산본점",
+          "ulsan_7_sasi.jpg": "사시스세소",
+          "ulsan_8_ani.jpg": "아니마(양식)",
+          "ulsan_9_the.jpg": "더만족 울산대점",
+          "ulsan_10_hadong.jpg": "하동식당(돼지국밥)",
+          "ulsan_11_gorae.jpg": "고래고기원조할매집본점",
+          "ulsan_12_unyang1.jpg": "언양1번가 주먹떡갈비",
+          "ulsan_13_seo.jpg": "서양식당(양식)",
+          "ulsan_14_938.jpg": "938 본점(양식)",
+          "ulsan_15_sul.jpg": "설어정 울산성남점(양식)",
+          "ulsan_16_ham.jpg": "함양집(육회비빔밥)",
+
+          // #세종
+          "sejong_1_san.jpg": "산장가든(숯불갈비)",
+          "sejong_2_doga.jpg": "도가네매운탕(메기매운탕)",
+          "sejong_3_jin.jpg": "진성민속촌",
+          "sejong_4_sin.jpg": "신안골 분식(닭떡볶이)",
+          "sejong_5_chung.jpg": "충남순대(국밥)",
+          "sejong_6_mat.jpg": "맛나당칼국수",
+          "sejong_7_matna.jpg": "신흥파닭",
+          "sejong_8_na.jpg": "나성횟집(숙성회)",
+          "sejong_9_bu.jpg": "부강옥(순대국)",
+          "sejong_10_bba.jpg": "빠스타스",
+          "sejong_11_bom.jpg": "봄베이브로이(인도음식)",
+          "sejong_12_yong.jpg": "용댕이매운탕(메기매운탕)",
+          "sejong_13_have.jpg": "헤브론스테이크하우스",
+          "sejong_14_king.jpg": "왕천파닭",
+          "sejong_15_big.jpg": "큰나무식당(보리밥)",
+          "sejong_16_pung.jpg": "풍천장어",
+
+          // #경기
+          "gyeonggi_1_jin.jpg": "진미통닭",
+          "gyeonggi_2_il.jpg": "일산칼국수본점(닭칼국수)",
+          "gyeonggi_3_bone.jpg": "본수원갈비",
+          "gyeonggi_4_pyeong.jpg": "평양면옥",
+          "gyeonggi_5_hong.jpg": "홍박사생고기본관(한우)",
+          "gyeonggi_6_hong.jpg": "홍원막국수",
+          "gyeonggi_7_gogri.jpg": "고기리막국수(들기름막국수)",
+          "gyeonggi_8_ya.jpg": "야마다야(우동)",
+          "gyeonggi_9_gaok.jpg": "평가옥(평양냉면)",
+          "gyeonggi_10_ban.jpg": "반구정나루터집(장어)",
+          "gyeonggi_11_sarang.jpg": "산사랑(한정식)",
+          "gyeonggi_12_ga.jpg": "가보정(갈비)",
+          "gyeonggi_13_hong.jpg": "광명홍두깨칼국수",
+          "gyeonggi_14_aul.jpg": "어울더울 과천본점(정육식당)",
+          "gyeonggi_15_odu.jpg": "오두산막국수",
+          "gyeonggi_16_yong.jpg": "용성통닭 본점",
+
+          // #강원
+          "gangwon_1_bong.jpg": "봉포머구리집",
+          "gangwon_2_sol.jpg": "솔올통나무집닭갈비",
+          "gangwon_3_emo.jpg": "이모네생선찜(가오리찜)",
+          "gangwon_4_hae.jpg": "해미가(물회)",
+          "gangwon_5_rui.jpg": "루이식당",
+          "gangwon_6_an.jpg": "안목항물회",
+          "gangwon_7_pipe.jpg": "파이프라인피자",
+          "gangwon_8_yang.jpg": "양지말화로구이",
+          "gangwon_9_ddu.jpg": "천선식당",
+          "gangwon_10_chung.jpg": "청초수물회 속초본점",
+          "gangwon_11_100.jpg": "백촌막국수",
+          "gangwon_12_jung.jpg": "정원 도토리 임자탕",
+          "gangwon_13_mo.jpg": "모마루(콧등치기 국수)",
+          "gangwon_14_dong.jpg": "동화가든 본점(짬뽕순두부)",
+          "gangwon_15_um.jpg": "엄지네포장마차 본점(꼬막)",
+          "gangwon_16_man.jpg": "만석닭강정 중앙시장점",
+
+          // #충북
+          "chungbuk_1_chung.jpg": "청진궁중면옥(어복쟁반)",
+          "chungbuk_2_ju.jpg": "주덕시골추어탕",
+          "chungbuk_3_hong.jpg": "홍천식당(메밀칼국수)",
+          "chungbuk_4_neu.jpg": "느티나무집(도리뱅뱅이)",
+          "chungbuk_5_seo.jpg": "서교미식(만두전골)",
+          "chungbuk_6_gae.jpg": "개신동해장국(내장탕)",
+          "chungbuk_7_yum.jpg": "염소맛집(염소전골)",
+          "chungbuk_8_ye.jpg": "예향정 증평점(두루치기)",
+          "chungbuk_9_su.jpg": "수버(인도음식)",
+          "chungbuk_10_bab.jpg": "밥상위의 보약한첩(한정식)",
+          "chungbuk_11_chi.jpg": "치아오렐레 이탈리안 레스토랑",
+          "chungbuk_12_100.jpg": "백로식당 본점",
+          "chungbuk_13_go.jpg": "원조 고추만두국집",
+          "chungbuk_14_odi.jpg": "오디향(오색꽃비빔밥)",
+          "chungbuk_15_sang.jpg": "상당집(두부전골)",
+          "chungbuk_16_do.jpg": "두꺼비식당(양푼등갈비)",
+
+          // #충남
+          "chungnam_1_nae.jpg": "내당한우",
+          "chungnam_2_3.jpg": "삼삼복집(복어탕)",
+          "chungnam_3_big.jpg": "큰마을영양굴밥",
+          "chungnam_4_3gi.jpg": "삼기꽃게장",
+          "chungnam_5_san.jpg": "산수파김치장어",
+          "chungnam_6_young.jpg": "영성각",
+          "chungnam_7_ba.jpg": "바른찜갈비",
+          "chungnam_8_ari.jpg": "아리랑고개 닭꼬치",
+          "chungnam_9_il.jpg": "일송꽃게장백반 본점",
+          "chungnam_10_sun.jpg": "선봉국수",
+          "chungnam_11_sin.jpg": "신은수참병천순대집",
+          "chungnam_12_mok.jpg": "목화반점",
+          "chungnam_13_jang.jpg": "장원막국수",
+          "chungnam_14_si.jpg": "시장정육점식당(육회비빔밥)",
+          "chungnam_15_dong.jpg": "동해원(짬뽕)",
+          "chungnam_16_han.jpg": "한일식당(소머리)",
+
+          // #경북
+          "gyeongbuk_1_bo.jpg": "경주천년한우 보문점",
+          "gyeongbuk_2_sun.jpg": "순두부짬뽕 동궁",
+          "gyeongbuk_3_star.jpg": "별채반 교동쌈밥",
+          "gyeongbuk_4_mat.jpg": "맷돌순두부",
+          "gyeongbuk_5_uma.jpg": "우마왕 경주본점(갈비탕)",
+          "gyeongbuk_6_chung.jpg": "청온채(미나리 육회비빔밥)",
+          "gyeongbuk_7_bo.jpg": "보문뜰(소갈비찜)",
+          "gyeongbuk_8_jeon.jpg": "전주식당(코다리찜)",
+          "gyeongbuk_9_ryo.jpg": "료미(일식당)",
+          "gyeongbuk_10_hyang.jpg": "향화정(꼬막무침비빔밥)",
+          "gyeongbuk_11_neul.jpg": "늘봄(한정식)",
+          "gyeongbuk_12_gal.jpg": "갈비담(숯불)",
+          "gyeongbuk_13_nam.jpg": "남은대게",
+          "gyeongbuk_14_chae.jpg": "채가네 들깨국수",
+          "gyeongbuk_15_pyeong.jpg": "평남식당(소머리곰탕)",
+          "gyeongbuk_16_dong.jpg": "동악골 금재가든(닭볶음탕)",
+
+          // #경남
+          "gyeongnam_1_ha.jpg": "하연옥 본점",
+          "gyeongnam_2_mil.jpg": "밀양돼지국밥",
+          "gyeongnam_3_jjim.jpg": "강복궁 본점",
+          "gyeongnam_4_jin.jpg": "진짜초가집(아구찜)",
+          "gyeongnam_5_im.jpg": "임진각식당(소불고기)",
+          "gyeongnam_6_bul.jpg": "불암정(장어구이)",
+          "gyeongnam_7_dong.jpg": "동부회센타",
+          "gyeongnam_8_u.jpg.jpg": "우동한그릇",
+          "gyeongnam_9_su.jpg": "수제국수 진해점",
+          "gyeongnam_10_to.jpg": "토도스(멕시코음식)",
+          "gyeongnam_11_gae.jpg": "개성순대(순대전골)",
+          "gyeongnam_12_gen.jpg": "겐쇼심야라멘",
+          "gyeongnam_13_of.jpg": "오브셀라(양식)",
+          "gyeongnam_14_jung.jpg": "정일면옥",
+          "gyeongnam_15_dae.jpg": "대동할매국수",
+          "gyeongnam_16_san.jpg": "산청흑돼지",
+
+          // #전북
+          "jeonbuk_1_bete.jpg": "베테랑 칼국수",
+          "jeonbuk_2_jeon.jpg": "전주왱이콩나물국밥전문점",
+          "jeonbuk_3_jo.jpg": "조점례남문피순대",
+          "jeonbuk_4_bok.jpg": "복성루",
+          "jeonbuk_5_byeon.jpg": "변산명인바지락죽",
+          "jeonbuk_6_ga.jpg": "가족회관(비빔밥)",
+          "jeonbuk_7_300.jpg": "삼백집 전주 본점",
+          "jeonbuk_8_han.jpg": "한일옥(소고기뭇국)",
+          "jeonbuk_9_ssang.jpg": "쌍용반점",
+          "jeonbuk_10_nam.jpg": "남원논두렁추어탕",
+          "jeonbuk_11_e.jpg": "이연국수",
+          "jeonbuk_12_sae.jpg": "새집추어탕",
+          "jeonbuk_13_h.jpg": "향수원(오리주물럭)",
+          "jeonbuk_14_big.jpg": "대왕가든(곱창전골)",
+          "jeonbuk_15_bul.jpg": "불칸(화덕피자)",
+          "jeonbuk_16_b.jpg": "할머니국수",
+
+          // #전남
+          "jeonnam_1_y.jpg": "영란회집(민어회)",
+          "jeonnam_2_d.jpg": "덕인홍어집(홍어삼합)",
+          "jeonnam_3_g.jpg": "경도회관(갯장어요리)",
+          "jeonnam_4_d.jpg": "대원식당(한정식)",
+          "jeonnam_5_j.jpg": "전통식당 담양본점(한정식)",
+          "jeonnam_6_j.jpg": "죽림원가든",
+          "jeonnam_7_s.jpg": "송현불고기",
+          "jeonnam_8_n.jpg.jpg": "나주곰탕하얀집",
+          "jeonnam_9_s.jpg": "시내식당(광양불고기)",
+          "jeonnam_10_m.jpg": "목리장어센터",
+          "jeonnam_11_g.jpg": "과역기사식당(삼겹살)",
+          "jeonnam_12.m.jpg": "미락식당(꽃게비빔밥)",
+          "jeonnam_13_j.jpg": "정우굴구이",
+          "jeonnam_14_e.jpg": "이화식당(게장정식)",
+          "jeonnam_15_g.jpg": "꽃돌게장1번가(꽃게정식)",
+          "jeonnam_16_s.jpg": "쌍교숯불갈비 담양 본점",
+
+          // #제주
+          "jeju_1_j.jpg": "자매국수(고기국수)",
+          "jeju_2_m.jpg": "명진전복(전복돌솥밥)",
+          "jeju_3_h.jpg": "흑돈가 제주본점",
+          "jeju_4_h.jpg": "협재해녀의집",
+          "jeju_5_u.jpg": "우진해장국(고사리육개장)",
+          "jeju_6_s.jpg": "산방식당(제주식 밀냉면)",
+          "jeju_7_s.jpg": "쌍둥이횟집본점",
+          "jeju_8_n.jpg": "네거리식당(갈치조림)",
+          "jeju_9_g.jpg": "곰막식당(회국수,성게국수)",
+          "jeju_10_59.jpg": "공새미50(보말칼국수)",
+          "jeju_11_on.jpg": "온오프(바질치즈돈가스)",
+          "jeju_12_u.jpg": "고집돌우럭 제주함덕점",
+          "jeju_13_o.jpg": "올래국수 본점",
+          "jeju_14_o.jpg": "오쿠다 공항점(전복요리)",
+          "jeju_15_m.jpg": "묘한식당(흑돼지돔베카츠)",
+          "jeju_16_b.jpg": "번네식당(뼈없는 은갈치조림)",
+        };
+
+        images = fileList.map((file) => {
+          const { data: publicData, error: publicError } =
+            supabaseClient.storage
+              .from("my-bucket")
+              .getPublicUrl(`${folder}/${file.name}`);
+
+          if (publicError) {
+            console.error("공개 URL 생성 오류:", publicError);
+            return { image_url: "", name: "" };
+          }
+          return {
+            image_url: publicData.publicUrl,
+            name: restaurantMapping[file.name] || "식당 이름 없음",
+          };
+        });
+
+        // 가져온 이미지를 localStorage에 캐싱합니다.
+        localStorage.setItem(cacheKey, JSON.stringify(images));
+
+        startTournament();
+      }
+
+      // 토너먼트 진행 코드
+
+      function updateRoundInfo() {
+        const roundInfoEl = document.getElementById("round-info");
+        const count = currentRound.length;
+        if (count === 1) {
+          roundInfoEl.textContent = "최종 우승";
+        } else if (count === 2) {
+          roundInfoEl.textContent = "결승";
+        } else if (count > 2) {
+          roundInfoEl.textContent = count + "강";
+        } else {
+          roundInfoEl.textContent = "";
+        }
+      }
+
+      function startTournament() {
+        currentRound = shuffleArray(images);
+        updateRoundInfo();
+        nextMatch();
+      }
+
+      function shuffleArray(array) {
+        let newArray = array.slice();
+        for (let i = newArray.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+      }
+
+      function nextMatch() {
+        const gameDiv = document.getElementById("game");
+        gameDiv.innerHTML = "";
+
+        if (currentRound.length === 0 && winners.length === 0) {
+          gameDiv.innerHTML = "<p>토너먼트를 진행할 이미지가 부족합니다.</p>";
+          return;
+        }
+
+        if (currentRound.length === 1 && winners.length === 0) {
+          document.getElementById("winner").innerHTML =
+            '<img src="' +
+            currentRound[0].image_url +
+            '" alt="Winner" style="max-width:400px;"><br />' +
+            currentRound[0].name +
+            " 입니다!";
+          updateRoundInfo();
+          return;
+        }
+
+        if (currentRound.length >= 2) {
+          const image1 = currentRound.shift();
+          const image2 = currentRound.shift();
+
+          const pairDiv = document.createElement("div");
+          pairDiv.className = "pair";
+
+          const container1 = document.createElement("div");
+          container1.className = "match-item";
+          const img1 = document.createElement("img");
+          img1.src = image1.image_url;
+          img1.alt = "이미지 1";
+          img1.onclick = function () {
+            selectWinner(image1);
+          };
+          container1.appendChild(img1);
+          const name1 = document.createElement("p");
+          name1.className = "restaurant-name";
+          name1.textContent = image1.name;
+          container1.appendChild(name1);
+          pairDiv.appendChild(container1);
+
+          const container2 = document.createElement("div");
+          container2.className = "match-item";
+          const img2 = document.createElement("img");
+          img2.src = image2.image_url;
+          img2.alt = "이미지 2";
+          img2.onclick = function () {
+            selectWinner(image2);
+          };
+          container2.appendChild(img2);
+          const name2 = document.createElement("p");
+          name2.className = "restaurant-name";
+          name2.textContent = image2.name;
+          container2.appendChild(name2);
+          pairDiv.appendChild(container2);
+
+          gameDiv.appendChild(pairDiv);
+        } else {
+          prepareNextRound();
+        }
+      }
+
+      function selectWinner(selectedImage) {
+        winners.push(selectedImage);
+        if (currentRound.length === 0) {
+          prepareNextRound();
+        } else {
+          nextMatch();
+        }
+      }
+
+      function prepareNextRound() {
+        if (winners.length === 0) {
+          document.getElementById("game").innerHTML =
+            "<p>다음 라운드를 진행할 승자가 없습니다.</p>";
+          return;
+        }
+        if (winners.length === 1) {
+          currentRound = winners;
+          document.getElementById("game").innerHTML = "";
+          document.getElementById("winner").innerHTML =
+            '<img src="' +
+            winners[0].image_url +
+            '" alt="Winner" style="max-width:400px;"><br />' +
+            winners[0].name +
+            " 입니다!";
+          updateRoundInfo();
+        } else {
+          currentRound = winners;
+          winners = [];
+          updateRoundInfo();
+          nextMatch();
+        }
+      }
+
+      window.onload = function () {
+        const region = getRegionFromURL();
+
+        // 선택한 지역명을 헤드라인에 표시합니다.
+        document.querySelector("h1").textContent =
+          region + " 지역 최고의 맛집은?";
+        fetchImages();
+      };
+    </script>
+
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 푸터 섹션 ★★★★★ -->
+    <!-- **************************************************** -->
+    <div class="container-fluid mx-0 px-0">
+      <!-- 🔹 전체 너비를 차지하도록 수정 -->
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top"
+      >
+        <div class="col-md-6 d-flex flex-column align-items-start">
+          <a href="/" class="mb-3 me-2 text-decoration-none lh-1">
+            <img
+              src="./assets/배나낭 2d 로고.svg"
+              alt="배나낭 로고"
+              width="32"
+              height="32"
+            />
+          </a>
+          <span class="mb-2">개인정보처리방침 | 이용약관 | We Are Hiring</span>
+          <span class="mb-2"
+            >(주)배나낭 | 대표자: 여채현 | 사업자번호: 123-456-789 | 사업자 정보
+            확인</span
+          >
+          <span class="mb-2"
+            >개인정보보호책임자: 여채현 | 이메일: info@baNaNang.com</span
+          >
+          <span class="mb-2">© baNaNang. ALL RIGHTS RESERVED</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 로그인 모달 ★★★★★ -->
+    <!-- **************************************************** -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div
+          class="modal-content rounded-4 shadow"
+          style="background: #f7f7f7; border-radius: 10px"
+        >
+          <!-- 닫기 버튼 -->
+          <div class="modal-header border-bottom-0 d-flex justify-content-end">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- 모달 본문 -->
+          <div class="modal-body text-center">
+            <!-- 배나낭 로고 -->
+            <div class="d-flex justify-content-center align-items-center mb-3">
+              <div class="logo-container">
+                <img
+                  src="./assets/배나낭 3d 로고.svg"
+                  alt="배나낭 로고"
+                  width="60vw"
+                  height="60vh"
+                />
+                <h1 class="fw-bold ms-3">배나낭</h1>
+              </div>
+            </div>
+
+            <!-- 로그인 안내 문구 -->
+            <h2 class="fw-semibold" style="font-size: 36px; color: #333">
+              소셜 로그인
+            </h2>
+            <p style="font-size: 24px; color: #5c5c5c">
+              소셜 계정으로 3초 만에 로그인하기
+            </p>
+
+            <!-- 로그인 버튼 -->
+            <div class="d-flex flex-column gap-3 mt-4">
+              <!-- 카카오 로그인 -->
+              <button type="button" class="btn w-100 p-3" id="kakao-login">
+                <img
+                  src="./assets/home/카카오 아이디 로그인 버튼.svg"
+                  alt="카카오 로그인"
+                  class="me-2"
+                />
+              </button>
+
+              <!-- 네이버 로그인 -->
+              <button type="button" class="btn w-100 p-3" id="naver-login">
+                <img
+                  src="./assets/home/네이버 로그인 버튼.svg"
+                  alt="네이버 로그인"
+                  class="me-2"
+                />
+              </button>
+
+              <!-- 구글 로그인 -->
+              <button type="button" class="btn w-100 p-3" id="google-login">
+                <img
+                  src="./assets/home/구글 로그인 버튼.svg"
+                  alt="구글 로그인"
+                  class="me-2"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="home.js" defer></script>
+  <script src="app.js" defer></script>
+  <script src="world-cup.js"></script>
+</html>
