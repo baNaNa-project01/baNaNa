@@ -1,0 +1,508 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                     캐러셀
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+
+/* 기본 디자인 (데스크탑 기준) */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(100vw * 0.367);
+  max-width: 1440px;
+  max-height: 529px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  /* 백그라운드 이미지 적용 (데스크탑: 꽉 채움) */
+  background: url("./assets/home/캐러셀 백그라운드.svg") no-repeat center center;
+  background-size: cover;
+  padding: 0;
+}
+
+/* 우측 슬라이드 영역 (이미지 캐러셀) */
+.carousel-images {
+  position: absolute;
+  top: 6%; /* 약 32px */
+  left: 50%; /* 컨테이너 중앙 기준 */
+  width: 43.4%; /* 625px/1440px */
+  height: 90%; /* 477px/529px */
+}
+
+.carousel-images .carousel-item {
+  height: 90%;
+}
+
+.carousel-images .carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 래퍼를 만들어 오버레이가 이미지에만 적용되도록 함 */
+.card-image-wrapper {
+  position: relative;
+  display: inline-block; /* 혹은 블록 형태로 필요시 변경 */
+}
+
+/* 오버레이 스타일 */
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.5); /* 어두운 필터 효과 */
+  pointer-events: none; /* 오버레이 위에 마우스 이벤트 전달 방지 */
+  transition: opacity 0.3s;
+}
+
+/* 프로그레스 바 영역 */
+.carousel-progress {
+  position: absolute;
+  top: calc(85% + 0.4rem);
+  left: 0;
+  width: 50%;
+  height: 18.5%;
+}
+
+.carousel-progress .progress-track {
+  position: absolute;
+  left: 22.2%;
+  top: 30.6%;
+  width: 55.6%;
+  height: 16.3%;
+  background: #ededed;
+  border-radius: 30px;
+}
+
+.carousel-progress .progress-indicator {
+  position: absolute;
+  left: 22.2%; /* 초기 슬라이드 위치 */
+  top: 30.6%;
+  width: 8.5%;
+  height: 16.3%;
+  background: #ddb900;
+  border-radius: 30px;
+  transition: left 0.5s ease;
+}
+
+/* 모바일 반응형 (화면 폭 768px 이하) */
+/* → 데스크탑과 같은 절대 위치/비율을 유지하여 레이아웃 자체는 똑같이 축소됨 */
+@media (max-width: 768px) {
+  .carousel-wrapper {
+    width: 100vw;
+    height: calc(100vw * 0.367);
+    max-width: 100vw;
+    max-height: none;
+    margin-bottom: 3rem; /* 추가: 캐러셀과 다음 섹션 사이에 3rem 여백 */
+  }
+  .carousel-bg {
+    /* 모바일에서는 이미지 전체가 보이도록 contain 사용 */
+    background-size: contain;
+  }
+  .carousel-images {
+    /* 데스크탑과 동일한 비율/절대 위치 */
+    top: 6%;
+    left: 50%;
+    width: 43.4%;
+    height: 90%;
+  }
+  .carousel-images .carousel-item img {
+    /* 이미지가 잘리지 않고 모두 보이도록 */
+    object-fit: contain;
+  }
+  .carousel-progress {
+    /* 데스크탑과 동일한 위치/크기 */
+    top: calc(85% + 0.4rem);
+    left: 0;
+    width: 50%;
+    height: 18.5%;
+  }
+  .carousel-progress .progress-track {
+    position: absolute;
+    left: 22.2%;
+    top: 30.6%;
+    width: 55.6%;
+    height: 16.3%;
+    background: #ededed;
+    border-radius: 30px;
+  }
+
+  .carousel-progress .progress-indicator {
+    position: absolute;
+    left: 22.2%; /* 초기 슬라이드 위치 */
+    top: 30.6%;
+    width: 8.5%;
+    height: 16.3%;
+    background: #ddb900;
+    border-radius: 30px;
+    transition: left 0.5s ease;
+  }
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                여행 포토 후기
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 기본 단위: 1rem = 16px 기준 */
+
+/* 전체 컨테이너: 최대 너비와 좌우 여백 조정 */
+.community-hot-list {
+  margin-top: 4rem; /* 캐러셀 바로 아래에 4rem 여백 추가 */
+}
+
+.title-more {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-left: 2.5rem !important;
+  margin-right: 2.5rem !important;
+}
+
+/* Title 영역 */
+.hot-title {
+  color: #333333;
+  font-size: 2.25rem; /* 36px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  margin-right: 1.5rem; /* 오른쪽 여백을 추가 */
+}
+
+.hot-subtitle {
+  color: #5c5c5c;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.more-link {
+  color: #5c5c5c;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Card Set: 중앙 정렬 및 카드 사이 간격 */
+.card-set {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem; /* 카드 간 간격 rem */
+}
+
+/* Hot Card */
+.hot-card {
+  width: 16rem; /* 256px = 16rem */
+  display: flex;
+  flex-direction: column;
+  gap: 1.1875rem; /* 19px ≒ 1.1875rem */
+  margin-bottom: 2rem;
+}
+
+/* Card Image */
+.card-image {
+  width: 100%;
+  height: 20rem; /* 320px = 20rem */
+  border-radius: 0.9375rem; /* 15px ≒ 0.9375rem */
+  object-fit: cover;
+}
+
+/* Card Description */
+.card-desc {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* 12px = 0.75rem */
+}
+
+/* Card Title */
+.card-title {
+  width: 100%;
+  text-align: center;
+  color: #333333;
+  font-size: 1.5rem; /* 24px */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Profile Description */
+.profile-desc {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Profile */
+.profile {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.625rem; /* 10px = 0.625rem */
+}
+
+/* Profile Image */
+.profile-img {
+  width: 1.25rem; /* 20px = 1.25rem */
+  height: 1.25rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Nickname & Date */
+.nickname,
+.date {
+  color: #5c5c5c;
+  font-size: 1.125rem; /* 18px = 1.125rem */
+  font-family: "Pretendard", sans-serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* 반응형: 모바일 화면에서 전체 축소 */
+@media (max-width: 821px) {
+  .community-hot-list {
+    padding: 0 1rem;
+  }
+  /* 카드 셋은 flex에서 그리드로 변경 */
+  .card-set {
+    display: grid;
+    /* 최소 카드 너비 14rem, 여유 공간에 따라 자동 조정되도록 */
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: 1rem;
+    justify-items: center;
+  }
+  /* hot-card는 grid 항목으로 100% 너비 사용 */
+  .hot-card {
+    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+  .title-line,
+  .subtitle-line {
+    display: block;
+  }
+
+  .hot-title {
+    font-size: 2rem; /* 축소된 폰트 크기 */
+  }
+  .hot-subtitle,
+  .more-link {
+    font-size: 1.25rem;
+  }
+  .card-title {
+    font-size: 1.375rem;
+  }
+  .nickname,
+  .date {
+    font-size: 1rem;
+  }
+  .card-image {
+    height: 18rem;
+  }
+}
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *               맛집 이상형 월드컵
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+
+.worldcup-title-container {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.worldcup-section-title h2 {
+  color: #333333;
+  font-size: 2.25rem;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  margin-right: 1.5rem; /* 간격 조정 */
+}
+
+.worldcup-section-subtitle {
+  color: #5c5c5c;
+  font-size: 1.5rem;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+}
+
+/* 지역 태그 버튼 스타일 */
+.btn-region {
+  width: 100%;
+  padding: 5px 0;
+  border: 1.5px solid #ddb900;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-family: "Pretendard", sans-serif;
+  font-weight: 600;
+  color: #333333;
+  background: transparent;
+}
+
+.btn-region.active,
+.btn-region:hover {
+  background: #ddb900;
+  color: #f7f7f7;
+}
+
+/* 월드컵 바로가기 버튼 */
+.btn-worldcup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none; /* 기본 버튼 배경 제거 */
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* 버튼 이미지 */
+.btn-worldcup-img {
+  width: 28.3vw;
+  max-width: 408px; /* 최대 크기 제한 */
+  min-width: 320px;
+  height: auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* 버튼 호버 & 클릭 시 어두워지는 효과 */
+.btn-worldcup:hover .btn-worldcup-img {
+  filter: brightness(0.85); /* 호버 시 어두워짐 */
+}
+
+.btn-worldcup:active .btn-worldcup-img {
+  filter: brightness(0.75); /* 클릭 시 더 어두워짐 */
+}
+/* 이미지 컨테이너 */
+.overlap-images {
+  position: relative;
+  width: 680px;
+  height: 210px;
+}
+
+/* 개별 이미지 스타일 */
+.overlap-img {
+  position: absolute;
+  top: 0;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+  cursor: pointer;
+}
+
+/* 기존 배치 유지 */
+.overlap-img.first {
+  left: 400px;
+}
+
+.overlap-img.second {
+  left: 250px;
+}
+
+.overlap-img.third {
+  left: 0;
+}
+
+/* 기본적으로 모든 이미지에 Dark Overlay 추가 */
+.overlap-img::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 어두운 효과 */
+  border-radius: 8px;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1; /* 기본적으로 어둡게 */
+  z-index: 5; /* Dark Overlay가 이미지 위에 있도록 설정 */
+}
+
+/* 호버한 이미지의 오버레이만 제거 */
+.overlap-img:hover::after {
+  opacity: 0;
+}
+
+/* 호버한 이미지는 살짝 확대 */
+.overlap-img:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+/* 클릭한 이미지는 더 확대 + overlay 제거 */
+.overlap-img.active {
+  transform: scale(1.1);
+  z-index: 15;
+}
+
+/* 클릭된 이미지의 Dark Overlay 제거 */
+.overlap-img.active::after {
+  opacity: 0;
+}
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *                AI 맞춤형 추천
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+/* 반응형 AI 맞춤형 추천 섹션 */
+.ai-recommend-section {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  aspect-ratio: 1440 / 397; /* 원본 비율 유지 */
+  background: url("./assets/home/AI 맞춤형 추천.svg") no-repeat center center;
+  background-size: cover;
+  margin: 0 auto;
+}
+
+/* AI 맞춤 여행 버튼 */
+.ai-recommend-btn {
+  position: absolute;
+  bottom: 13.1%; /* 52px/397px */
+  right: 8.7%; /* 125px/1440px */
+  background: none; /* 버튼 배경 제거 */
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 버튼 이미지 */
+.ai-recommend-btn-img {
+  width: 28.3vw;
+  max-width: 408px; /* 최대 크기 제한 */
+  height: auto;
+  transition: filter 0.2s ease-in-out;
+}
+
+/* 버튼 호버 & 클릭 시 어두워지는 효과 */
+.ai-recommend-btn:hover .ai-recommend-btn-img {
+  filter: brightness(0.85); /* 호버 시 어두워짐 */
+}
+
+.ai-recommend-btn:active .ai-recommend-btn-img {
+  filter: brightness(0.75); /* 클릭 시 더 어두워짐 */
+}
+
+/* 버튼 텍스트: 폰트 크기도 컨테이너 축소에 맞춰 조정 (필요시 미세 조정) */
+.ai-recommend-btn-text {
+  color: #333333;
+  /* 원본 24px을 기준으로, 최대 1440px일 때 24px, 축소 시 비례 조정 
+       여기서는 calc()와 vw를 조합하여 설정(1440px 기준) */
+  font-size: calc((24 / 1440) * 100vw);
+  font-family: Pretendard, sans-serif;
+  font-weight: 600;
+}

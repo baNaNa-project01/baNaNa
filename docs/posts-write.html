@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배나낭</title>
+
+    <!-- 파비콘  -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+
+    <!-- OG 태그 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="배나낭" />
+    <meta
+      property="og:description"
+      content="국내 여행자들을 위한 통합 커뮤니티 플랫폼, 배나낭"
+    />
+    <meta property="og:image" content="https://i.imgur.com/hUWbcdU.png" />
+    <meta
+      property="og:url"
+      content="https://banana-project01.github.io/baNaNa-frontend/"
+    />
+    <meta property="og:locale" content="ko_KR" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- 커스텀 공통 CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- 커스텀 메인 홈홈 CSS -->
+    <link rel="stylesheet" href="posts.css" />
+  </head>
+
+  <body>
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 내비게이션 바 섹션 ★★★★★ -->
+    <!-- **************************************************** -->
+    <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
+      <div class="container-fluid">
+        <a class="navbar-brand-logo" href="#"
+          ><img src="./assets/배나낭 3d 로고.svg" alt="배나낭 로고"
+        /></a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbar2"
+          aria-controls="offcanvasNavbar2"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="offcanvas offcanvas-end"
+          tabindex="-1"
+          id="offcanvasNavbar2"
+          aria-labelledby="offcanvasNavbar2Label"
+        >
+          <div class="offcanvas-header">
+            <!-- 메뉴  -->
+            <h5 class="offcanvas-title" id="offcanvasNavbar2Label">MENU</h5>
+
+            <div class="d-flex align-items-center">
+              <!-- 로그인 버튼 -->
+              <button
+                class="btn btn-outline-success me-2"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+              >
+                로그인
+              </button>
+
+              <!-- 닫기 버튼 -->
+              <button
+                type="button"
+                class="btn-close btn-close-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="https://banana-project01.github.io/baNaNa-frontend/"
+                  >홈</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://banana-project01.github.io/baNaNa-frontend/posts-service.html"
+                  >커뮤니티</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://banana-project01.github.io/baNaNa-frontend/world-cup-service.html"
+                  >뭐 먹지?</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://banana-project01.github.io/baNaNa-frontend/ai-recommend-service.html"
+                  >어디 가지?</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://banana-project01.github.io/baNaNa-frontend/map-service.html"
+                  >여행 정보</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- PC용 로그인 버튼 (큰 화면에서만 보임) -->
+        <div class="d-none d-lg-flex ms-auto">
+          <button
+            class="btn btn-outline-success me-2"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal"
+          >
+            로그인
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <section>
+        <img
+          src="./assets/posts/posts_image.svg"
+          alt="게시판 상단 이미지"
+          class="post-card-image"
+          width="100%"
+        />
+      </section>
+    </main>
+
+    <!-- 여백 요소 추가 -->
+    <div class="section-spacer"></div>
+
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 게시물 작성하기 섹션 ★★★★★ -->
+    <!-- **************************************************** -->
+
+    <div class="post-detail-full-container">
+      <!-- 🔹 게시판 경로 네비게이션 -->
+      <div class="post-detail-nav">
+        <img src="./assets/posts/post_home_icon.svg" alt="홈" />
+        <a href="./posts-service.html" class="post-detail-link">커뮤니티</a>
+        <span class="breadcrumb-divider">/ 글쓰기</span>
+      </div>
+
+      <!-- 게시판 작성 섹션 -->
+      <input
+        type="text"
+        id="post-title-input"
+        class="title-input"
+        placeholder="제목을 입력하세요"
+      />
+
+      <form id="post-create-form">
+        <!-- 이미지 업로드 -->
+        <div class="image-upload-container">
+          <label for="post-image" class="upload-button">📤 사진 업로드</label>
+          <input
+            type="file"
+            id="post-image"
+            name="image"
+            style="display: none"
+          />
+        </div>
+
+        <!-- 내용 입력 -->
+        <textarea
+          id="post-create-content"
+          name="content"
+          placeholder="내용을 입력하세요."
+          required
+        ></textarea>
+
+        <!-- 업로드된 이미지 미리보기 -->
+        <div class="image-preview-container" id="image-preview-container"></div>
+      </form>
+      <button type="submit" class="submit-comment">등록하기</button>
+    </div>
+
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 푸터 섹션 ★★★★★ -->
+    <!-- **************************************************** -->
+    <div class="container-fluid mx-0 px-0">
+      <!-- 🔹 전체 너비를 차지하도록 수정 -->
+      <footer
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 border-top"
+      >
+        <div class="col-md-6 d-flex flex-column align-items-start">
+          <a href="/" class="mb-3 me-2 text-decoration-none lh-1">
+            <img
+              src="./assets/배나낭 2d 로고.svg"
+              alt="배나낭 로고"
+              width="32"
+              height="32"
+            />
+          </a>
+          <span class="mb-2">개인정보처리방침 | 이용약관 | We Are Hiring</span>
+          <span class="mb-2"
+            >(주)배나낭 | 대표자: 여채현 | 사업자번호: 123-456-789 | 사업자 정보
+            확인</span
+          >
+          <span class="mb-2"
+            >개인정보보호책임자: 여채현 | 이메일: info@baNaNang.com</span
+          >
+          <span class="mb-2">© baNaNang. ALL RIGHTS RESERVED</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 로그인 모달 ★★★★★ -->
+    <!-- **************************************************** -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div
+          class="modal-content rounded-4 shadow"
+          style="background: #f7f7f7; border-radius: 10px"
+        >
+          <!-- 닫기 버튼 -->
+          <div class="modal-header border-bottom-0 d-flex justify-content-end">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- 모달 본문 -->
+          <div class="modal-body text-center">
+            <!-- 배나낭 로고 -->
+            <div class="d-flex justify-content-center align-items-center mb-3">
+              <div class="logo-container">
+                <img
+                  src="./assets/배나낭 3d 로고.svg"
+                  alt="배나낭 로고"
+                  width="60vw"
+                  height="60vh"
+                />
+                <h1 class="fw-bold ms-3">배나낭</h1>
+              </div>
+            </div>
+
+            <!-- 로그인 안내 문구 -->
+            <h2 class="fw-semibold" style="font-size: 36px; color: #333">
+              소셜 로그인
+            </h2>
+            <p style="font-size: 24px; color: #5c5c5c">
+              소셜 계정으로 3초 만에 로그인하기
+            </p>
+
+            <!-- 로그인 버튼 -->
+            <div class="d-flex flex-column gap-3 mt-4">
+              <!-- 카카오 로그인 -->
+              <button type="button" class="btn w-100 p-3">
+                <img
+                  src="./assets/home/카카오 아이디 로그인 버튼.svg"
+                  alt="카카오 로그인"
+                  class="me-2"
+                />
+              </button>
+
+              <!-- 네이버 로그인 -->
+              <button type="button" class="btn w-100 p-3">
+                <img
+                  src="./assets/home/네이버 로그인 버튼.svg"
+                  alt="네이버 로그인"
+                  class="me-2"
+                />
+              </button>
+
+              <!-- 구글 로그인 -->
+              <button type="button" class="btn w-100 p-3">
+                <img
+                  src="./assets/home/구글 로그인 버튼.svg"
+                  alt="구글 로그인"
+                  class="me-2"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="posts-write.js" defer></script>
+  <script src="app.js" defer></script>
+</html>
