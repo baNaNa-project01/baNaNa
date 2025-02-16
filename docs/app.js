@@ -26,48 +26,27 @@ document.addEventListener("DOMContentLoaded", function () {
   //  백엔드에서 설정한 OAuth 로그인 URL (API GATEWAY 배포 URL 입력)
   const BACKEND_URL = "https://banana-flask-app.onrender.com";
 
-  async function waitForServer(url, maxAttempts = 5, delay = 2000) {
-    return new Promise((resolve) => {
-      let attempt = 1;
+  async function loginWithRetry(provider, maxAttempts = 5, delay = 2000) {
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        console.log(`🔄 로그인 시도 중 (시도 ${attempt})...`);
 
-      function checkServer() {
-        if (attempt > maxAttempts) {
-          console.error("최대 시도 횟수 초과, 서버가 응답하지 않음");
-          alert("서버 응답이 없습니다. 잠시 후 다시 시도해주세요.");
-          resolve(false);
+        // ✅ 서버 상태 확인
+        const serverReady = await fetch(`${BACKEND_URL}/health`);
+        if (serverReady.ok) {
+          console.log("✅ 서버가 준비됨! 로그인 시작");
+          window.location.href = `${BACKEND_URL}/login/${provider}`;
           return;
         }
-
-        console.log(`서버 응답 확인 중 (시도 : ${attempt})...`);
-
-        // ✅ 존재하는 API 엔드포인트(`/posts`)로 요청 보내기
-        fetch(`${url}/posts`, { method: "GET", mode: "no-cors" })
-          .then(() => {
-            console.log(`✅ 서버 응답 확인 완료 (시도 : ${attempt})`);
-            resolve(true);
-          })
-          .catch(() => {
-            console.warn(`❌ 서버 응답 실패 (시도 : ${attempt})`);
-            attempt++;
-            setTimeout(checkServer, delay);
-          });
+      } catch (error) {
+        console.warn(`❌ 로그인 실패 (시도 ${attempt})`, error);
+        if (attempt < maxAttempts) {
+          console.log(`⏳ ${delay / 1000}초 후 다시 시도...`);
+          await new Promise((resolve) => setTimeout(resolve, delay));
+        } else {
+          alert("서버 응답이 없습니다. 잠시 후 다시 시도해주세요.");
+        }
       }
-
-      checkServer();
-    });
-  }
-
-  async function loginWithRetry(provider) {
-    const loginUrl = `${BACKEND_URL}/login/${provider}`;
-
-    console.log("🔄 서버 응답 대기 중...");
-    const isServerReady = await waitForServer(loginUrl);
-
-    if (isServerReady) {
-      console.log("✅ 서버 응답 완료, 로그인 진행");
-      window.location.href = loginUrl;
-    } else {
-      alert("서버 응답이 없습니다. 잠시 후 다시 시도해주세요.");
     }
   }
 
