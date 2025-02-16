@@ -38,13 +38,13 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    <!-- 공통 CSS 및 지도 관련 CSS -->
-    <link rel="stylesheet" href="style.css" />
+    <!-- 통합된 CSS 파일 -->
     <link rel="stylesheet" href="map.css" />
   </head>
   <body>
-    <!-- 내비게이션 바 섹션 -->
+    <!-- 내비게이션 바 -->
     <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
       <div class="container-fluid">
         <a class="navbar-brand-logo" href="#">
@@ -126,7 +126,6 @@
             </ul>
           </div>
         </div>
-        <!-- PC용 로그인 버튼 -->
         <div class="d-none d-lg-flex ms-auto">
           <button
             class="btn btn-outline-success me-2"
@@ -149,24 +148,24 @@
       />
     </div>
 
-    <!-- 메인 콘텐츠 섹션: 지도와 사이드 패널 -->
+    <!-- 메인 콘텐츠: 지도와 사이드 패널 -->
     <main class="main-content">
       <div class="map-ui-container">
-        <!-- 좌측: 지도 섹션 (75% 너비) -->
+        <!-- 지도 섹션 (좌측, 75%) -->
         <div class="map-section">
-          <!-- 현재 위치 버튼 (좌측 상단) -->
+          <!-- 현재 위치 버튼 -->
           <button id="current-btn" class="current-btn">현재 위치</button>
-          <!-- 검색창 및 검색 버튼 (중앙 상단) -->
+          <!-- 검색 박스 -->
           <div class="search-box">
             <input type="text" id="search-input" placeholder="어디로 갈까?" />
             <button id="search-btn">검색</button>
           </div>
           <!-- 지도 영역 -->
           <div id="map"></div>
-          <!-- 지도 우측 컨트롤: 카테고리 및 지도 유형 -->
+          <!-- 지도 우측 컨트롤 (내부 오버레이) -->
           <div class="right-controls">
             <h4>카테고리</h4>
-            <div class="badge-container">
+            <div class="badge-container" id="category_buttons">
               <button class="badge category-btn" data-cat="MT1">
                 대형마트
               </button>
@@ -201,8 +200,8 @@
               <button class="badge category-btn" data-cat="PM9">약국</button>
             </div>
             <h4 style="margin-top: 10px">지도 유형</h4>
-            <div class="badge-container">
-              <button class="badge map-type-btn" data-type="NORMAL">
+            <div class="badge-container" id="mapTypeControl">
+              <button class="badge map-type-btn control-on" data-type="NORMAL">
                 일반지도
               </button>
               <button class="badge map-type-btn" data-type="TERRAIN">
@@ -217,10 +216,9 @@
             </div>
           </div>
         </div>
-
-        <!-- 우측: 사이드 패널 (세부지역 및 관광타입 선택) -->
+        <!-- 사이드 패널 (우측) -->
         <div class="side-panel">
-          <!-- 지역 선택 버튼 (사이드 패널 상단) -->
+          <!-- 지역 선택 패널 -->
           <div class="region-selection-panel">
             <h4>지역 선택</h4>
             <div class="badge-container">
@@ -243,15 +241,13 @@
               <button class="badge region-btn" data-code="39">제주</button>
             </div>
           </div>
-
-          <!-- 세부지역 선택 영역 (빈 공간) -->
+          <!-- 세부지역 선택 영역 -->
           <div class="detail-region">
             <h4>세부지역</h4>
             <div id="detail-region-container" class="detail-region-container">
-              <!-- 나중에 기능 연동 시 동적으로 채워짐 -->
+              <!-- 동적으로 채워짐 -->
             </div>
           </div>
-
           <!-- 관광타입 선택 영역 -->
           <div class="tour-type">
             <h4>관광타입</h4>
@@ -272,40 +268,37 @@
               <button class="badge tour-type-btn" data-type="39">음식점</button>
             </div>
           </div>
-
-          <!-- 관광정보 조회하기 버튼 -->
+          <!-- 관광정보 조회 및 키워드 검색 -->
           <div class="info-query">
             <button class="btn info-query-btn">관광정보 조회하기</button>
           </div>
           <hr />
-          <!-- 키워드 관광정보 검색 섹션 -->
           <div class="keyword-search-section">
             <h4>키워드 관광정보 검색하기</h4>
             <input
               type="text"
-              id="keyword-search-input"
-              placeholder="검색어 입력"
+              id="keywordInput"
+              placeholder="관광정보 키워드 입력"
             />
-            <button class="btn keyword-search-btn">검색하기</button>
+            <button id="keywordSearchButton" class="btn keyword-search-btn">
+              검색하기
+            </button>
           </div>
         </div>
       </div>
-      <!-- 관광정보 게시판 섹션 -->
+      <!-- 관광정보 게시판 -->
       <div id="tourBoard">
         <h2>관광정보 게시판</h2>
-        <div id="tourBoardItems" class="tour-board-items">
-          <!-- 각 관광정보 아이템들이 동적으로 삽입될 영역 -->
-        </div>
-        <div id="tourBoardPagination" class="tour-board-pagination">
-          <!-- 페이지 네비게이션 -->
-        </div>
+        <div id="tourBoardItems" class="tour-board-items"></div>
+        <div id="tourBoardPagination" class="tour-board-pagination"></div>
       </div>
-
-      <!-- 추가 콘텐츠 영역 (필요 시) -->
-      <div class="section-spacer"></div>
+      <!-- 개발용 TourAPI UI (숨김) -->
+      <div id="tourapiContainer" style="display: none">
+        <!-- (백엔드 테스트용 UI – 필요 없으면 숨김) -->
+      </div>
     </main>
 
-    <!-- 푸터 섹션 -->
+    <!-- 푸터 -->
     <footer class="footer">
       <div class="container">
         <div class="footer-info">
@@ -382,10 +375,9 @@
       </div>
     </div>
 
-    <!-- Bootstrap JavaScript -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- 기존 JS 파일들 (map.js, app.js) -->
+    <!-- 통합된 JS 파일 -->
     <script src="map.js" defer></script>
-    <script src="app.js" defer></script>
   </body>
 </html>
