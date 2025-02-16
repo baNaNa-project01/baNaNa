@@ -174,7 +174,7 @@
 
       <div class="container text-center my-5">
         <!-- 헤더 -->
-        <h2 class="fw-semibold text-dark">빠르게 물어보세요!</h2>
+        <h2 class="fw-semibold text-dark">배나낭 AI에게 빠르게 물어보세요!</h2><br>
 
         <!-- 스텝 진행 과정 -->
         <div
@@ -217,29 +217,25 @@
           <div id="step1">
             <h2>대한민국, 어디로 떠날까요?</h2>
             <br />
-            <div class="location-buttons">
-              <button class="btn" onclick="selectLocation('서울')">서울</button>
-              <button class="btn" onclick="selectLocation('가평·양평')">
-                가평·양평
-              </button>
-              <button class="btn" onclick="selectLocation('강릉·속초')">
-                강릉·속초
-              </button>
-              <button class="btn" onclick="selectLocation('경주')">경주</button>
-              <button class="btn" onclick="selectLocation('부산')">부산</button>
-              <button class="btn" onclick="selectLocation('여수')">여수</button>
-              <button class="btn" onclick="selectLocation('전주')">전주</button>
-              <button class="btn" onclick="selectLocation('제주')">제주</button>
-              <button class="btn" onclick="selectLocation('춘천·홍천')">
-                춘천·홍천
-              </button>
-              <button class="btn" onclick="selectLocation('태안')">태안</button>
-              <button class="btn" onclick="selectLocation('통영·거제·남해')">
-                통영·거제·남해
-              </button>
-              <button class="btn" onclick="selectLocation('포항·안동')">
-                포항·안동
-              </button>
+            <div class="location-buttons" style="grid-template-columns: repeat(6, 1fr);">
+              <button class="ai-btn" onclick="selectLocation('대한민국 지역 중 임의로 지역을 골라서 정해줘. 항상 다른 지역을 정해줘.')">전체</button>
+              <button class="ai-btn" onclick="selectLocation('서울시')">서울</button>
+              <button class="ai-btn" onclick="selectLocation('부산시')">부산</button>
+              <button class="ai-btn" onclick="selectLocation('대구시')">대구</button>
+              <button class="ai-btn" onclick="selectLocation('인천시')">인천</button>
+              <button class="ai-btn" onclick="selectLocation('전라도 광주시')">광주</button>
+              <button class="ai-btn" onclick="selectLocation('대전시')">대전</button>
+              <button class="ai-btn" onclick="selectLocation('울산시')">울산</button>
+              <button class="ai-btn" onclick="selectLocation('세종시')">세종</button>
+              <button class="ai-btn" onclick="selectLocation('경기도')">경기</button>
+              <button class="ai-btn" onclick="selectLocation('강원도')">강원</button>
+              <button class="ai-btn" onclick="selectLocation('충청북도')">충북</button>
+              <button class="ai-btn" onclick="selectLocation('충청남도')">충남</button>
+              <button class="ai-btn" onclick="selectLocation('경상북도')">경북</button>
+              <button class="ai-btn" onclick="selectLocation('경상남도')">경남</button>
+              <button class="ai-btn" onclick="selectLocation('전라북도')">전북</button>
+              <button class="ai-btn" onclick="selectLocation('전라남도')">전남</button>
+              <button class="ai-btn" onclick="selectLocation('제주')">제주</button>
             </div>
             <button
               class="next-btn"
@@ -258,26 +254,26 @@
             <p>다중 선택이 가능해요.</p>
             <br />
             <div class="location-buttons">
-              <button class="btn" onclick="selectedCompanion('혼자')">
+              <button class="ai-btn" onclick="selectedCompanion('혼자')">
                 혼자
               </button>
-              <button class="btn" onclick="selectedCompanion('친구와')">
+              <button class="ai-btn" onclick="selectedCompanion('친구와')">
                 친구와
               </button>
-              <button class="btn" onclick="selectedCompanion('연인과')">
+              <button class="ai-btn" onclick="selectedCompanion('연인과')">
                 연인과
               </button>
-              <button class="btn" onclick="selectedCompanion('배우자와')">
+              <button class="ai-btn" onclick="selectedCompanion('배우자와')">
                 배우자와
               </button>
-              <button class="btn" onclick="selectedCompanion('아이와')">
+              <button class="ai-btn" onclick="selectedCompanion('아이와')">
                 아이와
               </button>
-              <button class="btn" onclick="selectedCompanion('부모님과')">
+              <button class="ai-btn" onclick="selectedCompanion('부모님과')">
                 부모님과
               </button>
-              <button class="btn" onclick="selectedCompanion('애완동물과')">
-                애완동물
+              <button class="ai-btn" onclick="selectedCompanion('반려동물과')">
+                반려동물과
               </button>
             </div>
             <button class="back-btn" onclick="goToStep1()">이전</button>
@@ -297,22 +293,22 @@
           <h2>여행 기간은 어떻게 되나요?</h2>
           <br />
           <div class="location-buttons">
-            <button class="btn" onclick="selectDuration('1일')">
+            <button class="ai-btn" onclick="selectDuration('1일')">
               당일치기
             </button>
-            <button class="btn" onclick="selectDuration('1박 2일')">
+            <button class="ai-btn" onclick="selectDuration('1박 2일')">
               1박 2일
             </button>
-            <button class="btn" onclick="selectDuration('2박 3일')">
+            <button class="ai-btn" onclick="selectDuration('2박 3일')">
               2박 3일
             </button>
-            <button class="btn" onclick="selectDuration('3박 4일')">
+            <button class="ai-btn" onclick="selectDuration('3박 4일')">
               3박 4일
             </button>
-            <button class="btn" onclick="selectDuration('4박 5일')">
+            <button class="ai-btn" onclick="selectDuration('4박 5일')">
               4박 5일
             </button>
-            <button class="btn" onclick="selectDuration('5박 6일')">
+            <button class="ai-btn" onclick="selectDuration('5박 6일')">
               5박 6일
             </button>
           </div>
@@ -333,47 +329,47 @@
           <h2>어떤 여행 스타일을 선호하시나요?</h2>
           <br />
           <div class="location-buttons">
-            <button class="btn" onclick="selectStyle('체험·액티비티 여행')">
+            <button class="ai-btn" onclick="selectStyle('체험·액티비티 여행')">
               체험·액티비티
             </button>
-            <button class="btn" onclick="selectStyle('자연과 함께한 여행')">
+            <button class="ai-btn" onclick="selectStyle('SNS 핫플레이스 여행')">
+              SNS 핫플레이스
+            </button>
+            <button class="ai-btn" onclick="selectStyle('자연과 함께한 여행')">
               자연과 함께
             </button>
             <button
-              class="btn"
+              class="ai-btn"
               onclick="selectStyle('해당 지역의 유명 관광지 여행')"
             >
               유명 관광지 필수
             </button>
             <button
-              class="btn"
+              class="ai-btn"
               onclick="selectStyle('힐링을 하며 안정을 취하는 여행')"
             >
               힐링을 느끼는
             </button>
             <button
-              class="btn"
+              class="ai-btn"
               onclick="selectStyle('여행지 느낌을 받는 여행')"
             >
               여행지 느낌을 받는
             </button>
             <button
-              class="btn"
+              class="ai-btn"
               onclick="selectStyle('쇼핑을 우선으로 하는 여행')"
             >
               쇼핑을 우선으로 하는
             </button>
             <button
-              class="btn"
+              class="ai-btn"
               onclick="selectStyle('관광 보다는 해당 지역의 대표 맛집 탐방 여행')"
             >
               관광 보다는 맛집
             </button>
-            <button class="btn" onclick="selectStyle('SNS 핫플레이스 여행')">
-              SNS 핫플레이스
-            </button>
             <button
-              class="btn"
+              class="ai-btn"
               onclick="selectStyle('문화·예술·역사 체험할 수 있는 여행')"
             >
               문화·예술·역사
@@ -396,10 +392,10 @@
           <h2>어느 정도의 일정을 선호하시나요?</h2>
           <br />
           <div class="location-buttons" style="display: flex; justify-content: center; gap: 10px;">
-            <button class="btn" onclick="selectSchedule('빼곡한 일정')">
+            <button class="ai-btn" onclick="selectSchedule('빼곡한 일정')">
               빼곡한 일정 선호
             </button>
-            <button class="btn" onclick="selectSchedule('널널한 일정')">
+            <button class="ai-btn" onclick="selectSchedule('널널한 일정')">
               널널한 일정 선호
             </button>
           </div>
@@ -419,43 +415,43 @@
           <div id="dayFilterButtons" class="day-buttons-container hidden">
             <button
               onclick="setActiveButton(this); showMarkersForDay('Day1')"
-              class="btn"
+              class="ai-btn"
             >
               Day 1
             </button>
             <button
               onclick="setActiveButton(this); showMarkersForDay('Day2')"
-              class="btn"
+              class="ai-btn"
             >
               Day 2
             </button>
             <button
               onclick="setActiveButton(this); showMarkersForDay('Day3')"
-              class="btn"
+              class="ai-btn"
             >
               Day 3
             </button>
             <button
               onclick="setActiveButton(this); showMarkersForDay('Day4')"
-              class="btn"
+              class="ai-btn"
             >
               Day 4
             </button>
             <button
               onclick="setActiveButton(this); showMarkersForDay('Day5')"
-              class="btn"
+              class="ai-btn"
             >
               Day 5
             </button>
             <button
               onclick="setActiveButton(this); showMarkersForDay('Day6')"
-              class="btn"
+              class="ai-btn"
             >
               Day 6
             </button>
             <button
               onclick="setActiveButton(this); showMarkersForDay('All')"
-              class="btn"
+              class="ai-btn"
             >
               모두 보기
             </button>
@@ -474,7 +470,7 @@
             </button>
           </div>
           <div class="character-container">
-            <img src="./assets/배나낭 채팅.svg" alt="Character" id="characterImage" />
+            <img src="./assets/ai-recommend-service/배나낭 채팅.svg" alt="Character" id="characterImage" />
           </div>
         </div>
       </div>

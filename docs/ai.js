@@ -37,7 +37,7 @@ function updateProgressBar(step) {
 function selectLocation(location) {
   selectedLocation = location;
   document
-    .querySelectorAll("#step1 .btn")
+    .querySelectorAll("#step1 .ai-btn")
     .forEach((btn) => btn.classList.remove("selected"));
   event.target.classList.add("selected");
   document.getElementById("nextStep1").disabled = false;
@@ -94,7 +94,7 @@ function goToStep2FromStep3() {
 function selectDuration(duration) {
   selectedDuration = duration;
   document
-    .querySelectorAll("#step3 .btn")
+    .querySelectorAll("#step3 .ai-btn")
     .forEach((btn) => btn.classList.remove("selected"));
   event.target.classList.add("selected");
   document.getElementById("nextStep3").disabled = false;
@@ -150,7 +150,7 @@ function goToStep4FromStep5() {
 function selectSchedule(schedule) {
   selectedSchedule = schedule;
   document
-    .querySelectorAll("#step5 .btn")
+    .querySelectorAll("#step5 .ai-btn")
     .forEach((btn) => btn.classList.remove("selected"));
   event.target.classList.add("selected");
   document.getElementById("nextStep5").disabled = !selectedSchedule;
@@ -248,12 +248,17 @@ function showDayButtons() {
   allButtons[allButtons.length - 1].style.display = "inline-block";
 }
 
-//구글 마커에 색상 배열을 색상별로 가져오는 함수
+//******기존 구글 마커에 색상 배열을 색상별로 가져오는 함수******
+// function getMarkerIcon(dayIndex) {
+//   const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
+//   return `http://maps.google.com/mapfiles/ms/icons/${
+//     colors[dayIndex % colors.length]
+//   }-dot.png`;
+// }
+
 function getMarkerIcon(dayIndex) {
-  const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
-  return `http://maps.google.com/mapfiles/ms/icons/${
-    colors[dayIndex % colors.length]
-  }-dot.png`;
+  const icons = ["./assets/ai-recommend-service/빨간 배나낭 마커.svg", "./assets/ai-recommend-service/주황 배나낭 마커.svg", "./assets/ai-recommend-service/노란 배나낭 마커.svg", "./assets/ai-recommend-service/녹색 배나낭 마커.svg", "./assets/ai-recommend-service/파란 배나낭 마커.svg", "./assets/ai-recommend-service/보라 배나낭 마커.svg"];
+  return icons[dayIndex % icons.length];
 }
 
 function showMarkersForDay(dayKey) {
@@ -317,7 +322,8 @@ function initMap() {
       places.forEach((place) => {
         getLatLngFromAddress(place)
           .then((latLng) => {
-            let marker = new google.maps.Marker({
+            // let marker = new google.maps.Marker({
+              let marker = new google.maps.Marker({  
               position: latLng,
               map: map,
               title: place,
