@@ -25,6 +25,10 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const BACKEND_URL = "https://banana-flask-app.onrender.com";
 
+  const loginButton = documentElement.getElementsById("login-button");
+  const userProfile = documentElement.getElementById("user-profile");
+  const userProfileName = documentElement.getElementById("user-profile-name");
+
   // ✅ 로그인 요청 (콜드 스타트 대응)
   async function loginWithRetry(provider, maxAttempts = 5, delay = 2000) {
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -85,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
 
-    console.log("🔍 현재 URL:", window.location.href);
-    console.log("🔍 URL에서 추출한 토큰:", token);
+    //console.log("🔍 현재 URL:", window.location.href);
+    //console.log("🔍 URL에서 추출한 토큰:", token);
 
     if (token) {
       console.log("✅ JWT 저장 완료! 토큰:", token);
@@ -118,9 +122,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const userData = await response.json();
       console.log("✅ 로그인한 사용자:", userData);
 
+      loginButton.classList.add("hidden");
+      userProfile.classList.remove("hidden");
+
       document.getElementById(
-        "user-info"
-      ).innerText = `안녕하세요, ${userData.name}!`;
+        "user-profile-name"
+      ).innerText = `안녕하세요, ${userData.name}님`;
 
       return userData;
     } catch (error) {

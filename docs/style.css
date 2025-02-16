@@ -378,3 +378,44 @@ footer span {
   margin: 0;
   padding: 0;
 }
+
+/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*
+ *              로그인 후 프로필 아이콘
+ *━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
+
+.user-hidden {
+  display: none;
+}
+
+#user-profile {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#user-profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+#user-profile-name {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 14px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+#user-profile:hover #user-profile-name {
+  visibility: visible;
+  opacity: 1;
+}
