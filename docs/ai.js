@@ -37,7 +37,7 @@ function updateProgressBar(step) {
 function selectLocation(location) {
   selectedLocation = location;
   document
-    .querySelectorAll("#step1 .btn")
+    .querySelectorAll("#step1 .ai-btn")
     .forEach((btn) => btn.classList.remove("selected"));
   event.target.classList.add("selected");
   document.getElementById("nextStep1").disabled = false;
@@ -94,7 +94,7 @@ function goToStep2FromStep3() {
 function selectDuration(duration) {
   selectedDuration = duration;
   document
-    .querySelectorAll("#step3 .btn")
+    .querySelectorAll("#step3 .ai-btn")
     .forEach((btn) => btn.classList.remove("selected"));
   event.target.classList.add("selected");
   document.getElementById("nextStep3").disabled = false;
@@ -150,7 +150,7 @@ function goToStep4FromStep5() {
 function selectSchedule(schedule) {
   selectedSchedule = schedule;
   document
-    .querySelectorAll("#step5 .btn")
+    .querySelectorAll("#step5 .ai-btn")
     .forEach((btn) => btn.classList.remove("selected"));
   event.target.classList.add("selected");
   document.getElementById("nextStep5").disabled = !selectedSchedule;
@@ -323,7 +323,6 @@ function initMap() {
         getLatLngFromAddress(place)
           .then((latLng) => {
             // let marker = new google.maps.Marker({
-              console.log("마커 아이콘 확인:", getMarkerIcon(index)); //마커 배열 확인
               let marker = new google.maps.Marker({  
               position: latLng,
               map: map,

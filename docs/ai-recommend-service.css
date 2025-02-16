@@ -154,7 +154,7 @@ body {
   margin-left: auto; /* 중앙 정렬 */
   margin-right: auto; /* 중앙 정렬 */
 }
-.btn {
+/* .ai-btn {
   padding: 15px 20px;
   font-size: 16px;
   border-radius: 30px;
@@ -163,15 +163,30 @@ body {
   color: gray;
   cursor: pointer;
   transition: all 0.3s ease;
+} */
+
+.ai-btn {
+  padding: 15px 20px; /* 안쪽 여백으로 크기 조정 */
+  font-size: 16px;
+  border-radius: 30px;
+  border: 2px solid lightgray;
+  background-color: #f8f8f8;
+  color: gray;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: auto; /* 버튼 너비를 내용 크기에 맞게 조정 */
+  display: inline-block; /* 블록 요소가 되지 않도록 설정 */
+  white-space: nowrap; /* 텍스트가 여러 줄로 줄바꿈되지 않도록 설정 */
 }
-.btn.selected {
+
+.ai-btn.selected {
   border-color: white;
   color: white;
   font-weight: bold;
   background-color: rgb(255, 207, 35);
 }
 
-.btn:hover {
+.ai-btn:hover {
   border-color: rgb(255, 207, 35);
   transition: border-color 0.3s ease;
 }
@@ -308,7 +323,7 @@ body {
 
 /* 배나낭 위치 */
 .character-container {
-  float: left;  /* 캐릭터를 왼쪽에 배치 */
+  float: right;  /* 캐릭터를 왼쪽에 배치 */
   margin-right: 20px;  /* 캐릭터와 다른 요소들 사이에 여백을 두기 */
 }
 
