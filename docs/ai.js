@@ -10,6 +10,29 @@ let map; // Google Map 객체를 저장할 변수
 // 전역 변수 선언
 let dayPlaces = {}; // {} 빈 객체로 초기화
 
+// 프로그레스바 업데이트 함수
+function updateProgressBar(step) {
+  // 모든 step-container의 active 클래스 제거
+  document.querySelectorAll(".step-container").forEach((container) => {
+    container.classList.remove("active");
+  });
+
+  // 모든 step-item의 active 클래스 제거
+  document.querySelectorAll(".step-item").forEach((item) => {
+    item.classList.remove("active");
+  });
+
+  // 현재 스텝까지의 모든 step-container와 step-item에 active 클래스 추가
+  for (let i = 1; i <= step; i++) {
+    const stepContainer = document.querySelector(
+      `.step-container:nth-child(${2 * i - 1})`
+    );
+    const stepItem = stepContainer.querySelector(".step-item");
+    stepContainer.classList.add("active");
+    stepItem.classList.add("active");
+  }
+}
+
 //1단계 여행지 선택 변수 저장
 function selectLocation(location) {
   selectedLocation = location;
@@ -17,7 +40,8 @@ function selectLocation(location) {
     .querySelectorAll("#step1 .btn")
     .forEach((btn) => btn.classList.remove("selected"));
   event.target.classList.add("selected");
-    document.getElementById("nextStep1").disabled = false;
+  document.getElementById("nextStep1").disabled = false;
+  updateProgressBar(1); // 여기에 추가
 }
 
 //2단계로 가기 - 동반자 선택
@@ -25,6 +49,7 @@ function goToStep2() {
   if (selectedLocation) {
     document.getElementById("step1").classList.add("hidden");
     document.getElementById("step2").classList.remove("hidden");
+    updateProgressBar(2); // 여기에 추가
   }
 }
 
@@ -32,6 +57,7 @@ function goToStep2() {
 function goToStep1() {
   document.getElementById("step2").classList.add("hidden");
   document.getElementById("step1").classList.remove("hidden");
+  updateProgressBar(1); // 여기에 추가
 }
 
 //2단계 - 동반자 변수를 배열로 중복 저장
@@ -53,6 +79,7 @@ function goToStep3() {
   if (selectedCompanions.length > 0) {
     document.getElementById("step2").classList.add("hidden");
     document.getElementById("step3").classList.remove("hidden");
+    updateProgressBar(3); // 프로그레스바
   }
 }
 
@@ -60,6 +87,7 @@ function goToStep3() {
 function goToStep2FromStep3() {
   document.getElementById("step3").classList.add("hidden");
   document.getElementById("step2").classList.remove("hidden");
+  updateProgressBar(2); // 프로그레스바
 }
 
 //3단계 - 기간을 정하기
@@ -77,6 +105,7 @@ function goToStep4() {
   if (selectedDuration) {
     document.getElementById("step3").classList.add("hidden");
     document.getElementById("step4").classList.remove("hidden");
+    updateProgressBar(4); // 프로그레스바
   }
 }
 
@@ -84,6 +113,7 @@ function goToStep4() {
 function goToStep3FromStep4() {
   document.getElementById("step4").classList.add("hidden");
   document.getElementById("step3").classList.remove("hidden");
+  updateProgressBar(3); // 프로그레스바
 }
 
 // 4단계 - 여행 스타일 선택 함수 (다중 선택 가능)
@@ -105,6 +135,7 @@ function goToStep5() {
   if (selectedStyle.length > 0) {
     document.getElementById("step4").classList.add("hidden");
     document.getElementById("step5").classList.remove("hidden");
+    updateProgressBar(5); // 프로그레스바
   }
 }
 
@@ -112,6 +143,7 @@ function goToStep5() {
 function goToStep4FromStep5() {
   document.getElementById("step5").classList.add("hidden");
   document.getElementById("step4").classList.remove("hidden");
+  updateProgressBar(4); // 프로그레스바
 }
 
 // 5단계 - 여행 일정 선택 함수
@@ -129,6 +161,7 @@ function goToStep1FromStep6() {
   document.getElementById("step6").classList.add("hidden");
   document.getElementById("step1").classList.remove("hidden");
   document.getElementById("progress-container").classList.remove("hidden");
+  updateProgressBar(1); // 프로그레스바
 }
 
 async function callGeminiAPI() {
@@ -305,10 +338,8 @@ function initMap() {
   });
 }
 
-
 // 5단계에서 결과 보기
 function showSelection() {
-
   // Gemini API 호출하여 여행 일정 데이터 가져오기
   callGeminiAPI().then((reply) => {
     console.log("API 응답:", reply); // API 응답 확인 (디버깅용)
@@ -353,7 +384,7 @@ function showSelection() {
     // 화면 전환: 진행 중 화면(step5) 숨기고 결과 화면(step6) 표시
     document.getElementById("step5").classList.add("hidden");
     document.getElementById("step6").classList.remove("hidden");
-
+    updateProgressBar(6); // 여기에 추가
     console.log("initMap 호출 전 dayPlaces:", dayPlaces); // 지도 초기화 전에 데이터 확인
 
     // 지도 초기화 함수 실행 (마커 찍기)

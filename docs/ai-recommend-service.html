@@ -204,6 +204,11 @@
             <div class="step-item">Step5</div>
             <div class="step-text">여행 일정</div>
           </div>
+          <div class="step-line"></div>
+          <div class="step-container">
+            <div class="step-item">Step6</div>
+            <div class="step-text">결과 확인</div>
+          </div>
         </div>
 
         <!-- 지역 선택 -->
@@ -211,7 +216,7 @@
           <!-- <div class="step-form active" data-step="1"> -->
           <div id="step1">
             <h2>대한민국, 어디로 떠날까요?</h2>
-            <br>
+            <br />
             <div class="location-buttons">
               <button class="btn" onclick="selectLocation('서울')">서울</button>
               <button class="btn" onclick="selectLocation('가평·양평')">
@@ -251,7 +256,7 @@
             <!-- <button class="back-btn" onclick="goToStep1()">이전</button> -->
             <h2>누구와 떠나나요?</h2>
             <p>다중 선택이 가능해요.</p>
-            <br>
+            <br />
             <div class="location-buttons">
               <button class="btn" onclick="selectedCompanion('혼자')">
                 혼자
@@ -289,7 +294,8 @@
 
         <div id="step3" class="hidden">
           <!-- <button class="back-btn" onclick="goToStep2FromStep3()">이전</button> -->
-          <h2>여행 기간은 어떻게 되나요?</h2><br>
+          <h2>여행 기간은 어떻게 되나요?</h2>
+          <br />
           <div class="location-buttons">
             <button class="btn" onclick="selectDuration('1일')">
               당일치기
@@ -324,7 +330,8 @@
         <!-- 여행 스타일-->
         <div id="step4" class="hidden">
           <!-- <button class="back-btn" onclick="goToStep3FromStep4()">이전</button> -->
-          <h2>어떤 여행 스타일을 선호하시나요?</h2><br>
+          <h2>어떤 여행 스타일을 선호하시나요?</h2>
+          <br />
           <div class="location-buttons">
             <button class="btn" onclick="selectStyle('체험·액티비티 여행')">
               체험·액티비티
@@ -386,8 +393,9 @@
         <!-- 여행 일정-->
         <div id="step5" class="hidden">
           <!-- <button class="back-btn" onclick="goToStep4FromStep5()">이전</button> -->
-          <h2>어느 정도의 일정을 선호하시나요?</h2><br>
-          <div class="location-buttons">
+          <h2>어느 정도의 일정을 선호하시나요?</h2>
+          <br />
+          <div class="location-buttons" style="display: flex; justify-content: center; gap: 10px;">
             <button class="btn" onclick="selectSchedule('빼곡한 일정')">
               빼곡한 일정 선호
             </button>
