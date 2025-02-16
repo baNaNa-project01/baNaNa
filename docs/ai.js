@@ -257,7 +257,14 @@ function showDayButtons() {
 // }
 
 function getMarkerIcon(dayIndex) {
-  const icons = ["./assets/ai-recommend-service/빨간 배나낭 마커.svg", "./assets/ai-recommend-service/주황 배나낭 마커.svg", "./assets/ai-recommend-service/노란 배나낭 마커.svg", "./assets/ai-recommend-service/녹색 배나낭 마커.svg", "./assets/ai-recommend-service/파란 배나낭 마커.svg", "./assets/ai-recommend-service/보라 배나낭 마커.svg"];
+  const icons = [
+    "./assets/ai-recommend-service/빨간 배나낭 마커.svg",
+    "./assets/ai-recommend-service/주황 배나낭 마커.svg",
+    "./assets/ai-recommend-service/노란 배나낭 마커.svg",
+    "./assets/ai-recommend-service/녹색 배나낭 마커.svg",
+    "./assets/ai-recommend-service/파란 배나낭 마커.svg",
+    "./assets/ai-recommend-service/보라 배나낭 마커.svg",
+  ];
   return icons[dayIndex % icons.length];
 }
 
@@ -323,7 +330,7 @@ function initMap() {
         getLatLngFromAddress(place)
           .then((latLng) => {
             // let marker = new google.maps.Marker({
-              let marker = new google.maps.Marker({  
+            let marker = new google.maps.Marker({
               position: latLng,
               map: map,
               title: place,
@@ -346,9 +353,14 @@ function initMap() {
 
 // 5단계에서 결과 보기
 function showSelection() {
+  // ✅ 로딩 스피너 표시
+  document.getElementById("loadingOverlay").classList.remove("hidden");
   // Gemini API 호출하여 여행 일정 데이터 가져오기
   callGeminiAPI().then((reply) => {
     console.log("API 응답:", reply); // API 응답 확인 (디버깅용)
+
+    // ✅ 로딩 스피너 숨기기 (결과가 준비된 후)
+    document.getElementById("loadingOverlay").classList.add("hidden");
 
     // 결과를 표시할 HTML 요소 가져오기
     const resultText = document.getElementById("resultText");
