@@ -1,4 +1,8 @@
-/* 기본 리셋 및 폰트 */
+/* ============================= */
+/*       Combined map.css        */
+/* ============================= */
+
+/* ---------- 기본 리셋 및 폰트 ---------- */
 body,
 html {
   margin: 0;
@@ -7,7 +11,7 @@ html {
   background-color: #f7f7f7;
 }
 
-/* 내비게이션 바 */
+/* ---------- 내비게이션 바 ---------- */
 .navbar {
   background-color: #f8f41a;
   padding: 10px 20px;
@@ -31,19 +35,19 @@ html {
   color: #333;
 }
 
-/* 배너 */
+/* ---------- 배너 ---------- */
 .banner img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* 메인 콘텐츠 */
+/* ---------- 메인 콘텐츠 ---------- */
 .main-content {
   margin: 20px;
 }
 
-/* 지도와 컨트롤 영역 컨테이너 */
+/* ---------- 지도 및 컨트롤 영역 컨테이너 ---------- */
 .map-ui-container {
   display: flex;
   flex-direction: row;
@@ -53,7 +57,7 @@ html {
   gap: 20px;
 }
 
-/* 지도 섹션 (좌측, 75%) */
+/* ---------- 지도 섹션 (좌측, 75%) ---------- */
 .map-section {
   position: relative;
   width: 75%;
@@ -67,8 +71,9 @@ html {
   border: 1px solid #ccc;
 }
 
-/* 현재 위치 버튼: 좌측 상단, 모서리 둥글게 */
-.current-btn {
+/* ---------- 현재 위치 버튼 ---------- */
+.current-btn,
+#current {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -80,7 +85,7 @@ html {
   border-radius: 8px;
 }
 
-/* 검색 박스: 중앙 상단, 가로 길이 확장 및 모서리 둥글게 */
+/* ---------- 검색 박스 ---------- */
 .search-box {
   position: absolute;
   top: 10px;
@@ -92,19 +97,26 @@ html {
 .search-box input {
   padding: 10px;
   width: 350px;
-  border: 1px solid #f8f41a; /* 노란 테두리 */
+  border: 1px solid #f8f41a;
   border-right: none;
   border-radius: 8px 0 0 8px;
+  background-color: #333;
+  color: #fff;
 }
 .search-box button {
   padding: 10px 16px;
-  border: 1px solid #f8f41a; /* 노란 테두리 */
+  border: 1px solid #f8f41a;
   background-color: #f8f41a;
   border-radius: 0 8px 8px 0;
   cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.search-box button:hover {
+  background-color: #e6d31a;
 }
 
-/* 지도 우측 컨트롤: 카테고리 및 지도 유형 (지도 내부의 오버레이) */
+/* ---------- 지도 우측 컨트롤 (내부 오버레이) ---------- */
 .right-controls {
   position: absolute;
   top: 10px;
@@ -115,11 +127,11 @@ html {
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  text-align: center;
 }
 .right-controls h4 {
   margin: 0 0 10px;
   font-size: 16px;
-  text-align: center;
   color: #000;
 }
 .right-controls .badge-container {
@@ -139,12 +151,11 @@ html {
   color: #000;
 }
 
-/* 사이드 패널: 지도 바로 옆에 있는 지역 선택, 세부지역 선택, 관광타입 선택 박스 */
-/* 배경색을 노란색으로 변경 */
+/* ---------- 사이드 패널 (우측) ---------- */
 .side-panel {
   width: 28%;
   min-width: 250px;
-  background-color: #f8f41a; /* 변경: 노란색 배경 */
+  background-color: #f8f41a;
   padding: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -155,27 +166,24 @@ html {
   font-size: 18px;
   color: #000;
 }
-
-/* 지역 선택 패널 (사이드 패널 상단) */
-.region-selection-panel {
-  margin-bottom: 20px;
-}
-.region-selection-panel .badge-container {
+.region-selection-panel .badge-container,
+.tour-type .badge-container {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
 }
-.region-selection-panel .badge {
+.region-selection-panel .badge,
+.tour-type .badge {
   padding: 6px 10px;
   font-size: 14px;
-  border: 1px solid #f8f41a; /* 노란 테두리 */
+  border: 1px solid #f8f41a;
   background-color: #fff;
   border-radius: 4px;
   cursor: pointer;
   color: #000;
 }
 
-/* 세부지역 컨테이너 (빈 공간) */
+/* ---------- 세부지역 컨테이너 ---------- */
 .detail-region-container {
   min-height: 100px;
   border: 1px dashed #ccc;
@@ -183,41 +191,22 @@ html {
   margin-bottom: 20px;
 }
 
-/* 관광타입 버튼 */
-.tour-type-btn {
-  display: inline-block;
-  margin: 4px;
-  padding: 8px 12px;
-  border: 1px solid #f8f41a; /* 노란 테두리 */
-  background-color: #fff;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.3s, color 0.3s;
-  color: #000;
-}
-.tour-type-btn:hover,
-.tour-type-btn.active {
-  background-color: #f8f41a;
-  color: #000;
-}
-
-/* 관광정보 조회하기 버튼: 검은색 배경, 흰색 텍스트 */
+/* ---------- 관광정보 조회하기 버튼 ---------- */
 .info-query {
   margin-top: 15px;
   text-align: center;
 }
 .info-query-btn {
   padding: 10px 15px;
-  background-color: #000; /* 검은색 */
+  background-color: #000;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  color: #fff; /* 흰색 텍스트 */
+  color: #fff;
   font-size: 16px;
 }
 
-/* 키워드 관광정보 검색 섹션 */
+/* ---------- 키워드 검색 섹션 ---------- */
 .keyword-search-section {
   margin-top: 15px;
   text-align: center;
@@ -230,53 +219,38 @@ html {
 .keyword-search-section input {
   width: 100%;
   padding: 8px;
-  border: 1px solid #f8f41a; /* 노란 테두리 */
+  border: 1px solid #f8f41a;
   border-radius: 8px;
   margin-bottom: 10px;
 }
 .keyword-search-btn {
   padding: 10px 15px;
-  background-color: #000; /* 검은색 */
+  background-color: #000;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  color: #fff; /* 흰색 텍스트 */
+  color: #fff;
   font-size: 16px;
 }
 
-/* 반응형 */
-@media (max-width: 768px) {
-  .map-ui-container {
-    flex-direction: column;
-  }
-  .map-section,
-  .side-panel {
-    width: 100%;
-  }
-}
-
-/* 관광정보 게시판 섹션 */
+/* ---------- 관광정보 게시판 ---------- */
 #tourBoard {
   margin-top: 20px;
   padding: 20px;
   background-color: #fff;
   border-top: 1px solid #ccc;
 }
-
 #tourBoard h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
   color: #000;
 }
-
-/* 관광정보 게시판 아이템: 그리드 레이아웃 */
 .tour-board-items {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
 }
-
 .tour-board-item {
   border: 1px solid #ccc;
   padding: 10px;
@@ -285,17 +259,13 @@ html {
   text-align: center;
   transition: box-shadow 0.3s;
 }
-
 .tour-board-item:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
-
-/* 페이지 네비게이션 스타일 */
 .tour-board-pagination {
   text-align: center;
   margin-top: 20px;
 }
-
 .tour-board-pagination a {
   margin: 0 5px;
   text-decoration: none;
@@ -303,7 +273,149 @@ html {
   font-weight: bold;
   cursor: pointer;
 }
-
 .tour-board-pagination a.active {
-  color: #f8f41a;
+  color: red;
+}
+
+/* ---------- 마커 스타일 ---------- */
+.marker {
+  width: 20px;
+  height: 20px;
+  background: blue;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+.search-marker {
+  width: 24px;
+  height: 24px;
+  background: red;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+.regionTourMarker {
+  border: 1px solid black;
+  background: yellow;
+  opacity: 0.9;
+  width: 24px;
+  height: 24px;
+  border-radius: 30%;
+  position: relative;
+  z-index: 10;
+}
+
+/* ---------- 모달 ---------- */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 8px;
+}
+.modal-content .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal-content .close:hover,
+.modal-content .close:focus {
+  color: #000;
+}
+.modal-body {
+  display: flex;
+  gap: 20px;
+}
+.modal-left {
+  flex: 1;
+}
+.modal-left img {
+  width: 100%;
+  border-radius: 4px;
+}
+.modal-right {
+  flex: 2;
+  overflow-y: auto;
+  max-height: 400px;
+}
+.image-slider {
+  position: relative;
+  text-align: center;
+}
+.image-slider img.slide {
+  width: 100%;
+  max-height: 400px;
+  border-radius: 4px;
+}
+.slider-prev,
+.slider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.slider-prev {
+  left: 10px;
+}
+.slider-next {
+  right: 10px;
+}
+/* map.css (어딘가 포함되어야 함) */
+.myloc {
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+  animation: pulse 1.7s infinite;
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(204, 49, 44, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 49, 44, 0);
+  }
+}
+
+.infowindow_wrap {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  max-width: 250px;
+}
+.infowindow_title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.infowindow_content {
+  margin-bottom: 5px;
+}
+.infowindow_createdTime,
+.infowindow_phone {
+  font-size: 12px;
+  color: #666;
 }
