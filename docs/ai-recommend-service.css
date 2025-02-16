@@ -13,6 +13,8 @@ body {
 
 /* 스텝 컨테이너 */
 .step-container {
+  font-family: "Pretendard-Medium";
+  font-style: normal;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,10 +116,12 @@ body {
 
 /* 다음 버튼 */
 .next-btn {
+  font-family: "Pretendard-Medium";
+  font-style: normal;
   background-color: #ffd700;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 18px;
-  font-weight: 600;
+  /* font-weight: 600; */
   padding: 10px 60px; /* 수평 패딩을 늘려 버튼 가로 크기 증가 */
   border-radius: 30px;
   border: none;
@@ -144,6 +148,8 @@ body {
   display: none;
 }
 .location-buttons {
+  font-family: "Pretendard-Medium";
+  font-style: normal;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
@@ -181,8 +187,8 @@ body {
 
 .ai-btn.selected {
   border-color: white;
-  color: white;
-  font-weight: bold;
+  color: rgb(0, 0, 0);
+  /* font-weight: bold; */
   background-color: rgb(255, 207, 35);
 }
 
@@ -195,10 +201,12 @@ body {
 /* 기존 스타일에 추가 */
 
 .back-btn {
+  font-family: "Pretendard-Medium";
+  font-style: normal;
   background-color: #ffd700;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 18px;
-  font-weight: 600;
+  /* font-weight: 600; */
   padding: 10px 60px;
   border-radius: 30px;
   border: none;
@@ -330,4 +338,10 @@ body {
 #characterImage {
   width: 100px;  /* 캐릭터 이미지 크기 조정 */
   height: auto;
+}
+
+p{
+  font-family: "Pretendard-Medium";
+  font-style: normal;
+  font-size: medium;
 }
