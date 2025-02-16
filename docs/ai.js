@@ -17,7 +17,7 @@ function selectLocation(location) {
     .querySelectorAll("#step1 .btn")
     .forEach((btn) => btn.classList.remove("selected"));
   event.target.classList.add("selected");
-  document.getElementById("nextStep1").disabled = false;
+    document.getElementById("nextStep1").disabled = false;
 }
 
 //2단계로 가기 - 동반자 선택
