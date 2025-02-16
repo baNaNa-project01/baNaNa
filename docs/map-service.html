@@ -39,7 +39,8 @@
       rel="stylesheet"
     />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
+    <!-- 커스텀 공통 CSS -->
+    <link rel="stylesheet" href="style.css" />
     <!-- 통합된 CSS 파일 -->
     <link rel="stylesheet" href="map.css" />
   </head>
@@ -243,6 +244,7 @@
           </div>
           <!-- 세부지역 선택 영역 -->
           <div class="detail-region">
+            <br />
             <h4>세부지역</h4>
             <div id="detail-region-container" class="detail-region-container">
               <!-- 동적으로 채워짐 -->
@@ -297,6 +299,27 @@
         <!-- (백엔드 테스트용 UI – 필요 없으면 숨김) -->
       </div>
     </main>
+    <!-- 상세정보 팝업 모달 -->
+    <div id="detailModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-body">
+          <div class="modal-left">
+            <!-- 제목 영역 추가 -->
+            <h2
+              id="modalTitle"
+              style="text-align: center; margin-bottom: 10px"
+            ></h2>
+            <!-- 이미지 슬라이더 영역 (renderImageSlider() 함수가 여기에 콘텐츠를 채웁니다) -->
+          </div>
+          <div class="modal-right">
+            <div id="modalDetails">
+              <!-- 상세 관광정보 내용이 채워짐 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- 푸터 -->
     <footer class="footer">
