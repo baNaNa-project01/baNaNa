@@ -1,12 +1,17 @@
 document.addEventListener("DOMContentLoaded", async function () {
   const loadingContainer = document.getElementById("loading-container");
   const postContainer = document.getElementById("post-detail-container");
+  const token = localStorage.getItem("access_token"); // 저장된 JWT 토큰 가져오기
 
   const postTitle = document.getElementById("post-detail-title");
   const postContent = document.getElementById("post-detail-content");
   const postAuthor = document.getElementById("post-detail-author");
   const postDate = document.getElementById("post-detail-date");
   const postImage = document.getElementById("post-detail-image");
+
+  const commentInput = document.getElementById("comment-detail-input");
+  const submitCommentBtn = document.getElementById("submit-detail-comment");
+
   const commentsContainer = document.getElementById(
     "comments-detail-container"
   );
@@ -25,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   const API_URL = `https://banana-flask-app.onrender.com/post/${postId}`;
-  const COMMENTS_API_URL = `https://banana-flask-app.onrender.com/post/${postId}/comments`;
+  const COMMENTS_API_URL = `https://banana-flask-app.onrender.com/post/${postId}/comment`;
 
   let retryCount = 0;
   const MAX_RETRIES = 5; // 최대 5번 재시도
@@ -134,6 +139,39 @@ document.addEventListener("DOMContentLoaded", async function () {
       commentsContainer.innerHTML = "<p>⚠ 댓글을 불러오는 데 실패했습니다.</p>";
     }
   }
+
+  // ✅ 댓글 작성 기능 추가
+  submitCommentBtn.addEventListener("click", async function () {
+    if (!token) {
+      alert("🚨 로그인 후 댓글을 작성할 수 있습니다!");
+      return;
+    }
+
+    const content = commentInput.value.trim();
+    if (!content) {
+      alert("🚨 댓글을 입력하세요!");
+      return;
+    }
+
+    try {
+      const response = await fetch(CREATE_COMMENT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ content }),
+      });
+
+      if (!response.ok) throw new Error("댓글 작성 실패!");
+
+      commentInput.value = "";
+      fetchComments();
+    } catch (error) {
+      console.error("🚨 댓글 작성 오류:", error);
+      alert("댓글 작성에 실패했습니다!");
+    }
+  });
 
   // ✅ 게시물 데이터 가져오기 실행
   fetchDetailPost();
