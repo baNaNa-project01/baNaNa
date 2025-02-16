@@ -1,12 +1,20 @@
 /* ============================= */
 /*       Combined map.css        */
 /* ============================= */
-
 /* ---------- 배너 ---------- */
 .banner img {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* 여행 정보 문구 스타일 */
+.travel-info-text {
+  text-align: center; /* 중앙 정렬 */
+  font-size: fpx; /* 텍스트 크기 */
+  font-weight: 600; /* 강조 */
+  color: #333; /* 가독성 좋은 색상 */
+  margin-bottom: 80px;
 }
 
 /* ---------- 메인 콘텐츠 ---------- */
@@ -99,7 +107,7 @@
 .right-controls h4 {
   margin: 0 0 10px;
   font-size: 16px;
-  color: #000;
+  color: #1a1a1a;
 }
 .right-controls .badge-container {
   display: flex;
@@ -115,23 +123,28 @@
   background-color: #fff;
   border-radius: 4px;
   cursor: pointer;
-  color: #000;
+  color: #1a1a1a;
 }
 
 /* ---------- 사이드 패널 (우측) ---------- */
 .side-panel {
   width: 28%;
+  max-width: 400px; /* 패널 최대 크기 제한 */
   min-width: 250px;
+  overflow-y: auto; /* 내부 내용이 넘칠 경우 스크롤 표시 */
   background-color: #ffd700;
   padding: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 .side-panel h4 {
   margin-bottom: 10px;
   font-size: 18px;
-  color: #000;
+  color: #333;
 }
 .region-selection-panel .badge-container,
 .tour-type .badge-container {
@@ -147,7 +160,7 @@
   background-color: #fff;
   border-radius: 4px;
   cursor: pointer;
-  color: #000;
+  color: #1a1a1a;
 }
 
 /* ---------- 검색 결과 목록 스타일 ---------- */
@@ -176,7 +189,7 @@
 }
 #search-results .search-result-item:hover {
   background-color: #ffd700;
-  color: #000;
+  color: #1a1a1a;
 }
 
 /* ---------- 로딩 애니메이션 (텍스트 스타일) ---------- */
@@ -190,7 +203,7 @@
 /* ---------- 세부지역 컨테이너 ---------- */
 .detail-region-container {
   min-height: 100px;
-  border: 1px dashed #ccc;
+  border: 1px dashed #f7f7f7;
   padding: 10px;
   margin-bottom: 20px;
 }
@@ -198,7 +211,7 @@
 .detail-region-btn {
   border: 1px solid #ffd700;
   background-color: #fff;
-  color: #000;
+  color: #1a1a1a;
   padding: 6px 10px;
   font-size: 14px;
   text-align: center;
@@ -209,9 +222,9 @@
 
 /* 선택된 버튼 스타일: 배경 검정, 글자 흰색 */
 .badge.active {
-  background-color: #000;
+  background-color: #1a1a1a;
   color: #fff;
-  border-color: #000;
+  border-color: #1a1a1a;
 }
 
 /* ---------- 관광정보 조회하기 버튼 ---------- */
@@ -221,7 +234,7 @@
 }
 .info-query-btn {
   padding: 10px 15px;
-  background-color: #000;
+  background-color: #1a1a1a;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -237,7 +250,7 @@
 .keyword-search-section h4 {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #000;
+  color: #1a1a1a;
 }
 .keyword-search-section input {
   width: 100%;
@@ -248,7 +261,7 @@
 }
 .keyword-search-btn {
   padding: 10px 15px;
-  background-color: #000;
+  background-color: #1a1a1a;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -268,7 +281,7 @@
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
-  color: #000;
+  color: #1a1a1a;
 }
 .tour-board-items {
   display: grid;
@@ -314,7 +327,7 @@
 .tour-board-pagination a {
   margin: 0 5px;
   text-decoration: none;
-  color: #000;
+  color: #1a1a1a;
   font-weight: bold;
   cursor: pointer;
 }
@@ -349,59 +362,45 @@
 }
 
 /* ---------- 모달 (상세정보 팝업) ---------- */
-.modal {
-  display: none; /* 기본적으로 숨김 */
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.modal-content {
-  background-color: #fff;
-  margin: 5% auto;
-  padding: 20px;
-  border: none;
-  width: 90%;
-  max-width: 800px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-.modal-content .close {
-  color: #333;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.modal-content .close:hover,
-.modal-content .close:focus {
-  color: #000;
-}
-.modal-body {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.modal-left {
-  flex: 1;
-}
-.modal-right {
-  flex: 1.5;
-  max-height: 500px;
-  overflow-y: auto;
-  padding: 10px;
+/* ===================== 지도 상세정보 모달 스타일 ===================== */
+.map-modal {
+  display: none !important;
+  position: fixed !important;
+  z-index: 2000 !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: auto !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
-/* 모달 왼쪽: 제목 및 이미지 슬라이더 */
-.modal-left h2 {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 20px;
-  color: #333;
+/* 지도 모달 내부 구조 */
+.map-modal-content {
+  background-color: #fff !important;
+  margin: 5% auto !important;
+  padding: 20px !important;
+  border: none !important;
+  width: 90% !important;
+  max-width: 800px !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+  z-index: 2001 !important;
 }
+
+/* 지도 모달 내부 레이아웃 */
+.map-modal-left {
+  flex: 1 !important;
+}
+
+.map-modal-right {
+  flex: 1.5 !important;
+  max-height: 500px !important;
+  overflow-y: auto !important;
+  padding: 10px !important;
+}
+
+
 .image-slider {
   position: relative;
   text-align: center;
