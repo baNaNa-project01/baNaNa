@@ -56,6 +56,12 @@
         background: none;
         outline: none;
       }
+
+      /* 월드컵 다시 하러 가기 버튼 호버 & 클릭 시 어두워지는 효과 */
+      .go-back:hover .btn-worldcup-img {
+        filter: brightness(0.85); /* 호버 시 어두워짐 */
+        cursor: pointer;
+      }
     </style>
 
     <!-- Supabase JavaScript 클라이언트 라이브러리 -->
@@ -232,6 +238,15 @@
     <!-- **************************************************** -->
     <!-- ★★★★★  여기부터 이상형 월드컵 섹션 ★★★★★ -->
     <!-- **************************************************** -->
+    <section>
+      <img
+        src="./assets/world-cup/월드컵 경기 배너.svg"
+        alt="월드컵 게임 상단 이미지"
+        class="post-card-image"
+        width="100%"
+        height="auto;"
+      />
+    </section>
 
     <!-- 헤드라인 -->
     <div class="content-wrapper">
@@ -796,7 +811,7 @@
       <a
         href="https://banana-project01.github.io/baNaNa-frontend/world-cup-service.html"
       >
-        <button type="button">
+        <button type="button" class="go-back">
           <img
             src="./assets/world-cup/다른 지역 월드컵 하러 가기.svg"
             alt="다른 지역 월드컵 하러 가기"
