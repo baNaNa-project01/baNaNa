@@ -170,7 +170,13 @@
             <button id="search-btn">검색</button>
           </div>
           <!-- 지도 영역 -->
-          <div id="map"></div>
+          <div id="map">
+            <!-- 지도 로딩 중 메시지 -->
+            <div id="map-loading" class="map-loading loading-box">
+              <div class="spinner"></div>
+              <p>지도를 불러오는 중...</p>
+            </div>
+          </div>
           <!-- 지도 우측 컨트롤 (내부 오버레이) -->
           <div class="right-controls">
             <h4>카테고리</h4>
@@ -256,6 +262,16 @@
             <h4>세부지역</h4>
             <div id="detail-region-container" class="detail-region-container">
               <!-- 동적으로 채워짐 -->
+              <!-- 세부 지역 선택 로딩 -->
+              <div
+                id="detail-region-loading"
+                class="loading-box"
+                style="display: none"
+              >
+                <div class="loading"></div>
+                <div class="spinner"></div>
+                <p>세부 지역 정보를 불러오는 중...</p>
+              </div>
             </div>
           </div>
           <!-- 관광타입 선택 영역 -->
@@ -299,7 +315,7 @@
       <!-- 관광정보 게시판 -->
       <div id="tourBoard">
         <h2>관광정보 게시판</h2>
-        <div id="tourBoardItems" class="tour-board-items"></div>
+        <div id="tourBoardItems"></div>
         <div id="tourBoardPagination" class="tour-board-pagination"></div>
       </div>
       <!-- 개발용 TourAPI UI (숨김) -->
@@ -323,6 +339,11 @@
           <div class="modal-right">
             <div id="modalDetails">
               <!-- 상세 관광정보 내용이 채워짐 -->
+              <!-- 상세정보 팝업 로딩 -->
+              <div class="loading">
+                <div class="spinner"></div>
+                <p>상세 정보를 불러오는 중...</p>
+              </div>
             </div>
           </div>
         </div>
@@ -363,8 +384,11 @@
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content modal-content-custom">
-          <div class="modal-header">
+        <div
+          class="modal-content rounded-4 shadow"
+          style="background: #f7f7f7; border-radius: 10px"
+        >
+          <div class="modal-header border-bottom-0 d-flex justify-content-end">
             <button
               type="button"
               class="btn-close"
@@ -373,34 +397,43 @@
             ></button>
           </div>
           <div class="modal-body text-center">
-            <div class="logo-container">
-              <img
-                src="./assets/배나낭 3d 로고.svg"
-                alt="배나낭 로고"
-                width="60"
-                height="60"
-              />
-              <h1 class="fw-bold">배나낭</h1>
+            <div class="d-flex justify-content-center align-items-center mb-3">
+              <div class="logo-container">
+                <img
+                  src="./assets/배나낭 3d 로고.svg"
+                  alt="배나낭 로고"
+                  width="60vw"
+                  height="60vh"
+                />
+                <h1 class="fw-bold ms-3">배나낭</h1>
+              </div>
             </div>
-            <h2 class="fw-semibold">소셜 로그인</h2>
-            <p>소셜 계정으로 3초 만에 로그인하기</p>
-            <div class="login-buttons">
-              <button type="button" class="btn" id="kakao-login">
+            <h2 class="fw-semibold" style="font-size: 36px; color: #333">
+              소셜 로그인
+            </h2>
+            <p style="font-size: 24px; color: #5c5c5c">
+              소셜 계정으로 3초 만에 로그인하기
+            </p>
+            <div class="d-flex flex-column gap-3 mt-4">
+              <button type="button" class="btn w-100 p-3" id="kakao-login">
                 <img
                   src="./assets/home/카카오 아이디 로그인 버튼.svg"
                   alt="카카오 로그인"
+                  class="me-2"
                 />
               </button>
-              <button type="button" class="btn" id="naver-login">
+              <button type="button" class="btn w-100 p-3" id="naver-login">
                 <img
                   src="./assets/home/네이버 로그인 버튼.svg"
                   alt="네이버 로그인"
+                  class="me-2"
                 />
               </button>
-              <button type="button" class="btn" id="google-login">
+              <button type="button" class="btn w-100 p-3" id="google-login">
                 <img
                   src="./assets/home/구글 로그인 버튼.svg"
                   alt="구글 로그인"
+                  class="me-2"
                 />
               </button>
             </div>
