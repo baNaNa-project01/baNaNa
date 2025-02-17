@@ -356,24 +356,29 @@ function showSelection() {
   document.getElementById("loadingOverlay").classList.remove("hidden");
 
   callGeminiAPI().then((reply) => {
-    console.log("API 응답:", reply);
+    console.log("API 응답:", reply); // 전체 응답 텍스트 확인
+
     document.getElementById("loadingOverlay").classList.add("hidden");
 
     const resultText = document.getElementById("resultText");
-    resultText.innerHTML = "";
+    resultText.innerHTML = ""; // 기존 내용 초기화
 
-    const lines = reply.split("\n");
+    // 줄바꿈으로 분리된 모든 텍스트 처리
+    const processedLines = reply.split("\n")
+      .filter(line => line.trim() !== "") // 빈 줄 제거
+      .map(line => line.trim()); // 각 줄의 여백 제거
+
     let currentDayText = "";
     let isFirstDay = true;
 
-    lines.forEach((line, index) => {
-      if (line.trim() === "") return;
-
+    processedLines.forEach((line, index) => {
       if (line.startsWith("Day")) {
+        // 이전 Day의 텍스트 추가
         if (currentDayText && !isFirstDay) {
           appendChatBubble(resultText, currentDayText, false);
         }
 
+        // 새 Day 제목 추가
         appendChatBubble(resultText, `<span class="day-text">${line}</span>`, true);
         currentDayText = "";
         isFirstDay = false;
@@ -381,11 +386,13 @@ function showSelection() {
         currentDayText += line + "<br>";
       }
 
-      if (index === lines.length - 1 && currentDayText) {
+      // 마지막 Day의 텍스트 추가
+      if (index === processedLines.length - 1 && currentDayText) {
         appendChatBubble(resultText, currentDayText, false);
       }
     });
 
+    // 나머지 코드는 동일
     dayPlaces = extractDayPlaces(reply);
     console.log("추출된 dayPlaces:", dayPlaces);
 
