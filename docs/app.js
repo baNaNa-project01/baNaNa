@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const BACKEND_URL = "https://banana-flask-app.onrender.com";
 
-  // const loginButton = documentElement.getElementsById("login-button");
-  // const userProfile = documentElement.getElementById("user-profile");
-  // const userProfileName = documentElement.getElementById("user-profile-name");
+  const loginButton = document.getElementById("login-button");
+  const userProfile = document.getElementById("user-profile");
+  const userProfileName = document.getElementById("user-profile-name");
 
   // ✅ 로그인 요청 (콜드 스타트 대응)
   async function loginWithRetry(provider, maxAttempts = 5, delay = 2000) {
@@ -122,12 +122,12 @@ document.addEventListener("DOMContentLoaded", function () {
       const userData = await response.json();
       console.log("✅ 로그인한 사용자:", userData);
 
-      // loginButton.classList.add("hidden");
-      // userProfile.classList.remove("hidden");
+      if (loginButton) loginButton.classList.add("user-hidden");
+      if (userProfile) userProfile.classList.remove("user-hidden");
 
-      document.getElementById(
-        "user-profile-name"
-      ).innerText = `안녕하세요, ${userData.name}님`;
+      if (userProfileName) {
+        userProfileName.innerText = `안녕하세요, ${userData.name}님`;
+      }
 
       return userData;
     } catch (error) {
