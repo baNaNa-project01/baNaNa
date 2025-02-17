@@ -84,9 +84,20 @@
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#loginModal"
+                id="login-button"
               >
                 로그인
               </button>
+              <div id="user-profile" class="user-hidden">
+                <img
+                  id="user-profile-icon"
+                  src="./assets/home/마이 페이지 버튼.svg"
+                  alt="프로필"
+                />
+                <span id="user-profile-name" class="user-hidden"
+                  >사용자 이름</span
+                >
+              </div>
 
               <!-- 닫기 버튼 -->
               <button
@@ -145,9 +156,22 @@
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#loginModal"
+            id="login-button-2"
           >
             로그인
           </button>
+
+          <!-- 로그인 후 프로필 아이콘 (초기 숨김) -->
+          <div id="user-profile-2" class="user-hidden">
+            <img
+              id="user-profile-icon"
+              src="./assets/home/마이 페이지 버튼.svg"
+              alt="프로필"
+            />
+            <span id="user-profile-name-2" class="user-hidden"
+              >사용자 이름</span
+            >
+          </div>
         </div>
       </div>
     </nav>
