@@ -239,6 +239,10 @@ function initMap() {
     zoom: 10,
   };
   map = new naver.maps.Map("map", mapOptions);
+  // 지도가 로드되면 "로딩 중..." 메시지 숨기기
+  naver.maps.Event.once(map, "init", () => {
+    document.getElementById("map-loading").style.display = "none";
+  });
   console.log("Naver map initialized");
 
   // 지도 클릭 시 검색/지역 기반 인포윈도우 닫기
@@ -587,8 +591,13 @@ function setupEventListeners() {
       return;
     }
     // 관광정보 게시판에 로딩중 문구 표시
-    document.getElementById("tourBoardItems").innerHTML =
-      '<div class="loading">로딩중...</div>';
+    document.getElementById("tourBoardItems").innerHTML = `
+  <div class="loading-box">
+    <div class="spinner"></div>
+    <p>관광 정보를 불러오는 중...</p>
+  </div>
+`;
+
     const url = `https://fate-star-gram.glitch.me/api/region-tour-info?contentTypeId=${selectedContentTypeId}&areaCode=${selectedAreaCode}&sigunguCode=${selectedSigunguCode}`;
     fetch(url)
       .then((res) => res.json())
@@ -672,9 +681,13 @@ function setupEventListeners() {
         alert("검색어를 입력하세요.");
         return;
       }
-      // 게시판에 로딩중 문구 표시
-      document.getElementById("tourBoardItems").innerHTML =
-        '<div class="loading">로딩중...</div>';
+      // 게시판에 통일된 로딩 UI 표시
+      document.getElementById("tourBoardItems").innerHTML = `
+  <div class="loading-box">
+    <div class="spinner"></div>
+    <p>관광 정보를 불러오는 중...</p>
+  </div>
+`;
 
       const url = `https://fate-star-gram.glitch.me/api/search-keyword?keyword=${encodeURIComponent(
         keyword
@@ -786,7 +799,12 @@ let currentDetailRegionsAbortController = null;
 
 function populateDetailRegions(areaCode) {
   const container = document.getElementById("detail-region-container");
-  container.innerHTML = '<div class="loading">로딩중...</div>';
+  container.innerHTML = `
+  <div id="detail-region-loading" class="loading-box">
+    <div class="spinner"></div>
+    <p>세부 지역 정보를 불러오는 중...</p>
+  </div>
+`;
   if (currentDetailRegionsAbortController) {
     currentDetailRegionsAbortController.abort();
   }
@@ -849,6 +867,11 @@ function renderTourBoardPage(page) {
   const pageItems = tourBoardData.slice(start, end);
   const boardContainer = document.getElementById("tourBoardItems");
   boardContainer.innerHTML = "";
+
+  // 그리드 레이아웃용 컨테이너 생성
+  const gridContainer = document.createElement("div");
+  gridContainer.className = "tour-board-items";
+
   pageItems.forEach((item) => {
     const div = document.createElement("div");
     div.className = "tour-board-item";
@@ -865,29 +888,31 @@ function renderTourBoardPage(page) {
     div.setAttribute("data-firstimage", firstImg);
     div.setAttribute("data-firstimage2", secondImg);
     div.innerHTML = `
-  <div class="board-item-title">${item.title}</div>
-  <div class="board-item-image"><img src="${firstImg}" alt="${
-      item.title
-    }"></div>
-  <div class="board-item-address">주소: ${item.addr1 ? item.addr1 : ""} ${
-      item.addr2 ? item.addr2 : ""
-    }</div>
-  <div class="board-item-details">
-    여행 분류: ${contentTypeMapping[item.contenttypeid] || item.contenttypeid}
-  </div>`;
-    // renderTourBoardPage 함수 내 게시글 클릭 이벤트 수정
+      <div class="board-item-title">${item.title}</div>
+      <div class="board-item-image">
+        <img src="${firstImg}" alt="${item.title}">
+      </div>
+      <div class="board-item-address">
+        주소: ${item.addr1 ? item.addr1 : ""} ${item.addr2 ? item.addr2 : ""}
+      </div>
+      <div class="board-item-details">
+        여행 분류: ${
+          contentTypeMapping[item.contenttypeid] || item.contenttypeid
+        }
+      </div>
+    `;
     div.addEventListener("click", () => {
       const contentId = div.getAttribute("data-contentid");
       const contentTypeId = div.getAttribute("data-contenttypeid");
       const firstImage = div.getAttribute("data-firstimage");
       const secondImage = div.getAttribute("data-firstimage2");
-      // 게시글 제목 추출 (게시글 제목이 .board-item-title 요소에 있음)
       const title = div.querySelector(".board-item-title").innerText;
       showDetailPopup(contentId, contentTypeId, firstImage, secondImage, title);
     });
-
-    boardContainer.appendChild(div);
+    gridContainer.appendChild(div);
   });
+  boardContainer.appendChild(gridContainer);
+
   renderTourBoardPagination();
 }
 
@@ -927,8 +952,12 @@ function showDetailPopup(
   }
 
   // 로딩중 문구 표시
-  document.getElementById("modalDetails").innerHTML =
-    '<div class="loading" style="text-align:center; font-size:18px;">로딩중...</div>';
+  document.getElementById("modalDetails").innerHTML = `
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <p>상세 정보를 불러오는 중...</p>
+    </div>
+  `;
   document.getElementById("detailModal").style.display = "block";
 
   // 이미지 슬라이더 업데이트
