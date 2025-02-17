@@ -45,12 +45,15 @@
     <link rel="stylesheet" href="map.css" />
   </head>
   <body>
-    <!-- 내비게이션 바 -->
+    <!-- **************************************************** -->
+    <!-- ★★★★★  여기부터 내비게이션 바 섹션 ★★★★★ -->
+    <!-- **************************************************** -->
     <nav class="navbar navbar-expand-lg" aria-label="Offcanvas navbar large">
       <div class="container-fluid">
-        <a class="navbar-brand-logo" href="#">
-          <img src="./assets/배나낭 3d 로고.svg" alt="배나낭 로고" />
-        </a>
+        <a class="navbar-brand-logo" href="#"
+          ><img src="./assets/배나낭 3d 로고.svg" alt="배나낭 로고"
+        /></a>
+
         <button
           class="navbar-toggler"
           type="button"
@@ -68,16 +71,32 @@
           aria-labelledby="offcanvasNavbar2Label"
         >
           <div class="offcanvas-header">
+            <!-- 메뉴  -->
             <h5 class="offcanvas-title" id="offcanvasNavbar2Label">MENU</h5>
+
             <div class="d-flex align-items-center">
+              <!-- 로그인 버튼 -->
               <button
                 class="btn btn-outline-success me-2"
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#loginModal"
+                id="login-button"
               >
                 로그인
               </button>
+              <div id="user-profile" class="user-hidden">
+                <img
+                  id="user-profile-icon"
+                  src="./assets/home/마이 페이지 버튼.svg"
+                  alt="프로필"
+                />
+                <span id="user-profile-name" class="user-hidden"
+                  >사용자 이름</span
+                >
+              </div>
+
+              <!-- 닫기 버튼 -->
               <button
                 type="button"
                 class="btn-close btn-close-white"
@@ -127,15 +146,29 @@
             </ul>
           </div>
         </div>
+        <!-- PC용 로그인 버튼 (큰 화면에서만 보임) -->
         <div class="d-none d-lg-flex ms-auto">
           <button
             class="btn btn-outline-success me-2"
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#loginModal"
+            id="login-button-2"
           >
             로그인
           </button>
+
+          <!-- 로그인 후 프로필 아이콘 (초기 숨김) -->
+          <div id="user-profile-2" class="user-hidden">
+            <img
+              id="user-profile-icon"
+              src="./assets/home/마이 페이지 버튼.svg"
+              alt="프로필"
+            />
+            <span id="user-profile-name-2" class="user-hidden"
+              >사용자 이름</span
+            >
+          </div>
         </div>
       </div>
     </nav>
