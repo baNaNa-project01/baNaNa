@@ -171,7 +171,7 @@ async function callGeminiAPI() {
       method: "POST",
       body: JSON.stringify({
         text: `너는 여행 계획 전문가야. 나는 지금 여행을 가고 싶은데, 다음과 같은 조건들이 있어:
-                    1. 여행지는 ${selectedLocation}로 정했어.
+                    1. 여행지는 ${selectedLocation}로 정했어. 만약 도 단위의 지역이라면 해당 도의 시/군을 정해서 임의로 선정해줘.
                     2. 동반자는 ${selectedCompanions.join(", ")} 함께 갈 거야.
                     3. 여행 기간은 ${selectedDuration}로 계획하고 있어.
                     4. 내가 선호하는 여행 스타일은 ${selectedStyle.join(
