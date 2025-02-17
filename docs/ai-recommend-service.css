@@ -11,6 +11,13 @@ body {
   background-color: #f7f7f7;
 }
 
+/* ---------- 배너 ---------- */
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* 스텝 컨테이너 */
 .step-container {
   font-family: "Pretendard-Medium";
