@@ -158,10 +158,17 @@ function selectSchedule(schedule) {
 
 // 6단계에서 1단계로 돌아가기
 function goToStep1FromStep6() {
+  const step6 = document.getElementById("step6");
+  const step1 = document.getElementById("step1");
+  const progressContainer = document.getElementById("progress-container");
+
+  if (step6) step6.classList.remove("hidden");
+  if (step1) step1.classList.add("hidden");
+  if (progressContainer) progressContainer.classList.remove("hidden");
+
   document.getElementById("step6").classList.add("hidden");
   document.getElementById("step1").classList.remove("hidden");
-  document.getElementById("progress-container").classList.remove("hidden");
-  updateProgressBar(1); // 프로그레스바
+  updateProgressBar(1);
 }
 
 async function callGeminiAPI() {
@@ -364,9 +371,10 @@ function showSelection() {
     resultText.innerHTML = ""; // 기존 내용 초기화
 
     // 줄바꿈으로 분리된 모든 텍스트 처리
-    const processedLines = reply.split("\n")
-      .filter(line => line.trim() !== "") // 빈 줄 제거
-      .map(line => line.trim()); // 각 줄의 여백 제거
+    const processedLines = reply
+      .split("\n")
+      .filter((line) => line.trim() !== "") // 빈 줄 제거
+      .map((line) => line.trim()); // 각 줄의 여백 제거
 
     let currentDayText = "";
     let isFirstDay = true;
@@ -379,7 +387,11 @@ function showSelection() {
         }
 
         // 새 Day 제목 추가
-        appendChatBubble(resultText, `<span class="day-text">${line}</span>`, true);
+        appendChatBubble(
+          resultText,
+          `<span class="day-text">${line}</span>`,
+          true
+        );
         currentDayText = "";
         isFirstDay = false;
       } else {
