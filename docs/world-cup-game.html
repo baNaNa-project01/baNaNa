@@ -15,11 +15,11 @@
         max-width: 300px;
         margin: 0 10px;
         cursor: pointer;
-        border: 2px solid #ccc;
       }
       #winner {
         margin-top: 30px;
         font-size: 24px;
+        text-align: center;
       }
       .match-item {
         display: flex;
@@ -29,6 +29,32 @@
       }
       .restaurant-name {
         font-size: 24px;
+        text-align: center;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .content-wrapper {
+        padding-top: 40px;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .container-go-back {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      button {
+        border: none;
+        background: none;
+        outline: none;
       }
     </style>
 
@@ -182,12 +208,18 @@
     <!-- **************************************************** -->
     <!-- ★★★★★  여기부터 이상형 월드컵 섹션 ★★★★★ -->
     <!-- **************************************************** -->
+
     <!-- 헤드라인 -->
-    <h1></h1>
+    <div class="content-wrapper">
+      <h1></h1>
+    </div>
+
     <!-- 헤드라인 바로 아래 라운드/축하 메시지 영역 -->
     <h2 id="round-info"></h2>
+
     <!-- 대진표 영역 -->
     <div id="game"></div>
+
     <!-- 최종 우승자 영역 -->
     <div id="winner"></div>
 
@@ -734,6 +766,20 @@
         fetchImages();
       };
     </script>
+
+    <!-- 다른 지역 월드컵 하러 가기 버튼 -->
+    <div class="container-go-back">
+      <button type="button">
+        <img
+          src="./assets/world-cup/다른 지역 월드컵 하러 가기.svg"
+          alt="바른 지역 월드컵 하러 가기"
+          class="btn-worldcup-img"
+        />
+      </button>
+    </div>
+
+    <!-- 여백 요소 추가 -->
+    <div class="section-spacer"></div>
 
     <!-- **************************************************** -->
     <!-- ★★★★★  여기부터 푸터 섹션 ★★★★★ -->
