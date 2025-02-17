@@ -56,6 +56,11 @@
         background: none;
         outline: none;
       }
+
+      /* 월드컵 다시 하러 가기 버튼 호버 & 클릭 시 어두워지는 효과 */
+      .go-back:hover .btn-worldcup-img {
+        filter: brightness(0.85); /* 호버 시 어두워짐 */
+      }
     </style>
 
     <!-- Supabase JavaScript 클라이언트 라이브러리 -->
@@ -780,7 +785,7 @@
 
     <!-- 다른 지역 월드컵 하러 가기 버튼 -->
     <div class="container-go-back">
-      <button type="button">
+      <button type="button" class="go-back">
         <img
           src="./assets/world-cup/다른 지역 월드컵 하러 가기.svg"
           alt="바른 지역 월드컵 하러 가기"
